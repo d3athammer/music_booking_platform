@@ -1,3 +1,5 @@
 class Equipment < ApplicationRecord
-  has_one :studio
+  belongs_to :studio
+  validates :name, :brand, :type, :description, presence: true
+  validates :name, length: { maximum: 100 }
 end

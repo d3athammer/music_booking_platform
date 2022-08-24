@@ -3,4 +3,5 @@ class Reservation < ApplicationRecord
   belongs_to :user
   belongs_to :studio
   validates :start_time, comparison: { less_than: :end_time }
+  validates :num_hours, :price_per_hour, numericality: { only_integer: true }
 end
