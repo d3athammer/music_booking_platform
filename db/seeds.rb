@@ -16,3 +16,10 @@ p "Creating Test Accounts"
   )
 
 p "Finished Creating Test Accounts"
+
+p "Creating Random Studios"
+5.times do
+  fakeStudio = Studio.new (
+    name:   Faker::Company.name
+    address: Faker::Address.full_address
+  )
