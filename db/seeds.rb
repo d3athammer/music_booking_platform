@@ -5,3 +5,14 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+
+require 'faker'
+
+p "Creating Test Accounts"
+5.times do
+  testAccount = Account.new (
+    email:  Faker::Intenet.email
+  )
+
+p "Finished Creating Test Accounts"
