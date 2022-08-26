@@ -10,7 +10,6 @@ class StudiosController < ApplicationController
   end
 
   def show
-
   end
 
   def new

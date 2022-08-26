@@ -1,7 +1,7 @@
 class Studio < ApplicationRecord
   validates :address, :price, :date_availability, :time_availability,
             :room_size, :room_type, :description, :total_occupancy, presence: true
-  has_many :reservations, :equipments, dependent: :destroy
+  has_many :reservations, dependent: :destroy
   belongs_to :user
   validates :description, length: { in: 150..500 }
   validates :address, length: { in: 10..150 }
