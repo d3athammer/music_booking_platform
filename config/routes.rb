@@ -11,14 +11,14 @@ Rails.application.routes.draw do
     resources :reservations, only: %i[show create new update edit]
   end
 
-  resources :studios do
-    resources :reviews, only: %i[create new]
-  end
+  resources :reviews, only: %i[create new]
 
+  resources :studios, only: %i[destroy]
+  resources :reviews, only: %i[destroy]
 
-  get "account", to: "pages#account"
-  get "account", to: "account#edit"
-  post "account", to: "account#create"
+  # get "account", to: "pages#account"
+  # get "account", to: "account#edit"
+  # post "account", to: "account#create"
 
   # get "reservations", to: "reservations#index"
   # get "reservations", to: "reservations#show"
