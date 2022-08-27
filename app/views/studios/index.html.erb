@@ -1,5 +1,7 @@
-<h1>hello world</h1>
 
-<% @studio.each do |stud| %>
-<%= stud.address %>
+<div class="container">
+<h1>hello world</h1>
+<% @studio.each do |stud| %><br>
+<li><%= stud.name %>, <%= stud.address %></li>
 <% end %>
+</div>

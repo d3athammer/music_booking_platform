@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_27_080144) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_27_083753) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -83,6 +83,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_27_080144) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_studios_on_user_id"
   end
 
   create_table "timeslots", force: :cascade do |t|
@@ -122,6 +124,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_27_080144) do
   add_foreign_key "reviews", "reservations"
   add_foreign_key "rooms", "studios"
   add_foreign_key "studio_media", "studios"
+  add_foreign_key "studios", "users"
   add_foreign_key "wishlists", "rooms", column: "studio_id"
   add_foreign_key "wishlists", "users"
 end

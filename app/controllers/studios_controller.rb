@@ -1,5 +1,5 @@
 class StudiosController < ApplicationController
-  before_action :set_studio, only: %i[create new]
+  # before_action :set_studio, only: %i[create]
 
   def index
     @studio = Studio.all
@@ -26,6 +26,6 @@ class StudiosController < ApplicationController
   end
 
   def studio_params
-    params.require(:studio).permit(:address)
+    params.require(:studio).permit(:name, :address)
   end
 end
