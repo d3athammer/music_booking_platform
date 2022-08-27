@@ -26,7 +26,7 @@ class RoomsController < ApplicationController
 
   def create
     @room = Room.new
-    @studio.user = current_user
+    @room.user = current_user
     if @studio.save
       redirect_to studio_path(@studio)
     else
