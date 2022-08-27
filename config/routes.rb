@@ -17,9 +17,11 @@ Rails.application.routes.draw do
   end
 
   resources :studios, only: %i[destroy]
-
-  # *TODO pundit
   resources :reviews, only: %i[destroy]
+
+  resources :studios do
+    resources :rooms, only: %i[new create]
+  end
 
   # get "account", to: "pages#account"
   # get "account", to: "account#edit"

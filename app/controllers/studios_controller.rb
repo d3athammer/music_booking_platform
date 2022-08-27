@@ -1,24 +1,31 @@
 class StudiosController < ApplicationController
-  before_action :set_studio, only: %i[ show edit update destroy]
+  before_action :set_studio, only: %i[create new]
 
   def index
     @studio = Studio.all
-  end
-
-  def host
-    @owner = @studio.host_name
-  end
-
-  def show
   end
 
   def new
     @studio = Studio.new
   end
 
-  def edit
-
+  def create
+    @studio = Studio.new
+    @studio.user = current_user
+    if @studio.save
+      redirect_to studio_path(@studio)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
+  private
 
+  def set_studio
+    @studio = Studio.find(params[:user_id])
+  end
+
+  def studio_params
+    params.require(:studio).permit(:address)
+  end
 end
