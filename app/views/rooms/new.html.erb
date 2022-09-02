@@ -1,0 +1,16 @@
+<div class="content">
+<h1>New review</h1>
+<%= simple_form_for [@studio, @room] do |f| %>
+  <%= f.input :price_per_hour %>
+  <%= f.input :date %>
+  <%= f.input :room_size %>
+  <%= f.input :room_type %>
+  <%= f.input :description %>
+  <%= f.input :total_occupancy %>
+  <%= f.submit "Create Room", class: "btn btn-primary" %>
+<% end %>
+</div>
+
+
+:address, :price, :date_availability, :time_availability,
+            :room_size, :room_type, :description, :total_occupancy,

@@ -1,27 +1,9 @@
 class RoomsController < ApplicationController
-  before_action :set_studio, only: %i[create new show edit update destroy]
-
-  def index
-    @studio = Studio.all
-  end
-
-  def host
-    @owner = @studio.host_name
-  end
-
-  def show
-  end
+  before_action :set_room, only: %i[new create]
 
   def new
+    @studio = Studio.find(params[:studio_id])
     @room = Room.new
-  end
-
-  def edit
-
-  end
-
-  def new
-
   end
 
   def create

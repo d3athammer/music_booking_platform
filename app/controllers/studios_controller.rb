@@ -1,5 +1,5 @@
 class StudiosController < ApplicationController
-  before_action :set_studio, only: %i[show destroy edit]
+  before_action :set_studio, only: %i[show destroy edit update]
 
   def index
     @studio = Studio.all
@@ -23,7 +23,11 @@ class StudiosController < ApplicationController
   end
 
   def edit
+  end
 
+  def update
+    @studio.update(studio_params)
+    redirect_to studio_path(@studio)
   end
 
   def destroy

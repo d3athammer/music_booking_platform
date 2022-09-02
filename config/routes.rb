@@ -20,7 +20,6 @@ Rails.application.routes.draw do
   resources :studios, only: %i[destroy]
 
 
-
   # get "account", to: "pages#account"
   # get "account", to: "account#edit"
   # post "account", to: "account#create"
