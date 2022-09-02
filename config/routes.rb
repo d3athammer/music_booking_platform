@@ -7,21 +7,19 @@ Rails.application.routes.draw do
   # delete "properties", to: "properties#destroy"
   # patch "properties", to: "properties#update"
 
-  resources :studios do
-    resources :reservations, only: %i[show create new update edit]
-  end
+  # resources :studios, except: [:destroy] do
+  #   resources :reservations, only: %i[show create new update edit]
+  # end
 
   # *TODO pundit
-  resources :studios do
-    resources :reviews, only: %i[create new]
-  end
 
-  resources :studios, only: %i[destroy]
-  resources :reviews, only: %i[destroy]
 
-  resources :studios do
+  resources :studios, except: [:destroy] do
     resources :rooms, only: %i[new create]
   end
+  resources :studios, only: %i[destroy]
+
+
 
   # get "account", to: "pages#account"
   # get "account", to: "account#edit"
