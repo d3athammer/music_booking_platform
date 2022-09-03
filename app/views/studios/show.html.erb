@@ -1,9 +1,9 @@
 
 <div class="container">
-<h1>show studio</h1>
+<h1><%= @studio.name %></h1>
+<p> <%= @studio.address %></p>
 
-<li class="list-group-item">
-  <%= @studio.name %>
-  <%= @studio.address %>
-  <%= button_to "Delete", studio_path(@studio), method: :delete, form: {data: {turbo_confirm: 'Are you sure?'}} %>
-</li>
+<% @studio.rooms.each do |room|%>
+<li class="list-group-item"><%= room %></li>
+<% end %>
+<%= button_to "Delete", studio_path(@studio), method: :delete, form: {data: {turbo_confirm: 'Are you sure?'}} %>

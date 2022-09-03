@@ -2,7 +2,6 @@ class RoomsController < ApplicationController
   before_action :set_studio, only: %i[new create]
 
   def new
-    @studio = Studio.find(params[:studio_id])
     @room = Room.new
   end
 
@@ -10,15 +9,13 @@ class RoomsController < ApplicationController
     @room = Room.new(room_params)
     @room.studio = @studio
     if @room.save
-      redirect_to room_path(@room)
+      redirect_to studio_path(@studio)
     else
       render :new, status: :unprocessable_entity
     end
   end
 
   private
-
-
 
   def set_studio
     @studio = Studio.find(params[:studio_id])
