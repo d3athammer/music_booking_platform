@@ -1,5 +1,5 @@
 class RoomsController < ApplicationController
-  before_action :set_room, only: %i[new create]
+  before_action :set_studio, only: %i[new create]
 
   def new
     @studio = Studio.find(params[:studio_id])
@@ -7,10 +7,10 @@ class RoomsController < ApplicationController
   end
 
   def create
-    @room = Room.new
-    @room.user = current_user
-    if @studio.save
-      redirect_to studio_path(@studio)
+    @room = Room.new(room_params)
+    @room.studio = @studio
+    if @room.save
+      redirect_to room_path(@room)
     else
       render :new, status: :unprocessable_entity
     end
@@ -18,8 +18,15 @@ class RoomsController < ApplicationController
 
   private
 
-  def set_room
-    @room = Room.find(params[:studio_id])
+
+
+  def set_studio
+    @studio = Studio.find(params[:studio_id])
   end
 
+  def room_params
+    params.require(:room).permit(:price, :date, :room_size,
+                                 :room_type, :description, :total_occupancy,
+                                 :studio_id, :user_id)
+  end
 end
