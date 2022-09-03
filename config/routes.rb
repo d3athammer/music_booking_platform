@@ -4,15 +4,14 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
 
-  resources :studios, except: [:destroy] do
-    resources :rooms, only: %i[new create]
+  resources :studios do
+    resources :rooms, only: %i[new create show]
   end
 
-  resources :rooms, except: %i[new create] do
+  resources :rooms, except: %i[new create show] do
     resources :reservations, only: %i[new create]
   end
 
-  resources :studios, only: %i[destroy]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

@@ -23,7 +23,6 @@ class RoomsController < ApplicationController
 
   def room_params
     params.require(:room).permit(:price, :date, :room_size,
-                                 :room_type, :description, :total_occupancy,
-                                 :studio_id, :user_id)
+                                 :room_type, :description, :total_occupancy)
   end
 end
