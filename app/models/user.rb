@@ -4,5 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :reservations
-  has_many :studios
+  # allows us to call @user.reservations
+  has_many :studios, dependent: :destroy
+  # allows us to call @user.studios
 end
