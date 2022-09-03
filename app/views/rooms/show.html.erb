@@ -1,0 +1,15 @@
+<div class="container">
+<div class="card mb-3 mt-3 p-2">
+<h1><%= @room.room_name %></h1>
+    <li class="list-group-item">Room Type: <%= @room.room_type %></li>
+    <li class="list-group-item">Size: <%= @room.room_size %>&#13217;</li>
+    <li class="list-group-item">Price: <%= @room.price %></li>
+    <li class="list-group-item">Suggested Pax: <%= @room.total_occupancy %></li>
+    <br>
+    <p class="card-text"><%= @room.description %></p>
+    <div class="button">
+    <%= link_to "Back to Studio", studio_path(@studio), class: 'btn btn-secondary mr-2 py-2' %>
+    <%= link_to "Edit Room", edit_room_path(@room), class: 'btn btn-secondary m-2 py-2' %>
+    </div>
+</div>
+</div>

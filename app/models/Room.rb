@@ -1,5 +1,5 @@
 class Room < ApplicationRecord
-  validates :price, :date, :room_size, :room_type,
+  validates :room_name, :price, :date, :room_size, :room_type,
             :description, :total_occupancy, presence: true
   has_many :reservations, dependent: :destroy
   belongs_to :studio

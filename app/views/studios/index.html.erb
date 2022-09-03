@@ -1,7 +1,8 @@
 
 <div class="container">
-<h1>hello world</h1>
+<h1>List of Studios Available for Booking</h1>
 <% @studio.each do |stud| %><br>
-<li><%= stud.name %>, <%= stud.address %></li>
+<li class='list-group-item' ><%= stud.name %></li>
+<li class='list-group-item' ><%= stud.address %></li>
 <% end %>
 </div>

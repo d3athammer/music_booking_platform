@@ -1,6 +1,4 @@
-<div class="container">
-<h1>New Room</h1>
-<%= simple_form_for [@studio, @room] do |f| %>
+<%= simple_form_for [room] do |f| %>
   <%= f.input :room_name %>
   <%= f.input :price, label: 'Price per hour' %>
   <%= f.input :date %>
