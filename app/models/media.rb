@@ -1,3 +1,3 @@
 class Media < ApplicationRecord
-  belongs_to :studio
+  belongs_to :room
 end

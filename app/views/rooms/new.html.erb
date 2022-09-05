@@ -1,0 +1,12 @@
+<div class="container">
+<h1>New Room</h1>
+<%= simple_form_for [@studio, @room] do |f| %>
+  <%= f.input :price, label: 'Price per hour' %>
+  <%= f.input :date %>
+  <%= f.input :room_size %>
+  <%= f.collection_radio_buttons :room_type, [[true, 'Jamming Studio'], [true, 'Recording Studio'], [true, 'Home Studio'], [true, 'practice room']], :first, :last %>
+  <%= f.input :description %>
+  <%= f.input :total_occupancy %>
+  <%= f.submit "Create Room", class: "btn btn-primary" %>
+<% end %>
+</div>
