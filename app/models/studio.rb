@@ -1,5 +1,5 @@
 class Studio < ApplicationRecord
-  has_many :rooms
+  has_many :rooms, dependent: :destroy
   validates :address, length: { in: 10..150 }
   validates :address, :postal, presence: true
   # allows us to call: @studio.user

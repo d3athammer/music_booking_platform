@@ -8,9 +8,11 @@ Rails.application.routes.draw do
     resources :rooms, only: %i[new create show]
   end
 
-  resources :rooms, except: %i[new create show] do
+  resources :rooms, except: %i[new create show destroy] do
     resources :reservations, only: %i[new create]
   end
+
+  resources :rooms, only: [:destroy]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_03_062915) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_04_060944) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -71,6 +71,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_03_062915) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "timeslot_id"
+    t.bigint "room_id", null: false
+    t.index ["room_id"], name: "index_reservations_on_room_id"
     t.index ["studio_id"], name: "index_reservations_on_studio_id"
     t.index ["timeslot_id"], name: "index_reservations_on_timeslot_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
@@ -149,6 +151,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_03_062915) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "equipment", "rooms", column: "studio_id"
   add_foreign_key "media", "rooms", column: "studio_id"
+  add_foreign_key "reservations", "rooms"
   add_foreign_key "reservations", "rooms", column: "studio_id"
   add_foreign_key "reservations", "timeslots"
   add_foreign_key "reservations", "users"

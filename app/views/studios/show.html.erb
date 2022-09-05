@@ -5,7 +5,7 @@
 <br>
 <div class="room_container">
 <% @studio.rooms.each do |room|%>
-  <div class="card mb-3  max-height: 50%;">
+  <div class="card mb-3">
   <%# <%= image_tag("placeholder.jpg", :alt => "rss feed", class: 'card-image-top') %>
   <div class="card-body">
     <h4 class="card-title"><%= room.room_name %></h4>
@@ -17,11 +17,11 @@
     <%= link_to "Go to room", studio_room_path(@studio, room), class: 'btn btn-secondary mt-2 px-3 py-2 stretched-link' %>
   </div>
 </div>
-</div>
 <% end %>
+</div>
 <div class="list-group px-3 col-2">
-<%= link_to "Create A Room", new_studio_room_path(@studio), class: 'btn btn-primary mb-2' %>
+<%= button_to "Create A Room", new_studio_room_path(@studio), method: :get, class: 'btn btn-primary mb-2' %>
 <%# <%= link_to "Delete Studio", studio_path(@studio), method: :delete, form: {data: {turbo_confirm: 'Are you sure?'}}, class: 'btn btn-primary px-4' %>
-<%= link_to "Delete Studio", studio_path(@studio), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'btn btn-primary px-4' %>
+<%= button_to "Delete Studio", studio_path(@studio), method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } }, class: 'btn btn-primary px-4' %>
 </div>
 </div>

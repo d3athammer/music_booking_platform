@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
   before_action :set_studio, only: %i[show new create]
-  before_action :set_room, only: %i[edit update]
+  before_action :set_room, only: %i[edit update destroy]
 
   def show
     @room = Room.find(params[:id])
@@ -28,6 +28,12 @@ class RoomsController < ApplicationController
     # access @studio id via room studio instead of set_studio
     @studio = @room.studio
     redirect_to studio_room_path(@studio, @room)
+  end
+
+  def destroy
+    @studio = @room.studio
+    @room.destroy
+    redirect_to studio_path(@studio), status: :see_other
   end
 
   private

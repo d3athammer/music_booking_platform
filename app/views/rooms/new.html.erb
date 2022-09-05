@@ -3,7 +3,6 @@
 <%= simple_form_for [@studio, @room] do |f| %>
   <%= f.input :room_name %>
   <%= f.input :price, label: 'Price per hour' %>
-  <%= f.input :date %>
   <%= f.input :room_size %>
   <%= f.collection_radio_buttons :room_type, [['Jamming Studio'], ['Recording Studio'], ['Home Studio'], ['practice room']], :first, :last %>
   <%= f.input :description %>

@@ -3,7 +3,7 @@ class Reservation < ApplicationRecord
   belongs_to :user
   belongs_to :room
   belongs_to :timeslot
-  has_many :reviews, dependent: :destroy
+  # has_many :reviews, dependent: :destroy
   validates :start_time, comparison: { less_than: :end_time }
   validates :num_hours, :price_per_hour, numericality: { only_integer: true }
 end
