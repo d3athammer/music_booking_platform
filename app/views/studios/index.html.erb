@@ -2,13 +2,12 @@
 <div class="container">
 <h1>List of Studios Available for Booking</h1>
 <% @studio.each do |stud| %><br>
-  <div class="card" style="width: 18rem;">
+  <div class="card " style="width: 20rem;">
     <%# <img src="placeholder.jpg" class="card-img-top" alt="card"> %>
     <div class="card-body">
-      <%= button_to "#{stud.name}", studio_path(stud), method: :get, class: "btn btn-secondary" %>
+      <%= link_to "#{stud.name}", studio_path(stud), method: :get, class: "btn btn-secondary" %>
       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-      <li class='list-group-item' ><%= stud.address %></li>
+      <li class='list-group-item' >Address: <strong><%= stud.address %></strong></li>
     </div>
   </div>
 <% end %>
