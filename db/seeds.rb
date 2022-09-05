@@ -9,17 +9,4 @@
 
 require 'faker'
 
-p "Creating Test Accounts"
-5.times do
-  testAccount = Account.new (
-    email:  Faker::Intenet.email
-  )
 
-p "Finished Creating Test Accounts"
-
-p "Creating Random Studios"
-5.times do
-  fakeStudio = Studio.new (
-    name:   Faker::Company.name
-    address: Faker::Address.full_address
-  )

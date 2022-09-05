@@ -6,6 +6,7 @@ class StudiosController < ApplicationController
   end
 
   def show
+    @studio.rooms
   end
 
   def new
@@ -16,7 +17,7 @@ class StudiosController < ApplicationController
     @studio = Studio.new(studio_params)
     @studio.user = current_user
     if @studio.save
-      redirect_to studios_path(@studio)
+      redirect_to studio_path(@studio)
     else
       render :new, status: :unprocessable_entity
     end
@@ -42,6 +43,6 @@ class StudiosController < ApplicationController
   end
 
   def studio_params
-    params.require(:studio).permit(:name, :address, :user_id)
+    params.require(:studio).permit(:name, :address, :postal, :description, :user_id)
   end
 end
