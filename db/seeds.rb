@@ -6,20 +6,47 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-
 require 'faker'
 
-p "Creating Test Accounts"
-5.times do
-  testAccount = Account.new (
-    email:  Faker::Intenet.email
-  )
+Room.delete_all
+Studio.delete_all
+User.delete_all
 
-p "Finished Creating Test Accounts"
+num = [20..100]
 
-p "Creating Random Studios"
 5.times do
-  fakeStudio = Studio.new (
-    name:   Faker::Company.name
-    address: Faker::Address.full_address
+  # create user
+  user = User.new(
+    email: Faker::Internet.email,
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    password: Faker::Alphanumeric.alpha(number: 10)
   )
+  # create studio
+  studio = Studio.new(
+    name: Faker::Company.name,
+    address: Faker::Address.street_address,
+    postal: Faker::Address.postcode,
+    description: Faker::Quote.matz
+  )
+  # save user into studio.user
+  studio.user = user
+  studio.save!
+  # create 10 rooms inside each studio
+  10.times do
+    room = Room.new(
+      room_name: Faker::FunnyName.two_word_name,
+      date: Faker::Date.in_date_period,
+      price: [rand(20..100)].sample,
+      room_type: Faker::Emotion.noun,
+      room_size: 20,
+      description: Faker::Quote.matz,
+      total_occupancy: rand(2..5)
+    )
+    # set studio room to studio
+    room.studio = studio
+    room.save!
+  end
+  # this will save each studio with 10rooms for each user
+  studio.save!
+end

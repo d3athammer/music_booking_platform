@@ -1,0 +1,11 @@
+<div class="container">
+<h1>Make your reservations here</h1>
+
+<%= simple_form_for [@room, @reservation] do |f| %>
+  <%= f.input :date %>
+  <%= f.input :start_time, {minute_step: 30} %>
+  <%= f.input :num_hours %>
+  <%= @room.price %>
+  <%= f.submit "Make Reservations", class: "btn btn-primary" %>
+<% end %>
+</div>

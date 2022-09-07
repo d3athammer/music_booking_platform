@@ -1,9 +1,27 @@
 
 <div class="container">
-<h1>show studio</h1>
-
-<li class="list-group-item">
-  <%= @studio.name %>
-  <%= @studio.address %>
-  <%= button_to "Delete", studio_path(@studio), method: :delete, form: {data: {turbo_confirm: 'Are you sure?'}} %>
-</li>
+<h1><%= @studio.name %></h1>
+<li class="list-group-item">Address: <%= @studio.address %></li>
+<br>
+<div class="room_container">
+<% @studio.rooms.each do |room|%>
+  <div class="card mb-3">
+  <%# <%= image_tag("placeholder.jpg", :alt => "rss feed", class: 'card-image-top') %>
+  <div class="card-body">
+    <h4 class="card-title"><%= room.room_name %></h4>
+    <p class="card-text"><%= room.description %></p>
+    <li class="list-group-item">Room Type: <%= room.room_type %></li>
+    <li class="list-group-item">Size: <%= room.room_size %>&#13217;</li>
+    <li class="list-group-item">Price: <%= room.price %></li>
+    <li class="list-group-item">Suggested Pax: <%= room.total_occupancy %></li>
+    <%= link_to "Go to room", studio_room_path(@studio, room), class: 'btn btn-secondary mt-2 px-3 py-2 stretched-link' %>
+  </div>
+</div>
+<% end %>
+</div>
+<div class="list-group px-3 col-2">
+<%= link_to "Create A Room", new_studio_room_path(@studio), method: :get, class: 'btn btn-primary mb-2' %>
+<%# <%= link_to "Delete Studio", studio_path(@studio), method: :delete, form: {data: {turbo_confirm: 'Are you sure?'}}, class: 'btn btn-primary px-4' %>
+<%= link_to "Delete Studio", studio_path(@studio), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: 'btn btn-outline-danger px-4' %>
+</div>
+</div>
