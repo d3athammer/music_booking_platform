@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_05_123302) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_07_120005) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -61,8 +61,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_05_123302) do
   end
 
   create_table "reservations", force: :cascade do |t|
-    t.datetime "start_time"
-    t.datetime "end_time"
+    t.time "start_time"
     t.integer "price_per_hour"
     t.integer "num_hours"
     t.boolean "status"
@@ -72,6 +71,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_05_123302) do
     t.datetime "updated_at", null: false
     t.bigint "timeslot_id"
     t.bigint "room_id", null: false
+    t.date "date"
     t.index ["room_id"], name: "index_reservations_on_room_id"
     t.index ["studio_id"], name: "index_reservations_on_studio_id"
     t.index ["timeslot_id"], name: "index_reservations_on_timeslot_id"
