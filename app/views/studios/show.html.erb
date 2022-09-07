@@ -20,8 +20,8 @@
 <% end %>
 </div>
 <div class="list-group px-3 col-2">
-<%= button_to "Create A Room", new_studio_room_path(@studio), method: :get, class: 'btn btn-primary mb-2' %>
+<%= link_to "Create A Room", new_studio_room_path(@studio), method: :get, class: 'btn btn-primary mb-2' %>
 <%# <%= link_to "Delete Studio", studio_path(@studio), method: :delete, form: {data: {turbo_confirm: 'Are you sure?'}}, class: 'btn btn-primary px-4' %>
-<%= button_to "Delete Studio", studio_path(@studio), method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } }, class: 'btn btn-primary px-4' %>
+<%= link_to "Delete Studio", studio_path(@studio), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: 'btn btn-outline-danger px-4' %>
 </div>
 </div>
