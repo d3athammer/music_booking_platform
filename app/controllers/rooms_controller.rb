@@ -11,6 +11,10 @@ class RoomsController < ApplicationController
     @room = Room.new
   end
 
+  def index
+    @rooms = Room.all
+  end
+
   def create
     @room = Room.new(room_params)
     @room.studio = @studio

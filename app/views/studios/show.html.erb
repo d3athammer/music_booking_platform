@@ -1,12 +1,13 @@
 
 <div class="container">
 <h1><%= @studio.name %></h1>
+<h5><%= @studio.rooms.count%> rooms for booking </h5>
 <li class="list-group-item">Address: <%= @studio.address %></li>
 <br>
-<div class="room_container">
+<div class="room_container d-flex flex-wrap justify-content-center">
 <% @studio.rooms.each do |room|%>
-  <div class="card mb-3">
-  <%# <%= image_tag("placeholder.jpg", :alt => "rss feed", class: 'card-image-top') %>
+  <div class="d-inline-flex card card-rounded m-3 col-3" >
+  <img src="<%= asset_path('room2.jpg')%>" class="card-img-top"/>
   <div class="card-body">
     <h4 class="card-title"><%= room.room_name %></h4>
     <p class="card-text"><%= room.description %></p>
