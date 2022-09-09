@@ -12,8 +12,6 @@ Room.delete_all
 Studio.delete_all
 User.delete_all
 
-num = [20..100]
-
 5.times do
   # create user
   user = User.new(
@@ -49,4 +47,18 @@ num = [20..100]
   end
   # this will save each studio with 10rooms for each user
   studio.save!
+end
+
+
+# seeding timeslot
+time = 0000
+time_array = [0000]
+48.times do
+  if time.zero?
+    time_array << time
+    time += 1800
+  elsif time.positive?
+    time += 1800
+    time_array << time
+ end
 end
