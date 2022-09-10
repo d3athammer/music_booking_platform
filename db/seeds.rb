@@ -7,7 +7,9 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 require 'faker'
-
+require 'database_cleaner'
+DatabaseCleaner.clean_with(:truncation)
+Timeslot.delete_all
 Room.delete_all
 Studio.delete_all
 User.delete_all
@@ -49,16 +51,13 @@ User.delete_all
   studio.save!
 end
 
-
 # seeding timeslot
-time = 0000
-time_array = [0000]
+seconds = 0000
 48.times do
-  if time.zero?
-    time_array << time
-    time += 1800
-  elsif time.positive?
-    time += 1800
-    time_array << time
- end
+  timeslot = Timeslot.new(
+    start_time_in_seconds: seconds,
+    time: Time.at(seconds).utc.strftime("%H:%M")
+  )
+  timeslot.save!
+  seconds += 1800
 end

@@ -4,11 +4,13 @@ class ReservationsController < ApplicationController
 
   def new
     @reservation = Reservation.new
+    @timeslot = Timeslot.all
   end
 
   def create
     @reservation = Reservation.new(reservation_params)
     @reservation.room = @room
+
     if @reservation.save
       redirect_to new_room_reservation_path(@reservation)
     else

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_07_120005) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_09_072718) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_07_120005) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "blockoutdatetimes", force: :cascade do |t|
+    t.string "day_of_week"
+    t.string "day"
+    t.bigint "timeslot_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["timeslot_id"], name: "index_blockoutdatetimes_on_timeslot_id"
+  end
+
   create_table "equipment", force: :cascade do |t|
     t.string "name"
     t.string "brand"
@@ -66,14 +75,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_07_120005) do
     t.integer "num_hours"
     t.boolean "status"
     t.bigint "user_id", null: false
-    t.bigint "studio_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "timeslot_id"
     t.bigint "room_id", null: false
     t.date "date"
     t.index ["room_id"], name: "index_reservations_on_room_id"
-    t.index ["studio_id"], name: "index_reservations_on_studio_id"
     t.index ["timeslot_id"], name: "index_reservations_on_timeslot_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
   end
@@ -119,10 +126,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_07_120005) do
     t.index ["user_id"], name: "index_studios_on_user_id"
   end
 
-  create_table "timeslots", force: :cascade do |t|
-    t.integer "start_time"
+  create_table "timeslot_reservations", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "date"
+    t.bigint "reservations_id", null: false
+    t.bigint "timeslots_id", null: false
+    t.index ["reservations_id"], name: "index_timeslot_reservations_on_reservations_id"
+    t.index ["timeslots_id"], name: "index_timeslot_reservations_on_timeslots_id"
+  end
+
+  create_table "timeslots", force: :cascade do |t|
+    t.integer "start_time_in_seconds"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "time"
   end
 
   create_table "users", force: :cascade do |t|
@@ -150,16 +168,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_07_120005) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "blockoutdatetimes", "timeslots"
   add_foreign_key "equipment", "studios"
   add_foreign_key "media", "studios"
   add_foreign_key "reservations", "rooms"
-  add_foreign_key "reservations", "studios"
   add_foreign_key "reservations", "timeslots"
   add_foreign_key "reservations", "users"
   add_foreign_key "reviews", "reservations"
   add_foreign_key "rooms", "studios"
   add_foreign_key "studio_media", "studios"
   add_foreign_key "studios", "users"
+  add_foreign_key "timeslot_reservations", "reservations", column: "reservations_id"
+  add_foreign_key "timeslot_reservations", "timeslots", column: "timeslots_id"
   add_foreign_key "wishlists", "studios"
   add_foreign_key "wishlists", "users"
 end

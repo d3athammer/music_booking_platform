@@ -46,7 +46,6 @@ gem "bootsnap", require: false
 gem "sassc-rails"
 
 # Adding Devise into code
-gem "devise"
 
 # Adding Faker
 gem "faker"
@@ -84,5 +83,9 @@ group :test do
   gem "webdrivers"
 end
 
-gem "dotenv-rails", groups: [:development, :test]
 gem "cloudinary"
+
+group :test do
+  gem 'database_cleaner-active_record'
+  gem 'database_cleaner'
+end
