@@ -5,6 +5,10 @@ class ReservationsController < ApplicationController
   def new
     @reservation = Reservation.new
     @timeslot = Timeslot.all
+    timeslot_array = []
+    @timeslot.time.each do |time|
+      timeslot_array << time
+    end
   end
 
   def create
