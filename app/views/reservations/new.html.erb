@@ -3,8 +3,8 @@
 
 <%= simple_form_for [@room, @reservation] do |f| %>
   <%= f.input :date %>
-  <%= f.input :start_time, collection: timeslot.time.to_a %>
-  <%= f.input :num_hours, label: "" %>
-  <%= f.submit "Make Reservations", class: "btn btn-primary" %>
-<% end %>
+  <%= f.input :start_time, collection: @timeslot_array %>
+  <%= f.input :duration %>
+  <%= f.submit "Secure your reservation", class: "btn btn-primary" %>
 </div>
+<% end %>

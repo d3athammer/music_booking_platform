@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   end
 
   resources :rooms, except: %i[new create show destroy] do
-    resources :reservations, only: %i[new create]
+    resources :reservations, only: %i[new create index]
   end
 
   resources :rooms, only: [:destroy]
