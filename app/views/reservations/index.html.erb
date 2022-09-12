@@ -1,0 +1,6 @@
+<h1>Your reservations</h1>
+<% @reservations.each do |reservation| %>
+<li><%= reservation.room.room_name %></li>
+<li><%= reservation.start_time%></li>
+<li><%= reservation.duration %></li>
+<% end %>

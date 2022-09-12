@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_09_072718) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_12_070519) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -70,9 +70,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_09_072718) do
   end
 
   create_table "reservations", force: :cascade do |t|
-    t.time "start_time"
+    t.string "start_time"
     t.integer "price_per_hour"
-    t.integer "num_hours"
+    t.integer "duration"
     t.boolean "status"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
@@ -80,6 +80,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_09_072718) do
     t.bigint "timeslot_id"
     t.bigint "room_id", null: false
     t.date "date"
+    t.string "end_time"
     t.index ["room_id"], name: "index_reservations_on_room_id"
     t.index ["timeslot_id"], name: "index_reservations_on_timeslot_id"
     t.index ["user_id"], name: "index_reservations_on_user_id"
@@ -130,10 +131,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_09_072718) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "date"
-    t.bigint "reservations_id", null: false
-    t.bigint "timeslots_id", null: false
-    t.index ["reservations_id"], name: "index_timeslot_reservations_on_reservations_id"
-    t.index ["timeslots_id"], name: "index_timeslot_reservations_on_timeslots_id"
+    t.bigint "reservation_id", null: false
+    t.bigint "timeslot_id", null: false
+    t.index ["reservation_id"], name: "index_timeslot_reservations_on_reservation_id"
+    t.index ["timeslot_id", "reservation_id"], name: "index_timeslot_reservations_on_timeslot_id_and_reservation_id", unique: true
+    t.index ["timeslot_id"], name: "index_timeslot_reservations_on_timeslot_id"
   end
 
   create_table "timeslots", force: :cascade do |t|
@@ -178,8 +180,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_09_072718) do
   add_foreign_key "rooms", "studios"
   add_foreign_key "studio_media", "studios"
   add_foreign_key "studios", "users"
-  add_foreign_key "timeslot_reservations", "reservations", column: "reservations_id"
-  add_foreign_key "timeslot_reservations", "timeslots", column: "timeslots_id"
+  add_foreign_key "timeslot_reservations", "reservations"
+  add_foreign_key "timeslot_reservations", "timeslots"
   add_foreign_key "wishlists", "studios"
   add_foreign_key "wishlists", "users"
 end
