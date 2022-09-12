@@ -19,15 +19,25 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(reservation_params)
     @reservation.timeslot_id = @reservation.start_time
-    @RT = TimeslotReservation.new(timeslot_id: @reservation.timeslot_id,
-                                  date: @reservation.date,
-                                  reservation_id: @reservation.id)
-    @timeslot = Timeslot.find(params[:id])
+    @start_time = Timeslot.find(@reservation.timeslot_id).time
+    # covert start time and date into datetime
+    # add duration to start time in datetime (to prevent overnight booking bug)
+    # convert end time and date back
+    @time = DateTime.parse "#{@reservation.date}T#{@start_time}.00+08:00"
+    # @time = Time.new(params[:reservation]["date(1i)"],
+    #                  params[:reservation]["date(2i)"],
+    #                  params[:reservation]["date(3i)"],
+    #                  @start_time)
+    @end_time =
     @reservation.room = @room
     @reservation.user = current_user
     @reservation.end_time = @end_time
     raise
     if @reservation.save
+      TimeslotReservations.create(date: @reservation.date,
+                                  timeslot_id:,
+                                  reservation_id: params[:id],
+                                  user_id: @reservation.user)
       redirect_to room_reservations_path(@room)
     else
       render :new, status: :unprocessable_entity
@@ -61,6 +71,12 @@ class ReservationsController < ApplicationController
     @room = Room.find(params[:room_id])
   end
 
+  def create_datetime
+    @time = Time.new(params[:reservation]["date(1i)"],
+                     params[:reservation]["date(2i)"],
+                     params[:reservation]["date(3i)"],
+                     @start_time)
+  end
   # def set_timeslot
   #   @reservation = Reservation.new(reservation_params)
   #   @reservation.timeslot_id = @reservation.start_time
