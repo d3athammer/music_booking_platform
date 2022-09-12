@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: studios
+#
+#  id          :bigint           not null, primary key
+#  address     :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  name        :string
+#  user_id     :bigint
+#  postal      :integer
+#  description :string
+#
 class Studio < ApplicationRecord
   has_many :rooms, dependent: :destroy
   validates :address, length: { in: 10..150 }

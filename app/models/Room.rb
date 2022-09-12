@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: rooms
+#
+#  id              :bigint           not null, primary key
+#  price           :integer
+#  room_size       :integer
+#  room_type       :string
+#  description     :string
+#  total_occupancy :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  date            :datetime
+#  studio_id       :bigint
+#  room_name       :string
+#
 class Room < ApplicationRecord
   validates :room_name, :price, :room_size, :room_type,
             :description, :total_occupancy, presence: true
