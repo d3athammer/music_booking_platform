@@ -123,11 +123,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_14_102001) do
     t.datetime "updated_at", null: false
     t.string "name"
     t.bigint "user_id"
-<<<<<<< HEAD
-=======
     t.integer "postal"
     t.string "description"
->>>>>>> b9bad49ed1daf73e0de272debac798e770bb5d47
     t.index ["user_id"], name: "index_studios_on_user_id"
   end
 

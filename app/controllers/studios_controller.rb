@@ -1,9 +1,5 @@
 class StudiosController < ApplicationController
-<<<<<<< HEAD
   before_action :set_studio, only: %i[show edit update destroy]
-=======
-  before_action :set_studio, only: %i[show destroy edit update]
->>>>>>> 282a675998b90b995ee4d5d4b1091ea9e8644dea
 
   def index
     @studio = Studio.all
