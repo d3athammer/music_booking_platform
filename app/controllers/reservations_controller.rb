@@ -10,6 +10,7 @@ class ReservationsController < ApplicationController
   def new
     @reservation = Reservation.new
     @timeslot = Timeslot.all
+    @hour_array = hourly_array
     @timeslot_array = []
     @timeslot.each do |time|
       @timeslot_array << [time.time, time.id]
@@ -17,27 +18,31 @@ class ReservationsController < ApplicationController
   end
 
   def create
+    @timeslot = Timeslot.all
     @reservation = Reservation.new(reservation_params)
-    @reservation.timeslot_id = @reservation.start_time
+    # assign timeslot_id by taking the value from @reservation.start_time, which signifies timeslot_id
+    @reservation.timeslot_id = params[:reservation][:start_time].to_i
+    # find actual start_time by going through the list of timeslot_id and time
     @start_time = Timeslot.find(@reservation.timeslot_id).time
+    # reassign the start_time so it's in string
+    @reservation.start_time = @start_time
     # covert start time and date into datetime
-    # add duration to start time in datetime (to prevent overnight booking bug)
-    # convert end time and date back
-    @time = DateTime.parse "#{@reservation.date}T#{@start_time}.00+08:00"
-    # @time = Time.new(params[:reservation]["date(1i)"],
-    #                  params[:reservation]["date(2i)"],
-    #                  params[:reservation]["date(3i)"],
-    #                  @start_time)
-    @end_time =
+    @start_datetime = DateTime.parse "#{@reservation.start_date}T#{@start_time}+08:00"
+    # adding time to calculate @reservation.end_date
+    @end_datetime = @start_datetime + (@reservation.duration / 24r)
+    @reservation.end_date = @end_datetime
+    @reservation.end_time = @end_datetime.strftime("%H:%M")
+
+    # add the rest of the timeslots based on my duration
+    @timeslot_id_array = time_span_search(@start_datetime, @end_datetime)
+    # (end1 - start1) > (start2 - start1) AND (end2 - start2) > (start1 - start2)
+
+    # create a reservation for each timeslot
     @reservation.room = @room
     @reservation.user = current_user
-    @reservation.end_time = @end_time
     raise
     if @reservation.save
-      TimeslotReservations.create(date: @reservation.date,
-                                  timeslot_id:,
-                                  reservation_id: params[:id],
-                                  user_id: @reservation.user)
+      new_timeslot_reservations(@timeslot_id_array, @reservations)
       redirect_to room_reservations_path(@room)
     else
       render :new, status: :unprocessable_entity
@@ -61,37 +66,48 @@ class ReservationsController < ApplicationController
 
   private
 
-  def end_time
-    # "#{@reservation.start_time}"
-    start_time = "00:30"
-    @end_time = "#{@reservation.date} #{start_time}".to_datetime
+  def new_timeslot_reservations(timeslot_array, reservation)
+    # loop through timeslot id(in an array), loop through this array and save each timeslot into timeslots reservations
+    timeslot_array.each do |timeslot_id|
+      TimeslotReservations.create(
+        start_date: reservation.start_date,
+        end_date: reservation.end_date,
+        timeslot_id:,
+        reservation_id: reservation.id,
+        user_id: reservation.user
+      )
+    end
   end
 
   def set_room
     @room = Room.find(params[:room_id])
   end
 
-  def create_datetime
-    @time = Time.new(params[:reservation]["date(1i)"],
-                     params[:reservation]["date(2i)"],
-                     params[:reservation]["date(3i)"],
-                     @start_time)
-  end
-  # def set_timeslot
-  #   @reservation = Reservation.new(reservation_params)
-  #   @reservation.timeslot_id = @reservation.start_time
-  #   @reservation.timeslot = @timeslot
-  #   @timeslot = Timeslot.find(params[:timeslot_id])
-  # end
-
   def reservation_params
-    params.require(:reservation).permit(:start_time, :duration, :date, :timeslot_id)
+    params.require(:reservation).permit(:start_time, :duration, :start_date, :timeslot_id)
   end
 
-  # def room_params
-  #   params.require(:room).permit(:price, :date, :room_size,
-  #                                :room_type, :description, :total_occupancy,
-  #                                :studio_id, :user_id)
-  # end
+  def hourly_array
+    @hour_array = []
+    time = 1
+    23.times do
+      if time <= 1
+        @hour_array << ["#{time} hour", time]
+        time += 0.5
+      else
+        @hour_array << ["#{time} hours", time]
+        time += 0.5
+      end
+    end
+    return @hour_array
+  end
 
+  def time_span_search(start_datetime, end_datetime)
+    Timeslot.where("time >= :start_time AND time < :end_time",
+                  { start_time: start_datetime, end_time: end_datetime })
+            # .or(Timeslot.where("time >= :start_time AND time <= '23:30' AND time >= '00:00' AND time < :end_time",
+            #       { start_time: start_time, end_time: end_time })
+            #     )
+            .pluck(:id)
+  end
 end
