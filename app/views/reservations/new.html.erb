@@ -2,9 +2,10 @@
 <h1>Make your reservations here</h1>
 
 <%= simple_form_for [@room, @reservation] do |f| %>
-  <%= f.input :date %>
+  <%= f.input :start_date %>
   <%= f.input :start_time, collection: @timeslot_array %>
-  <%= f.input :duration %>
+  <%= f.input :duration, collection: @hour_array %>
+
   <%= f.submit "Secure your reservation", class: "btn btn-primary" %>
 </div>
 <% end %>

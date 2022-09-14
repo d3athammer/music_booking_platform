@@ -19,7 +19,9 @@ class Room < ApplicationRecord
             :description, :total_occupancy, presence: true
   has_many :reservations, dependent: :destroy
   belongs_to :studio
+  has_many :equipments, dependent: :destroy
   validates :description, length: { in: 10..500 }
   validates :price, :room_size,
             :total_occupancy, numericality: { only_integer: true }
+  accepts_nested_attributes_for :equipments
 end
