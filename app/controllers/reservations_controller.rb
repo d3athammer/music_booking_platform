@@ -36,7 +36,6 @@ class ReservationsController < ApplicationController
     # add the rest of the timeslots based on my duration
     @timeslot_id_array = time_span_search(@start_datetime, @end_datetime)
     # (end1 - start1) > (start2 - start1) AND (end2 - start2) > (start1 - start2)
-
     # create a reservation for each timeslot
     @reservation.room = @room
     @reservation.user = current_user
@@ -69,10 +68,10 @@ class ReservationsController < ApplicationController
   def new_timeslot_reservations(timeslot_array, reservation)
     # loop through timeslot id(in an array), loop through this array and save each timeslot into timeslots reservations
     timeslot_array.each do |timeslot_id|
-      TimeslotReservations.create(
+      TimeslotReservation.create(
         start_date: reservation.start_date,
         end_date: reservation.end_date,
-        timeslot_id:,
+        timeslot_id: timeslot_id,
         reservation_id: reservation.id,
         user_id: reservation.user
       )
@@ -103,11 +102,20 @@ class ReservationsController < ApplicationController
   end
 
   def time_span_search(start_datetime, end_datetime)
-    Timeslot.where("time >= :start_time AND time < :end_time",
-                  { start_time: start_datetime, end_time: end_datetime })
-            # .or(Timeslot.where("time >= :start_time AND time <= '23:30' AND time >= '00:00' AND time < :end_time",
-            #       { start_time: start_time, end_time: end_time })
-            #     )
-            .pluck(:id)
+    start_is = ((start_datetime.min * 60) + (start_datetime.hour * 3600))
+    end_is = ((end_datetime.min * 60) + (end_datetime.hour * 3600))
+    if start_is > end_is
+      Timeslot.where("start_time_in_seconds >= :start_time
+                    OR start_time_in_seconds < :end_time", { start_time: start_is,
+                                                             end_time: end_is }).pluck(:id)
+    else
+      Timeslot.where("start_time_in_seconds >= :start_time AND
+                      start_time_in_seconds < :end_time", { start_time: start_is,
+                                                            end_time: end_is }).pluck(:id)
+    end
+    # using start_time to query start time for first day,
+    # 1st column - date column - query start_time_date, check start_time that >= start_time .or
+    # = date column = start_time_date + 1
+    # check if start_time is < end_time
   end
 end
