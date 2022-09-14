@@ -21,25 +21,20 @@ class ReservationsController < ApplicationController
     @timeslot = Timeslot.all
     @reservation = Reservation.new(reservation_params)
     # assign timeslot_id by taking the value from @reservation.start_time, which signifies timeslot_id
-    @reservation.timeslot_id = @reservation.start_time
+    @reservation.timeslot_id = params[:reservation][:start_time].to_i
     # find actual start_time by going through the list of timeslot_id and time
     @start_time = Timeslot.find(@reservation.timeslot_id).time
     # reassign the start_time so it's in string
-    @reservation.start_time = @start_time.strftime("%H:%M")
+    @reservation.start_time = @start_time
     # covert start time and date into datetime
-    @datetime = DateTime.parse "#{@reservation.start_date}T#{@start_time}+08:00"
+    @start_datetime = DateTime.parse "#{@reservation.start_date}T#{@start_time}+08:00"
     # adding time to calculate @reservation.end_date
-    @end_date = @datetime + (@reservation.duration / 24r)
-    # assigning end_time to time
-    @reservation.end_time = @end_date.strftime("%H:%M")
+    @end_datetime = @start_datetime + (@reservation.duration / 24r)
+    @reservation.end_date = @end_datetime
+    @reservation.end_time = @end_datetime.strftime("%H:%M")
+
     # add the rest of the timeslots based on my duration
-    @timeslot_id_array = time_span_search(@start_time, @reservation.end_time)
-    # if (@start_time < @reservation.end_time) && (@reservation.start_date <= @reservation.end_date)
-      # Timeslot.where("time >= :start_time AND time <= :end_time",
-      #               { start_time: @start_time, end_time: @reservation.end_time }).or(Timeslot.where(
-      #                "time >= '00:00' AND time <= :end_time",
-      #               { start_time: "00:00", end_time: @reservation.end_time }
-      #               ))
+    @timeslot_id_array = time_span_search(@start_datetime, @end_datetime)
     # (end1 - start1) > (start2 - start1) AND (end2 - start2) > (start1 - start2)
 
     # create a reservation for each timeslot
@@ -107,16 +102,12 @@ class ReservationsController < ApplicationController
     return @hour_array
   end
 
-  def time_span_search(start_time, end_time)
-    Timeslot
-      .where('end_time > start_time and start_time <= ? and
-              end_time >= ?', end_time, start_time
-      )
-      .or(
-        Timeslot
-          .where('end_time <= start_time and start_time <= ? and
-                start_time <= ? and end_time >= ? and end_time <= ?', end_time, '23:30', '00:00', start_time)
-      )
-      .pluck(:id)
+  def time_span_search(start_datetime, end_datetime)
+    Timeslot.where("time >= :start_time AND time < :end_time",
+                  { start_time: start_datetime, end_time: end_datetime })
+            # .or(Timeslot.where("time >= :start_time AND time <= '23:30' AND time >= '00:00' AND time < :end_time",
+            #       { start_time: start_time, end_time: end_time })
+            #     )
+            .pluck(:id)
   end
 end
