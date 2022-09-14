@@ -1,0 +1,2 @@
+class TimeslotReservationsController < ApplicationController
+end

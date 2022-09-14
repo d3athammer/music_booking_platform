@@ -46,7 +46,6 @@ gem "bootsnap", require: false
 gem "sassc-rails"
 
 # Adding Devise into code
-gem "devise"
 
 # Adding Faker
 gem "faker"
@@ -69,7 +68,7 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
-
+  gem "annotate"
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
@@ -82,4 +81,11 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+end
+
+gem "cloudinary"
+
+group :test do
+  gem 'database_cleaner-active_record'
+  gem 'database_cleaner'
 end

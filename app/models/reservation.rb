@@ -1,8 +1,10 @@
 class Reservation < ApplicationRecord
-  validates :start_time, :end_time, :price_per_hour, :num_hours, :status, presence: true
+  validates :start_time, :duration, presence: true
   belongs_to :user
   belongs_to :room
-  has_many :reviews, dependent: :destroy
-  validates :start_time, comparison: { less_than: :end_time }
-  validates :num_hours, :price_per_hour, numericality: { only_integer: true }
+  has_many :timeslot_reservation
+  has_many :timeslots, through: :timeslot_reservation
+  # has_many :reviews, dependent: :destroy
 end
+
+# validates :duration, numericality: { only_integer: true }
