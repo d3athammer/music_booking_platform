@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_room, only: %i[create new]
+  before_action :set_room, only: %i[create new index]
   # before_action :set_timeslot, only: %i[new create]
 
   def index
@@ -11,6 +11,7 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new
     @timeslot = Timeslot.all
     @hour_array = hourly_array
+    @reservation.total_price = @room.price_per_hour * @reservation.duration
     @timeslot_array = []
     @timeslot.each do |time|
       @timeslot_array << [time.time, time.id]
@@ -39,9 +40,8 @@ class ReservationsController < ApplicationController
     # create a reservation for each timeslot
     @reservation.room = @room
     @reservation.user = current_user
-    raise
     if @reservation.save
-      new_timeslot_reservations(@timeslot_id_array, @reservations)
+      new_timeslot_reservations(@timeslot_id_array, @reservation)
       redirect_to room_reservations_path(@room)
     else
       render :new, status: :unprocessable_entity
@@ -71,9 +71,8 @@ class ReservationsController < ApplicationController
       TimeslotReservation.create(
         start_date: reservation.start_date,
         end_date: reservation.end_date,
-        timeslot_id: timeslot_id,
-        reservation_id: reservation.id,
-        user_id: reservation.user
+        timeslot_id:,
+        reservation_id: reservation.id
       )
     end
   end

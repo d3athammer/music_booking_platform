@@ -12,8 +12,9 @@
 #  updated_at     :datetime         not null
 #  timeslot_id    :bigint
 #  room_id        :bigint           not null
-#  date           :date
+#  start_date     :date
 #  end_time       :string
+#  end_date       :date
 #
 require "test_helper"
 
