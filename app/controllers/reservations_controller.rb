@@ -11,7 +11,7 @@ class ReservationsController < ApplicationController
     @reservation = Reservation.new
     @timeslot = Timeslot.all
     @hour_array = hourly_array
-    @reservation.total_price = @room.price_per_hour * @reservation.duration
+    # @reservation.total_price = @room.price_per_hour * @reservation.duration
     @timeslot_array = []
     @timeslot.each do |time|
       @timeslot_array << [time.time, time.id]
@@ -82,7 +82,7 @@ class ReservationsController < ApplicationController
   end
 
   def reservation_params
-    params.require(:reservation).permit(:start_time, :duration, :start_date, :timeslot_id)
+    params.require(:reservation).permit(:start_time, :duration, :start_date, :timeslot_id, :total_price)
   end
 
   def hourly_array
