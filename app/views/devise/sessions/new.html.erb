@@ -1,3 +1,4 @@
+
 <section class="vh-100 gradient-custom"
 style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
 <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: {turbo: false}) do |f| %>
@@ -10,23 +11,20 @@ style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/
             <div class="mb-md-5 mt-md-4 pb-5">
 
               <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
-              <p class="text-white-50 mb-5">Please enter your Email and Password!</p>
+              <p class="text-white-50 mb-5">Please enter your login and password!</p>
 
-              <div class="form-outline form-white mb-4">
-                <%= f.input :email,
+              <%= f.input :email,
                 required: false,
                 autofocus: true,
                 input_html: { autocomplete: "email" } %>
-              </div>
 
-              <div class="form-outline form-white mb-4">
-                <%= f.input :password,
+              <%= f.input :password,
                 required: false,
                 input_html: { autocomplete: "current-password" } %>
-                <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-              </div>
 
               <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
+
+              <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
 
               <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
 
@@ -50,4 +48,7 @@ style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/
     </div>
   </div>
 </section>
+  <div class="form-inputs">
+
+  </div>
 <% end %>
