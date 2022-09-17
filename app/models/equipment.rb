@@ -13,8 +13,9 @@
 #
 class Equipment < ApplicationRecord
   belongs_to :room, optional: true
-  validates :name, :brand, :type, :description, presence: true
+  validates :name, :brand, presence: true
+  # validates :equipment_type, inclusion: { in: equipment_types.keys }
   validates :name, length: { maximum: 100 }
 
-  enum :equipment_types, %i[Piano Keyboard Drums Percussion Guitar Bass Vocals Amplifiers Accessories Audio]
+  enum :equipment_type, %i[piano keyboard drums percussion guitar bass vocals amplifiers accessories audio]
 end

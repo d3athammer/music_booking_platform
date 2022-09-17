@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" data-controller="room">
 <% if @room.room_name.present? %>
 <h1><%= @room.room_name %></h1>
 <% else %>
@@ -18,18 +18,17 @@
           <th>Equipment Type</th>
           <th>Name</th>
           <th>Brand</th>
-          <th>Description</th>
           <th></th>
         </tr>
       </thead>
     <tbody class='fields'>
-      <%= f.simple_fields_for :tasks do |builder| %>
+      <%= f.simple_fields_for :equipments do |builder| %>
         <%= render 'equipment', f: builder %>
       <% end %>
     </tbody>
   </table>
   <div class="form-actions">
-  <%= link_to_add_row('+ Equipment', f, :equipments, class: 'btn btn-secondary') %>
+  <%= link_to_add_row('+ Equipment', f, :equipments) %>
   </div>
   <%= f.input :room_type, collection: Room.room_types %>
   <%= f.input :total_occupancy, collection: 1..20 %>

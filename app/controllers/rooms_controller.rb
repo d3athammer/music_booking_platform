@@ -61,6 +61,6 @@ class RoomsController < ApplicationController
   def room_params
     params.require(:room).permit(:room_name, :price, :date, :room_size,
                                  :room_type, :description, :total_occupancy,
-                                 equipments_attributes: %i[id _destroy room_id equipment_type name brand description])
+                                 equipments_attributes: %i[id _destroy room_id equipment_type name brand])
   end
 end

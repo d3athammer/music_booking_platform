@@ -1,8 +1,7 @@
 <tr>
-  <td><%= f.input :equipment_type, label: false, collection: Equipment.equipment_types  %></td>
+  <td><%= f.input :equipment_type, label: false, collection: Equipment.equipment_types.keys  %></td>
   <td><%= f.input :name, label: false %></td>
   <td><%= f.input :brand, label: false, as: :string %></td>
-  <td><%= f.input :description, label: false %></td>
   <td>
     <%= f.input_field :_destroy, as: :hidden %>
     <%= link_to 'Delete', '#', class: 'remove_record' %>

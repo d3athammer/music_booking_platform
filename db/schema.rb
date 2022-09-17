@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_16_100653) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_17_080946) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -54,7 +54,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_16_100653) do
   create_table "equipment", force: :cascade do |t|
     t.string "name"
     t.string "brand"
-    t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "equipment_type"
@@ -131,10 +130,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_16_100653) do
   create_table "timeslot_reservations", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "start_date"
+    t.date "date"
     t.bigint "reservation_id", null: false
     t.bigint "timeslot_id", null: false
-    t.date "end_date"
     t.index ["reservation_id"], name: "index_timeslot_reservations_on_reservation_id"
     t.index ["timeslot_id", "reservation_id"], name: "index_timeslot_reservations_on_timeslot_id_and_reservation_id", unique: true
     t.index ["timeslot_id"], name: "index_timeslot_reservations_on_timeslot_id"

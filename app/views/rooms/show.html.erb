@@ -5,6 +5,28 @@
   <li class="list-group-item">Size: <%= @room.room_size %>&#13217;</li>
   <li class="list-group-item">Price: <%= @room.price %></li>
   <li class="list-group-item">Suggested Pax: <%= @room.total_occupancy %></li>
+  <div class="equipment pt-3">
+  <h5>Equipment available</h5>
+  <table class='table'>
+    <thead>
+        <tr>
+          <th>Category</th>
+          <th>Name</th>
+          <th>Brand</th>
+        </tr>
+      </thead>
+    <tbody class='fields'>
+  <% @room.equipments.each do |equipment| %>
+  <tr>
+    <td><%= equipment.equipment_type %></td>
+    <td><%= equipment.name %></td>
+    <td><%= equipment.brand %></td>
+  </tr>
+  <% end %>
+    </tbody>
+  </table>
+  </div>
+
   <br>
   <p class="card-text"><%= @room.description %></p>
   <div class="button">

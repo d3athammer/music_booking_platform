@@ -44,22 +44,21 @@ User.delete_all
       total_occupancy: rand(2..5)
     )
     room.studio = studio
+  # 5.times do
+  #   equipment = Equipment.new(
+  #     equipment_type: [rand(1..10)].sample,
+  #     name: Faker::Music.instrument,
+  #     brand: Faker::Appliance.brand,
+  #     description: Faker::Quotes::Shakespeare.romeo_and_juliet_quote
+  #   )
+  #   # set studio room to studio
+  # equipment.save!
     room.save!
-5.times do
-    equipment = Equipment.new(
-      equipment_type: [rand(1..10)].sample,
-      name: Faker::Music.instrument ,
-      brand: Faker::Appliance.brand ,
-      description: Faker::Quotes::Shakespeare.romeo_and_juliet_quote ,
-    )
-    # set studio room to studio
-    room.equipment = equipment
-    room.save!
-  end
   # this will save each studio with 10rooms for each user
   studio.save!
 end
 
+end
 # seeding timeslot
 seconds = 0000
 48.times do
