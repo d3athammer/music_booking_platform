@@ -20,7 +20,7 @@ class Reservation < ApplicationRecord
   # enum :status, %i[pending confirmed cancelled]
   belongs_to :user
   belongs_to :room
-  has_many :timeslot_reservation
+  has_many :timeslot_reservations
   has_many :timeslots, through: :timeslot_reservation
   # has_many :reviews, dependent: :destroy
 end

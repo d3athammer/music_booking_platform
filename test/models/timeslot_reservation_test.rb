@@ -5,9 +5,10 @@
 #  id             :bigint           not null, primary key
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  date           :date
+#  start_date     :date
 #  reservation_id :bigint           not null
 #  timeslot_id    :bigint           not null
+#  end_date       :date
 #
 require "test_helper"
 
