@@ -1,5 +1,7 @@
-<section class="vh-100 gradient-custom">
-  <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: {turbo: false}) do |f| %>
+
+<section class="vh-100 gradient-custom"
+style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), data: {turbo: false}) do |f| %>
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
@@ -35,7 +37,7 @@
             </div>
 
             <div>
-              <p class="mb-0">Don't have an account?</a>
+              <p class="mb-0">Don't have an account? <a href="#!" class="text-white-50 fw-bold"></a>
               <%= render "devise/shared/links" %>
               </p>
             </div>
@@ -47,5 +49,6 @@
   </div>
 </section>
   <div class="form-inputs">
+
   </div>
 <% end %>

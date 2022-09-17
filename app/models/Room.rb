@@ -23,5 +23,7 @@ class Room < ApplicationRecord
   validates :description, length: { in: 10..500 }
   validates :price, :room_size,
             :total_occupancy, numericality: { only_integer: true }
-  accepts_nested_attributes_for :equipments
+  accepts_nested_attributes_for :equipments, allow_destroy: true, reject_if: proc { |att| att['name'].blank? }
+
+  enum :room_types, %i[Jamming_Studios Rehearsal_Studio Recording_Studio Home_Studio]
 end

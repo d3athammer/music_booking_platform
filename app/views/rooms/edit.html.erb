@@ -1,13 +1,1 @@
-<div class="container pt-3">
-<%= simple_form_for @room do |f| %>
-  <%= f.input :room_name %>
-  <%= f.input :price, label: 'Price per hour' %>
-  <%= f.input :room_size %>
-  <%= f.collection_radio_buttons :room_type, @room_type, :first, :last %>
-  <%# <%= f.collection_radio_buttons :room_type, [['Jamming Studio'], ['Recording Studio'], ['Home Studio'], ['practice room']], :first, :last %>
-  <%= f.input :description %>
-  <%= f.input :total_occupancy %>
-  <%= f.submit "Save", class: "btn btn-primary" %>
-  <%= button_to "Back", studio_room_path(@room), method: :get, class: "btn btn-secondary" %>
-<% end %>
-</div>
+<%= render "form", studio: @studio, room: @room %>

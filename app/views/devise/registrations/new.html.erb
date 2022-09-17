@@ -14,22 +14,32 @@
               <form>
 
                 <div class="form-outline mb-4">
+
+                  <label class="form-label" for="form3Example1cg">UserName</label>
+                  <input type="text" id="form3Example1cg" class="form-control form-control-lg" />
+                </div>
+
+                <div class="form-outline mb-4">
                   <%= f.input :email,
-                    required: true,
-                    autofocus: true,
-                    input_html: { autocomplete: "email" }%>
+                  required: true,
+                  autofocus: true,
+                  input_html: { autocomplete: "email" }%>
                 </div>
 
                 <div class="form-outline mb-4">
                   <%= f.input :password,
-                    hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                    input_html: { autocomplete: "new-password" } %>
+
+                  required: true,
+                  hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                  input_html: { autocomplete: "new-password" } %>
                 </div>
 
                 <div class="form-outline mb-4">
                   <%= f.input :password_confirmation,
+
                     required: true,
                     input_html: { autocomplete: "new-password" } %>
+
                 </div>
 
                 <div class="form-check d-flex justify-content-center mb-5">
@@ -54,3 +64,7 @@
       </div>
     </div>
   </div>
+
+</section>
+
+<% end %>

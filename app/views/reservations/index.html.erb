@@ -1,7 +1,21 @@
-<h1>Your reservations</h1>
-<% @reservations.each do |reservation| %>
-<li><%= reservation.room.room_name %></li>
-<li><%= reservation.start_time%></li>
-<li><%= reservation.duration %></li>
-<li><%= reservation.end_time %></li>
-<% end %>
+<div class="container">
+<div class="card mb-3 mt-3 p-2">
+  <h1>Your reservations</h1>
+  <% @reservations.each do |reservation| %>
+  <h2><%= reservation.room_name %></h2>
+  <li class="list-group-item">Start Time: <%= reservation.start_date %></li>
+  <li class="list-group-item">Start Time: <%= reservation.start_time %></li>
+  <li class="list-group-item">Duration Booked: <%= reservation.duration %></li>
+  <li class="list-group-item">End Time: <%= reservation.end_date %></li>
+  <li class="list-group-item">End Time: <%= reservation.end_time %></li>
+  <% end %>
+  </div>
+  <br>
+  <p class="card-text"><%= @room.description %></p>
+  <div class="button">
+    <%= link_to "Back to studio", studio_path, class: 'btn btn-dark mr-2 py-2' %>
+    <%# <%= link_to "Edit Reservation", edit_room_path(@room), class: 'btn btn-dark m-2 py-2' %>
+    <%= link_to "Cancel Reservation", reservation, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: 'btn btn-outline-danger py-2' %>
+  </div>
+</div>
+</div>

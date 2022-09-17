@@ -7,10 +7,6 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
   end
 
-  def new
-    @room = Room.new
-  end
-
   def index
     @rooms = Room.all
   end
@@ -25,7 +21,13 @@ class RoomsController < ApplicationController
     end
   end
 
+  def new
+    @room = Room.new
+    @room.equipments.build
+  end
+
   def edit
+    @room.equipments.build
     # @type = {['Jamming Studio'], ['Recording Studio'], ['Home Studio'], ['practice room']}
   end
 
@@ -58,6 +60,7 @@ class RoomsController < ApplicationController
 
   def room_params
     params.require(:room).permit(:room_name, :price, :date, :room_size,
-                                 :room_type, :description, :total_occupancy)
+                                 :room_type, :description, :total_occupancy,
+                                 equipments_attributes: %i[id _destroy room_id equipment_type name brand])
   end
 end
