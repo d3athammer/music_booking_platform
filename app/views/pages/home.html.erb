@@ -1,7 +1,51 @@
-<div class="container">
-<%# add search bar %>
 
-<h1>Search for your favourite studio</h1>
-<%= link_to "List your studio here", new_studio_path %>
-<%= button_to 'Sign Out', destroy_user_session_path, method: :delete %>
-</div>
+ <%# Header here %>
+  <div class="nav-header">
+    <nav class="nav-bar">
+      <img src="/assets/studiobookcropped.png" alt="studiobook" class="nav-logo">
+        <ul class="nav-links">
+          <li><a href="#"></a>Top Studios</li>
+          <li><a href="#"></a>Top Rooms</li>
+          <li><a href="#"></a>Support</li>
+        </ul>
+        <div class="nav-buttons d-flex">
+        <% if user_signed_in? %>
+        <%= link_to "List your studio here", new_studio_path, class: "" %>
+        <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: ""%>
+        <% else %>
+        <%= link_to "List your studio here", new_studio_path %>
+        <a href="#" class="nav-register-btn">Register Now</a>
+        <% end %>
+        </div>
+    </nav>
+    <div class="header-container">
+      <h1>Book your favourite studio here</h1>
+      <%# Search bar here %>
+      <div class="search-bar">
+        <form action="">
+          <div class="form-floating search-input">
+            <input type="search" class="form-control" id="floatingInput" placeholder="Preferred Studio">
+            <label for="floatingInput">Studio here</label>
+          </div>
+          <div class="form-floating">
+            <input type="search" class="form-control" id="floatingInput" placeholder="e.g 25/09/2022">
+            <label for="floatingInput">Date</label>
+          </div>
+          <div class="form-floating">
+            <input type="search" class="form-control" id="floatingInput" placeholder="e.g 2 hours">
+            <label for="floatingInput">Duration</label>
+          </div>
+          <div class="form-floating mr-1">
+            <input type="search" class="form-control" id="floatingInput" placeholder="e.g keyboard">
+            <label for="floatingInput">Equipment</label>
+          </div>
+          <button type ="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <%# Discover here %>
+  <div class="container">
+  <h2>Discover here</h2>
+  <div class="exclusives"></div>
+  </div>

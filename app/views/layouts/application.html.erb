@@ -1,35 +1,22 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>StudioBook: Find any music studio that suits your needs, ...</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>StudioBook: Find any music studio that suits your needs, ...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  </head>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
 
-  <body>
-  <div class="container">
-  <header class="nav-header">
-  <div>Logo</div>
-  <div>Navigation Bar</div>
-  <div>Search Bar</div>
-  </header>
-  <Main>
-  <div>Main Section</div>
-  </Main>
-  <footer>
-  <div>footer here</div>
-  </footer>
-  </div>
-    <%= yield %>
-    <%= render "shared/flashes" %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= render "shared/flashes" %>
-  </body>
+<body>
+  <%= yield %>
+  <%= render "shared/flashes" %>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+  <%= render "shared/flashes" %>
+</body>
 
 </html>
