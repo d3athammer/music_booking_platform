@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MusicBookingPlatform</title>
+    <title>StudioBook: Find any music studio that suits your needs, ...</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -12,7 +12,21 @@
   </head>
 
   <body>
+  <div class="container">
+  <header class="nav-header">
+  <div>Logo</div>
+  <div>Navigation Bar</div>
+  <div>Search Bar</div>
+  </header>
+  <Main>
+  <div>Main Section</div>
+  </Main>
+  <footer>
+  <div>footer here</div>
+  </footer>
+  </div>
     <%= yield %>
+    <%= render "shared/flashes" %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= render "shared/flashes" %>
