@@ -17,7 +17,7 @@ background-position: center;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 7%;
+  padding: 20px 2%;
 }
 
 .nav-logo{
@@ -36,13 +36,29 @@ background-position: center;
  color: #fff;
 }
 
-.nav-register-btn {
+.nav-register-btn, .nav-sign-out-btn, .nav-list-btn{
   background: #fff;
-  color: #000;
+  color: $pastelpink;
   padding: 8px 20px;
+  border: $pastelpink solid 1px;
   border-radius: 20px;
   text-decoration: none;
   font-size: 14px;
+}
+
+.nav-register-btn:hover,
+.nav-sign-out-btn:hover,
+.nav-list-btn:hover,
+.nav-login-btn:hover{
+  border: 0;
+  background-color: $pastelpink;
+  color: #fff;
+}
+
+.nav-list-btn{
+  margin-right: 10px;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .header-container{
@@ -98,6 +114,18 @@ i {
 
 .search-input{
   flex:1;
+}
+
+input:focus {
+  outline: none;
+}
+
+textarea:focus{
+  outline: none;
+}
+
+select:focus{
+  outline: none;
 }
 
 .search-bar form label{

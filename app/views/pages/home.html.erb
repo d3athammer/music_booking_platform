@@ -4,16 +4,17 @@
     <nav class="nav-bar">
       <img src="/assets/studiobookcropped.png" alt="studiobook" class="nav-logo">
         <ul class="nav-links">
-          <li><a href="#"></a>Top Studios</li>
-          <li><a href="#"></a>Top Rooms</li>
-          <li><a href="#"></a>Support</li>
+          <li><a href="#" class="active">Book Studio</a></li>
+          <li><%=link_to 'Top rooms', rooms_path%></li>
+          <%# <li><a href="">Support</a></li> %>
         </ul>
         <div class="nav-buttons d-flex">
         <% if user_signed_in? %>
-        <%= link_to "List your studio here", new_studio_path, class: "" %>
-        <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class: ""%>
+        <%= link_to "List your studio here", new_studio_path, class: "nav-list-btn" %>
+        <%= link_to 'Sign Out', destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "nav-sign-out-btn" %>
         <% else %>
-        <%= link_to "List your studio here", new_studio_path %>
+        <%= link_to "List your studio here", new_studio_path, class: "nav-list-btn" %>
+        <%= link_to "Login", new_user_session_path, class: "nav-login-btn" %>
         <a href="#" class="nav-register-btn">Register Now</a>
         <% end %>
         </div>
@@ -22,30 +23,118 @@
       <h1>Book your favourite studio here</h1>
       <%# Search bar here %>
       <div class="search-bar">
-        <form action="">
+        <form action="/studios" accept-charset="UTF-8" method="get">
+         <%# studio input %>
           <div class="form-floating search-input">
-            <input type="search" class="form-control" id="floatingInput" placeholder="Preferred Studio">
-            <label for="floatingInput">Studio here</label>
+            <input type="text" name="query" class="form-control" id="floatingInput" placeholder="Jamming Studio">
+            <label for="floatingInput" >Find a studio</label>
           </div>
+          <%# date input %>
           <div class="form-floating">
-            <input type="search" class="form-control" id="floatingInput" placeholder="e.g 25/09/2022">
+            <input type="date" name="date" value="Date.now" data-provide='datepicker' class="form-control" id="floatingInput" placeholder="e.g 25/09/2022">
             <label for="floatingInput">Date</label>
           </div>
           <div class="form-floating">
-            <input type="search" class="form-control" id="floatingInput" placeholder="e.g 2 hours">
+            <input type="time" name="time" class="form-control" id="floatingInput" placeholder="00:00">
+            <label for="floatingInput">Time</label>
+          </div>
+          <%# duration input %>
+          <div class="form-floating">
+            <input type="search" name="duration" class="form-control" id="floatingInput" placeholder="e.g 2 hours">
             <label for="floatingInput">Duration</label>
           </div>
+          <%# equipment input %>
           <div class="form-floating mr-1">
-            <input type="search" class="form-control" id="floatingInput" placeholder="e.g keyboard">
+            <input type="search" name="equipment" class="form-control" id="floatingInput" placeholder="e.g keyboard">
             <label for="floatingInput">Equipment</label>
           </div>
-          <button type ="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+          <button type ="submit"><i class="fa-solid fa-magnifying-glass" data-disable-with="Search"></i></button>
         </form>
       </div>
     </div>
   </div>
   <%# Discover here %>
   <div class="container">
-  <h2>Discover here</h2>
-  <div class="exclusives"></div>
+  <h2 class="sub-title">Discover here</h2>
+  <div class="discover">
+    <div>
+      <img src="/assets/placeholder.jpg" alt="">
+        <span>
+          <h3>Studio Name</h3>
+          <p>From price_per_hour</p>
+        </span>
+    </div>
+  <div>
+      <img src="/assets/placeholder.jpg" alt="">
+        <span>
+          <h3>Studio Name</h3>
+          <p>From price_per_hour</p>
+        </span>
+    </div>
+    <div>
+      <img src="/assets/placeholder.jpg" alt="">
+        <span>
+          <h3>Studio Name</h3>
+          <p>From price_per_hour</p>
+        </span>
+    </div>
   </div>
+  <%# trending rooms, to room index %>
+  <h2 class="sub-title">Trending studio rooms</h2>
+  <div class="trending">
+    <div>
+      <img src="/assets/trending-1.jpg" alt="">
+      <h3>Room name_1</h3>
+    </div>
+    <div>
+      <img src="/assets/trending-2.jpg" alt="">
+      <h3>Room name_2</h3>
+    </div>
+    <div>
+      <img src="/assets/trending-1.jpg" alt="">
+      <h3>Room name_3</h3>
+    </div>
+    <div>
+      <img src="/assets/trending-2.jpg" alt="">
+      <h3>Room name_4</h3>
+    </div>
+  </div>
+  <%# call to action %>
+  <div class="cta">
+    <h3>Sharing<br> is earning now</h3>
+    <p>Great oppurtunity to make money by<br>sharing your practice room/studio</p>
+    <%= link_to "Start listing", new_studio_path, class: "cta-btn" %>
+  </div>
+  <h2 class="sub-title">Jammers Stories</h2>
+  <div class="stories">
+    <div>
+        <img src="assets/stories-1.jpg" alt="">
+        <p>The best studio booking experience using StudioBook!</p>
+    </div>
+    <div>
+        <img src="assets/stories-2.jpg" alt="">
+        <p>The best studio booking experience using StudioBook!</p>
+    </div>
+    <div>
+        <img src="assets/stories-1.jpg" alt="">
+        <p>The best studio booking experience using StudioBook!</p>
+    </div>
+  </div>
+  <%= link_to "Start making money", new_studio_path, class: "start-btn" %>
+  <%# about message %>
+  <div class="about-msg">
+    <h2>About StudioBook</h2>
+    <p>StudioBook was created by musician that had struggled through the process
+    of booking a studio. This platform opens up to more oppurtunity for studio owners, home studio owners,
+    as well as fellow musicians and artists that are looking to practice or rehearse with their band.
+    </p>
+  </div>
+  <%# footer design %>
+  <div class="footer">
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-youtube"></i></a>
+    <hr>
+    <p>Copyright © 2022, StudioBook live</p>
+  </div>
+</div>

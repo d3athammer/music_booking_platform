@@ -15,6 +15,7 @@
             <h4 class="card-title"><%= room.room_name %></h4>
             <p class="card-text mb-4"><%= room.description %></p>
             <%= link_to "", studio_room_path(@studio, room), class: 'stretched-link' %>
+            <%# enum to show string instead of integer value %>
             <li class="list-group-item">Room Type: <%= room.room_type %></li>
             <li class="list-group-item">Size: <%= room.room_size %>&#13217;</li>
             <li class="list-group-item">Price: <%= room.price %></li>

@@ -2,7 +2,33 @@ class StudiosController < ApplicationController
   before_action :set_studio, only: %i[show edit update destroy]
 
   def index
-    @studio = Studio.all
+    if params[:query].present?
+      if params[:query].present?
+        # Find by studio name
+        @studios = Studio.where("name ILIKE ?", "%#{params[:query]}%")
+      # elsif params[:date].present?
+      #   # Find by date time duration
+      #   sql_query = <<~SQL
+      #     reservations.start_date ILIKE :query
+      #     OR reservations.duration ILIKE :query
+      #   SQL
+      #   @studios = Studio.joins(rooms: :reservations).where(sql_query, query: "%#{params[:query]}%")
+      elsif params[:equipment].present?
+      #   # Find by equipment
+        @studios = Studio.joins(rooms: :equipments).where("equipment_type ILIKE ?", "%#{params[:equipment]}%")
+
+      # else
+      #   sql_query = <<~SQL
+      #     studios.name ILIKE :query
+      #     AND reservations.start_date ILIKE :query
+      #     AND reservations.duration ILIKE :query
+      #     AND rooms.equipment_type ILIKE :query
+      #   SQL
+      #   @studios = Studio.joins(rooms:[:reservations, :equipments]).where(sql_query, query: "%#{params[:query]}%")
+      end
+    else
+      @studios = Studio.all
+    end
   end
 
   def show
