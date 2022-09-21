@@ -18,6 +18,7 @@ class Room < ApplicationRecord
   validates :room_name, :price, :room_size, :room_type,
             :description, :total_occupancy, presence: true
   has_many :reservations, dependent: :destroy
+  has_many :timeslot_reservations
   belongs_to :studio
   has_many :equipments, dependent: :destroy
   validates :description, length: { in: 10..500 }
@@ -25,16 +26,8 @@ class Room < ApplicationRecord
             :total_occupancy, numericality: { only_integer: true }
   accepts_nested_attributes_for :equipments, allow_destroy: true, reject_if: proc { |att| att['name'].blank? }
 
-  enum :room_type, %i[Jamming_Studios Rehearsal_Studio Recording_Studio Home_Studio]
+  enum :room_type, %i[Jamming_Studios Rehearsal_Studio Home_Studio]
 
-  def room_availability
-    # Find the reservations of the rooms
-    Room.joins()
-    # date into date
-    # convert duration to timeslots_id
-    # equipment filter by equipment_type
-    # Go through the list of available timeslots from timeslot_reservations (room_id, reservation_id, timeslot_id, date)
-    # check the timeslots
-    # pass info into index search
-  end
+  # { Jamming_Studios: 0, Rehearsal_Studio: 1,
+  #                    Recording_Studio: 2, Home_Studio: 3 }
 end

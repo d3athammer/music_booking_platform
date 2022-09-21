@@ -1,4 +1,3 @@
-
  <%# Header here %>
   <div class="nav-header">
     <nav class="nav-bar">
@@ -15,14 +14,14 @@
         <% else %>
         <%= link_to "List your studio here", new_studio_path, class: "nav-list-btn" %>
         <%= link_to "Login", new_user_session_path, class: "nav-login-btn" %>
-        <a href="#" class="nav-register-btn">Register Now</a>
+        <%= link_to "Sign Up", new_user_registration_path, class: "nav-register-btn" %>
         <% end %>
         </div>
     </nav>
     <div class="header-container">
       <h1>Book your favourite studio here</h1>
       <%# Search bar here %>
-      <div class="search-bar">
+      <div class="search-bar search-bar-white">
         <form action="/studios" accept-charset="UTF-8" method="get">
          <%# studio input %>
           <div class="form-floating search-input">
@@ -31,9 +30,10 @@
           </div>
           <%# date input %>
           <div class="form-floating">
-            <input type="date" name="date" value="Date.now" data-provide='datepicker' class="form-control" id="floatingInput" placeholder="e.g 25/09/2022">
+            <input data-controller="flatpickr" type="text" name="date" class="form-control" id="floatingInput" placeholder="e.g 25/09/2022">
             <label for="floatingInput">Date</label>
           </div>
+          <%# time input %>
           <div class="form-floating">
             <input type="time" name="time" class="form-control" id="floatingInput" placeholder="00:00">
             <label for="floatingInput">Time</label>

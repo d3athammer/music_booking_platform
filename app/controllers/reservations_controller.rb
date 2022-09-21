@@ -78,6 +78,7 @@ class ReservationsController < ApplicationController
     # loop through timeslot id(in an array), loop through this array and save each timeslot into timeslots reservations
     timeslot_array.each do |date, timeslot_id|
       TimeslotReservation.create(
+        room_id: reservation.room_id,
         date:,
         timeslot_id:,
         reservation_id: reservation.id

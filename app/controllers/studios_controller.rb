@@ -2,20 +2,19 @@ class StudiosController < ApplicationController
   before_action :set_studio, only: %i[show edit update destroy]
 
   def index
-    if params[:query].present?
-      if params[:query].present?
+    # if params[:query].present?
+      if params[:query].present? && params[:date] == "" && params[:time] == "" && params[:equipment] == "" && params[:duration] == ""
         # Find by studio name
         @studios = Studio.where("name ILIKE ?", "%#{params[:query]}%")
-      # elsif params[:date].present?
-      #   # Find by date time duration
-      #   sql_query = <<~SQL
-      #     reservations.start_date ILIKE :query
-      #     OR reservations.duration ILIKE :query
-      #   SQL
-      #   @studios = Studio.joins(rooms: :reservations).where(sql_query, query: "%#{params[:query]}%")
-      elsif params[:equipment].present?
-      #   # Find by equipment
-        @studios = Studio.joins(rooms: :equipments).where("equipment_type ILIKE ?", "%#{params[:equipment]}%")
+      elsif params[:date].present? && params[:query] == "" && params[:time] == "" && params[:equipment] == "" && params[:duration] == ""
+        # Find by date time duration
+        sql_query = <<~SQL
+          reservations.start_date <> :start_date
+        SQL
+        @studios = Studio.joins(rooms: :reservations).where(sql_query, start_date: "Mon, 19 Sep 2022").distinct
+      # elsif params[:equipment].present? && params[:date] == "" && params[:time] == "" && params[:query] == "" && params[:duration] == ""
+      # #   # Find by equipment
+      #   @studios = Studio.joins(rooms: :equipments).where("equipment.equipment_type ILIKE ?", "%#{params[:equipment]}%")
 
       # else
       #   sql_query = <<~SQL
@@ -25,7 +24,21 @@ class StudiosController < ApplicationController
       #     AND rooms.equipment_type ILIKE :query
       #   SQL
       #   @studios = Studio.joins(rooms:[:reservations, :equipments]).where(sql_query, query: "%#{params[:query]}%")
-      end
+      # end
+
+    #     sql_query = []
+
+    # sql_query << "studios.name ILIKE '#{params[:query]}'" if params[:query].present?
+    # sql_query << "date = '#{params[:date]}'" if params[:date].present?
+    # sql_query << "category_id = #{params[:category_id]}" if params[:category_id].present?
+
+    # if params[:query].present?
+    #   @activities = Activity.joins(activity_items: :item).where(sql_query.join(" AND ")).sample(18)
+    # else
+
+    # new condition,
+    # (params[:date].present? || …._) && Those that you want to me empty string
+
     else
       @studios = Studio.all
     end
