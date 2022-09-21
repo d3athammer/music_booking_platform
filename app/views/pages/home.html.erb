@@ -30,7 +30,7 @@
           </div>
           <%# date input %>
           <div class="form-floating">
-            <input data-controller="flatpickr" type="text" name="date" class="form-control" id="floatingInput" placeholder="e.g 25/09/2022">
+            <input data-controller="flatpickr" data-flatpickr-date-format="Y-m-d" data-flatpickr-min-date="<%=Time.now%>" name="date" class="form-control" id="floatingInput" placeholder="e.g 25/09/2022">
             <label for="floatingInput">Date</label>
           </div>
           <%# time input %>
