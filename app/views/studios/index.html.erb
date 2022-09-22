@@ -37,7 +37,6 @@
     <%@studios.each do |studio| %>
     <div class="studio">
         <div class="studio-img">
-        <%= link_to "", studio_path(studio), class: "stretched-link" %>
             <img src="assets/room2.jpg" alt="">
         </div>
         <div class="studio-info">
@@ -53,6 +52,9 @@
             <div class="studio-price">
                 <p><%= range_pax(studio)%> Pax</p>
                 <h4>from $<%=low_price(studio) %><span>/ hour</span></h4>
+                <div class="box-3">
+                <%= link_to "Book Now", studio_path(studio), class: "button" %>
+                </div>
             </div>
         </div>
     </div>
