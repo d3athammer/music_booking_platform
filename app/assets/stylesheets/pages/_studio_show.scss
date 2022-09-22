@@ -1,0 +1,62 @@
+.studio-details{
+  padding: 0 12%;
+}
+
+.studio-title{
+  margin-top: 50px;
+}
+
+.studio-title h1{
+  font-weight: 600;
+}
+
+.studio-title-row{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.studio-title span{
+  margin: 0 20px;
+}
+
+.studio-title i{
+  color: #ff5361;
+  font-size: 14px;
+}
+
+.gallery{
+  display: grid;
+  grid-gap: 10px;
+  grid-template-areas: 'first first . .' 'first first . .' ;
+  margin: 20px 0;
+}
+
+.gallery div img{
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+}
+
+.gallery-img-1{
+  grid-area: first;
+}
+
+.small-details h2{
+  font-weight: 400;
+}
+.small-details h4{
+  text-align: right;
+  font-size: 22px;
+}
+
+//line here---------//
+.line{
+  border: 0;
+  height: 1px;
+  background: $outer-space;
+  width: 100%;
+  max-width: 800px;
+  margin: 20px 0;
+}

@@ -1,1 +1,37 @@
 <%= render "navbar", studio: @studio %>
+<div class="studio-details">
+    <div class="studio-title">
+        <h1><%=@studio.name%></h1>
+        <div class="studio-title-row">
+            <div>
+                <%# insert reviews start here %>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <%# insert studio.reviews.count here %>
+                <span>245 reviews</span>
+            </div>
+            <div>
+                <p>Location: <%= @studio.address %>, <%= @studio.postal %> </p>
+            </div>
+        </div>
+    </div>
+    <div class="gallery">
+        <div class="gallery-img-1"><img src="/assets/rehearsal-1.jpg"></div>
+        <div><img src="/assets/rehearsal-2.jpg"></div>
+        <div><img src="/assets/rehearsal-3.jpg"></div>
+        <div><img src="/assets/rehearsal-4.jpg"></div>
+        <div><img src="/assets/rehearsal-5.jpg"></div>
+    </div>
+    <div class="small-details">
+        <h2><%= @studio.description %></h2>
+        <%# li the equipment list in table rows %>
+        <p>List out equipments here</p>
+        <%# consider creating room card to link to rooms %>
+        <h4>$100/hour</h4>
+    </div>
+    <hr class="line">
+</div>
+<%= render "footer", studio: @studio %>
