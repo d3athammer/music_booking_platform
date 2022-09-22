@@ -18,4 +18,8 @@ class Equipment < ApplicationRecord
   validates :name, length: { maximum: 100 }
 
   enum :equipment_type, %i[piano keyboard drums percussion guitar bass vocals amplifiers accessories audio]
+
+  # { piano: 0, keyboard: 1, drums: 2,
+  #                         percussion: 3, guitar: 4, bass: 5,
+  #                         vocals: 6, amplifiers: 7, accessories: 8, audio: 9}
 end

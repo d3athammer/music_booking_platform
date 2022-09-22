@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_17_080946) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_20_163944) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -123,7 +123,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_17_080946) do
     t.string "name"
     t.bigint "user_id"
     t.integer "postal"
-    t.string "description"
+    t.text "description"
     t.index ["user_id"], name: "index_studios_on_user_id"
   end
 
@@ -133,7 +133,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_17_080946) do
     t.date "date"
     t.bigint "reservation_id", null: false
     t.bigint "timeslot_id", null: false
+    t.bigint "room_id"
     t.index ["reservation_id"], name: "index_timeslot_reservations_on_reservation_id"
+    t.index ["room_id"], name: "index_timeslot_reservations_on_room_id"
     t.index ["timeslot_id", "reservation_id"], name: "index_timeslot_reservations_on_timeslot_id_and_reservation_id", unique: true
     t.index ["timeslot_id"], name: "index_timeslot_reservations_on_timeslot_id"
   end
@@ -181,6 +183,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_17_080946) do
   add_foreign_key "studio_media", "studios"
   add_foreign_key "studios", "users"
   add_foreign_key "timeslot_reservations", "reservations"
+  add_foreign_key "timeslot_reservations", "rooms"
   add_foreign_key "timeslot_reservations", "timeslots"
   add_foreign_key "wishlists", "studios"
   add_foreign_key "wishlists", "users"

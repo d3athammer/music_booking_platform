@@ -1,3 +1,0 @@
-class TimeslotReservationsController < ApplicationController
-
-end

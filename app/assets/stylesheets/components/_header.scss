@@ -1,0 +1,150 @@
+// nav-bar
+html body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'poppins', sans-serif;
+}
+.nav-header {
+min-height: 100vh;
+width: 100%;
+background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0, 0, 0, 0.3)),url("assets/banner.jpg");
+background-size: cover;
+background-position: center;
+}
+
+.nav-bar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 2%;
+}
+
+.nav-logo{
+  width: 160px;
+  cursor: pointer;
+}
+
+.nav-links li{
+  list-style: none;
+  display: inline-block;
+  margin: 10px 30px;
+}
+
+.nav-links li a{
+ text-decoration: none;
+ color: #fff;
+}
+
+.nav-register-btn, .nav-sign-out-btn, .nav-list-btn, .nav-login-btn{
+  background: #fff;
+  color: $pastelpink;
+  padding: 8px 20px;
+  border: $pastelpink solid 1px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+//login and register together//
+.nav-login-btn{
+  border-radius: 20px 0 0 20px;
+}
+
+.nav-register-btn{
+  border-radius: 0 20px 20px 0;
+}
+
+
+.nav-register-btn:hover,
+.nav-sign-out-btn:hover,
+.nav-list-btn:hover,
+.nav-login-btn:hover{
+  border: 0;
+  background-color: $pastelpink;
+  color: #fff;
+}
+
+.nav-list-btn{
+  margin-right: 10px;
+}
+
+.container-header{
+  padding :0 7%;
+  margin: 0;
+}
+
+.nav-header h1{
+  font-size: 4vw;
+  font-weight: 500;
+  color: #fff;
+  text-align: center;
+  padding-top: 22%;
+}
+
+// search bar
+
+.search-bar{
+  background: #fff;
+  width:70%;
+  margin: 30px auto;
+  padding: 6px 10px 6px 30px;
+  border-radius: 50px;
+}
+
+.search-bar form{
+ display: flex;
+ align-items: center;
+ flex-wrap: wrap;
+}
+
+.search-bar form input{
+  display: block;
+  border: 0;
+  outline: none;
+  background: transparent;
+}
+
+.search-bar form button{
+  background: #E69A8D;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+}
+
+i {
+  color:#fff;
+  width: 15px;
+  margin-top: 7px;
+}
+
+.search-input{
+  flex:1;
+}
+
+input:focus {
+  outline: none;
+}
+
+textarea:focus{
+  outline: none;
+}
+
+select:focus{
+  outline: none;
+}
+
+.search-bar form label{
+font-weight: 400;
+}
+
+.form-floating>.form-control::placeholder {
+  color: revert;
+}
+
+.form-floating>.form-control:not(:focus)::placeholder {
+  color: transparent;
+}

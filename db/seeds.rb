@@ -14,7 +14,7 @@ Room.delete_all
 Studio.delete_all
 User.delete_all
 
-5.times do
+10.times do
   # create user
   user = User.new(
     email: Faker::Internet.email,
@@ -33,7 +33,7 @@ User.delete_all
   studio.user = user
   studio.save!
   # create 10 rooms inside each studio
-  10.times do
+  3.times do
     room = Room.new(
       room_name: Faker::FunnyName.two_word_name,
       date: Faker::Date.in_date_period,

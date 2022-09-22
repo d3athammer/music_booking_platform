@@ -1,11 +1,12 @@
-<div class="container">
+<div class="container p-4">
 <h1>Make your reservations here</h1>
-
+<div class="reservations-form">
 <%= simple_form_for [@room, @reservation] do |f| %>
-  <%= f.input :start_date %>
+  <%= f.input :start_date, data: {controller: "flatpickr", flatpickr_date_format:"d-m-Y", flatpickr_min_date: Time.zone.now}, class:"form-floating" %>
   <%= f.input :start_time, collection: @timeslot_array %>
   <%= f.input :duration, collection: @hour_array %>
 
   <%= f.submit "Secure your reservation", class: "btn btn-primary" %>
+</div>
 </div>
 <% end %>

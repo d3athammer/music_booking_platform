@@ -1,24 +1,65 @@
-<section class="bg-light pb-5 shadow-sm">
-  <div class="container">
-    <div class="row pt-5">
-      <div class="col-12">
-        <h1 class="text-uppercase border-bottom mb-4">Discover Studios - for all Users</h1>
-      </div>
-    </div>
-    <div class="row">
-        <% @studio.each do |stud| %>
-      <div class="col-lg-4 mb-3 d-flex align-items-stretch">
-        <div class="card">
-            <img src="<%= asset_path('placeholder.jpg')%>" class="card-img-top"/>
-          <div class="card-body d-flex flex-column">
-            <h4 class="card-title"><%= stud.name %></h4>
-            <p class="card-text mb-4"><%= stud.description %></p>
-            <%= link_to "", studio_path(stud), class: "stretched-link mt-auto align-self-start" %>
-            <p>Address: <%= stud.address %></p>
-          </div>
+<%= render "navbar", studio: @studio %>
+<div class="container-for-list">
+  <div class="list-container">
+  <%# everything in left column %>
+  <div class="right-col">
+    <div class="sidebar">
+        <h2>Select filter</h2>
+        <h3>Studio type</h3>
+        <div class="filter">
+            <input type="checkbox"> <p>Jamming Studios</p> <span>count</span>
         </div>
-      </div>
-        <% end %>
+        <div class="filter">
+            <input type="checkbox"> <p>Recording Studios</p> <span>count</span>
+        </div>
+        <div class="filter">
+            <input type="checkbox"> <p>Home Studios</p> <span>count</span>
+        </div>
+        <h3>Equipment</h3>
+        <div class="filter">
+            <input type="checkbox"> <p>Piano</p>
+        </div>
+        <div class="filter">
+            <input type="checkbox"> <p>Drums</p>
+        </div>
+        <div class="filter">
+            <input type="checkbox"> <p>Bass</p>
+        </div>
+        <div class="sidebar-link">
+            <a href="#">View More</a>
+        </div>
     </div>
   </div>
-</section>
+    <%# everything in right column %>
+    <div class="left-col">
+    <p><%= @room_count%> rooms from <%= @studios.count %> studios available </p>
+    <h1>Recommended studios in Singapore</h1>
+    <%@studios.each do |studio| %>
+    <div class="studio">
+        <div class="studio-img">
+            <img src="assets/room2.jpg" alt="">
+        </div>
+        <div class="studio-info">
+            <p><%= studio.rooms.count %> rooms available for booking</p>
+            <h3><%= studio.name %></h3>
+            <p><%= studio.description %></p>
+            <%# reviews gem here! %>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <div class="studio-price">
+                <p><%= range_pax(studio)%> Pax</p>
+
+                <h4>from $<%=low_price(studio) %><span>/ hour</span></h4>
+            </div>
+        </div>
+    </div>
+    <% end %>
+    </div>
+  </div>
+</div>
+
+<%# add pagination here, use gem %>
+<%= render "footer", studio: @studio %>

@@ -1,6 +1,10 @@
-<section class="h-100 h-custom" style="background-color: #8fc4b7;">
+<%= render "form", studio: @studio, room: @room %>
+
+
+
+<%# <section class="h-100 h-custom" style="background-color: #8fc4b7;">
 <%= simple_form_for [@studio, @room] do |f| %>
-<div class="navbar">
+<%# <div class="navbar">
 </div>
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -15,33 +19,33 @@
             <form class="px-md-2">
               <%= f.input :room_name %>
 
-              <div class="row">
+              <%# <div class="row">
                 <div class="col-md-6 mb-4">
 
                 <%= f.input :price, label: 'Price per hour' %>
 
-                </div>
+                <%# </div>
                 <div class="col-md-6 mb-4">
 
                 <%= f.input :room_size %>
-
+<%#
                 </div>
-              </div>
+              </div>  %>
 
-              <div class="mb-4">
+              <%# <div class="mb-4">
                 <%= f.input :description %>
-                <%= f.input :total_occupancy %>
-              </div>
+                <%# <%= f.input :total_occupancy %>
+              <%# </div>
 
               <div class="row mb-4 pb-2 pb-md-0 mb-md-5">
                 <div class="col-md-6">
 
                 </div>
-              </div>
+              </div> %>
 
-              <%= f.submit "Create Room", class: "btn btn-primary" %>
+              <%# <%= f.submit "Create Room", class: "btn btn-primary" %>
 
-            </form>
+            <%# </form>
 
           </div>
         </div>
