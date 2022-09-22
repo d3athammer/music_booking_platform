@@ -1,5 +1,5 @@
 <nav class="nav-bar navbar-white">
-  <img src="/assets/studiobookcropped.png" alt="studiobook" class="nav-logo">
+     <a href="/"><img src="/assets/studiobookcropped.png" alt="studiobook" class="nav-logo"></a>
     <div class="search-bar">
         <form action="/studios" accept-charset="UTF-8" method="get">
          <%# studio input %>
@@ -9,7 +9,7 @@
           </div>
           <%# date input %>
           <div class="form-floating">
-            <input data-controller="flatpickr" type="text" name="date" class="form-control" id="floatingInput" placeholder="e.g 25/09/2022">
+            <input data-controller="flatpickr" data-flatpickr-date-format="d-m-Y" data-flatpickr-min-date="<%=Time.zone.now%>" name="date" class="form-control" id="floatingInput" placeholder="e.g 25/09/2022">
             <label for="floatingInput">Date</label>
           </div>
           <%# time input %>

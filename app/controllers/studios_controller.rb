@@ -12,28 +12,17 @@ class StudiosController < ApplicationController
           reservations.start_date <> :start_date
         SQL
         @studios = Studio.joins(rooms: :reservations).where(sql_query, start_date: "Mon, 19 Sep 2022").distinct
-      # elsif params[:equipment].present? && params[:date] == "" && params[:time] == "" && params[:query] == "" && params[:duration] == ""
-      # #   # Find by equipment
-      #   @studios = Studio.joins(rooms: :equipments).where("equipment.equipment_type ILIKE ?", "%#{params[:equipment]}%")
-
-      # else
-      #   sql_query = <<~SQL
-      #     studios.name ILIKE :query
-      #     AND reservations.start_date ILIKE :query
-      #     AND reservations.duration ILIKE :query
-      #     AND rooms.equipment_type ILIKE :query
-      #   SQL
-      #   @studios = Studio.joins(rooms:[:reservations, :equipments]).where(sql_query, query: "%#{params[:query]}%")
-      # end
 
     #     sql_query = []
 
     # sql_query << "studios.name ILIKE '#{params[:query]}'" if params[:query].present?
     # sql_query << "date = '#{params[:date]}'" if params[:date].present?
-    # sql_query << "category_id = #{params[:category_id]}" if params[:category_id].present?
+    # sql_query << "start_time = #{params[:start_time]}" if params[:start_time].present?
+    # sql_query << "duration = #{params[:duration]}" if params[:duration].present?
+    # sql_query << "equipment = #{params[:equipment]}" if params[:equipment].present?
 
     # if params[:query].present?
-    #   @activities = Activity.joins(activity_items: :item).where(sql_query.join(" AND ")).sample(18)
+    #   @studios = Activity.joins(activity_items: :item).where(sql_query.join(" AND ")).sample(18)
     # else
 
     # new condition,
@@ -85,3 +74,17 @@ class StudiosController < ApplicationController
     params.require(:studio).permit(:name, :address, :postal, :description, :user_id)
   end
 end
+
+      # elsif params[:equipment].present? && params[:date] == "" && params[:time] == "" && params[:query] == "" && params[:duration] == ""
+      # #   # Find by equipment
+      #   @studios = Studio.joins(rooms: :equipments).where("equipment.equipment_type ILIKE ?", "%#{params[:equipment]}%")
+
+      # else
+      #   sql_query = <<~SQL
+      #     studios.name ILIKE :query
+      #     AND reservations.start_date ILIKE :query
+      #     AND reservations.duration ILIKE :query
+      #     AND rooms.equipment_type ILIKE :query
+      #   SQL
+      #   @studios = Studio.joins(rooms:[:reservations, :equipments]).where(sql_query, query: "%#{params[:query]}%")
+      # end

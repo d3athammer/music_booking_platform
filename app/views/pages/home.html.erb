@@ -1,7 +1,7 @@
  <%# Header here %>
   <div class="nav-header">
     <nav class="nav-bar">
-      <img src="/assets/studiobookcropped.png" alt="studiobook" class="nav-logo">
+    <a href="/"><img src="/assets/studiobookcropped.png" alt="studiobook" class="nav-logo"></a>
         <ul class="nav-links">
           <li><a href="#" class="active">Book Studio</a></li>
           <li><%=link_to 'Top rooms', rooms_path%></li>
@@ -30,7 +30,7 @@
           </div>
           <%# date input %>
           <div class="form-floating">
-            <input data-controller="flatpickr" data-flatpickr-date-format="Y-m-d" data-flatpickr-min-date="<%=Time.now%>" name="date" class="form-control" id="floatingInput" placeholder="e.g 25/09/2022">
+            <input data-controller="flatpickr" data-flatpickr-date-format="d-m-Y" data-flatpickr-min-date="<%=Time.now%>" name="date" class="form-control" id="floatingInput" placeholder="e.g 25/09/2022">
             <label for="floatingInput">Date</label>
           </div>
           <%# time input %>
@@ -60,44 +60,37 @@
     <div>
       <img src="/assets/placeholder.jpg" alt="">
         <span>
-          <h3>Studio Name</h3>
-          <p>From price_per_hour</p>
+          <h3><%= @studio.first.name %></h3>
+          <p>From $<%=@studio.first.rooms.sample.price  %></p>
         </span>
     </div>
   <div>
       <img src="/assets/placeholder.jpg" alt="">
         <span>
-          <h3>Studio Name</h3>
-          <p>From price_per_hour</p>
+        <% id_2 = @studio.find(rand(2..@studio.count - 1)).name %>
+          <h3><%= id_2 %></h3>
+          <p>From $<%= Studio.where(name: id_2).take.rooms.sample.price%></p>
         </span>
     </div>
     <div>
       <img src="/assets/placeholder.jpg" alt="">
         <span>
-          <h3>Studio Name</h3>
-          <p>From price_per_hour</p>
+          <% id_3 = @studio.find(rand(2..@studio.count - 1)).name %>
+          <h3><%= id_3 %></h3>
+          <p>From $<%= Studio.where(name: id_3).take.rooms.sample.price%></p>
         </span>
     </div>
   </div>
   <%# trending rooms, to room index %>
   <h2 class="sub-title">Trending studio rooms</h2>
   <div class="trending">
+  <% @studio.sample(4).each do |studio| %>
     <div>
       <img src="/assets/trending-1.jpg" alt="">
-      <h3>Room name_1</h3>
+      <h3><%= studio.rooms.sample.room_name %></h3>
     </div>
-    <div>
-      <img src="/assets/trending-2.jpg" alt="">
-      <h3>Room name_2</h3>
-    </div>
-    <div>
-      <img src="/assets/trending-1.jpg" alt="">
-      <h3>Room name_3</h3>
-    </div>
-    <div>
-      <img src="/assets/trending-2.jpg" alt="">
-      <h3>Room name_4</h3>
-    </div>
+    <% end %>
+
   </div>
   <%# call to action %>
   <div class="cta">
