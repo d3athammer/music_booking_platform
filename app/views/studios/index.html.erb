@@ -32,17 +32,17 @@
   </div>
     <%# everything in right column %>
     <div class="left-col">
-    <p>studio.count Options</p>
+    <p><%= @room_count%> rooms from <%= @studios.count %> studios available </p>
     <h1>Recommended studios in Singapore</h1>
-    <%# for each studios here! %>
+    <%@studios.each do |studio| %>
     <div class="studio">
         <div class="studio-img">
             <img src="assets/room2.jpg" alt="">
         </div>
         <div class="studio-info">
-            <p>studio.description</p>
-            <h3>3 studio rooms available</h3>
-            <p>name room 1, name room 2, name room 3</p>
+            <p><%= studio.rooms.count %> rooms available for booking</p>
+            <h3><%= studio.name %></h3>
+            <p><%= studio.description %></p>
             <%# reviews gem here! %>
             <i class="fa-solid fa-star"></i>
             <i class="fa-solid fa-star"></i>
@@ -50,32 +50,13 @@
             <i class="fa-solid fa-star"></i>
             <i class="fa-solid fa-star"></i>
             <div class="studio-price">
-                <p>5 pax</p>
-                <h4>$30<span>/ hour</span></h4>
+                <p><%= range_pax(studio)%> Pax</p>
+
+                <h4>from $<%=low_price(studio) %><span>/ hour</span></h4>
             </div>
         </div>
     </div>
-    <div class="studio">
-        <div class="studio-img">
-            <img src="assets/room2.jpg" alt="">
-        </div>
-        <div class="studio-info">
-            <p>studio.description</p>
-            <h3>3 studio rooms available</h3>
-            <p>name room 1, name room 2, name room 3</p>
-            <%# reviews gem here! %>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <div class="studio-price">
-                <p>5 pax</p>
-                <h4>$30<span>/ hour</span></h4>
-            </div>
-        </div>
-    </div>
-    <%# end above this line %>
+    <% end %>
     </div>
   </div>
 </div>

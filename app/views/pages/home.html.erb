@@ -4,7 +4,7 @@
     <a href="/"><img src="/assets/studiobookcropped.png" alt="studiobook" class="nav-logo"></a>
         <ul class="nav-links">
           <li><a href="#" class="active">Book Studio</a></li>
-          <li><%=link_to 'Top rooms', rooms_path%></li>
+          <li><%=link_to 'Top studios', studios_path%></li>
           <%# <li><a href="">Support</a></li> %>
         </ul>
         <div class="nav-buttons d-flex">
@@ -30,12 +30,15 @@
           </div>
           <%# date input %>
           <div class="form-floating">
-            <input data-controller="flatpickr" data-flatpickr-date-format="d-m-Y" data-flatpickr-min-date="<%=Time.now%>" name="date" class="form-control" id="floatingInput" placeholder="e.g 25/09/2022">
+            <input data-controller="flatpickr" data-flatpickr-date-format="Y-m-d" data-flatpickr-alt-input="true"
+                   data-flatpickr-alt-format="d-m-Y" data-flatpickr-min-date="<%=Time.now%>" name="date"
+                   class="form-control" id="floatingInput" placeholder="e.g 25/09/2022">
             <label for="floatingInput">Date</label>
           </div>
           <%# time input %>
           <div class="form-floating">
-            <input type="time" name="time" class="form-control" id="floatingInput" placeholder="00:00">
+            <input type="time" data-controller="flatpickr" data-flatpickr-enable-time="true" data-flatpickr-no-calendar="true"
+                   data-flatpickr-minute-increment="30" name="time" class="form-control" id="floatingInput" placeholder="00:00">
             <label for="floatingInput">Time</label>
           </div>
           <%# duration input %>
@@ -45,8 +48,13 @@
           </div>
           <%# equipment input %>
           <div class="form-floating mr-1">
-            <input type="search" name="equipment" class="form-control" id="floatingInput" placeholder="e.g keyboard">
-            <label for="floatingInput">Equipment</label>
+            <select type="search" name="equipment" class="form-control" id="floatingInput" placeholder="e.g keyboard">
+            <label for="floatingInput">Equipment</label><option value ="">
+            </option>
+                <option value="Good">Good</option>
+                <option value="Very Good">Very Good</option>
+                <option value="Excellent">Excellent</option>
+              </select>
           </div>
           <button type ="submit"><i class="fa-solid fa-magnifying-glass" data-disable-with="Search"></i></button>
         </form>
