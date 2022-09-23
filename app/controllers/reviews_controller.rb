@@ -5,12 +5,13 @@ class ReviewsController < ApplicationController
   end
 
   def create
+    @studio = Studio.find(params[:id])
     @review = Review.new(review_params)
     @review.studio = @studio
     if @review.save
-      redirect_to_studio_path(@studio)
+      redirect_to studio_path(@studio)
     else
-      render :new, status: :unprocessable_entity
+      render "studios/show", status: :unprocessable_entity
     end
   end
 
@@ -29,5 +30,4 @@ class ReviewsController < ApplicationController
   def review_params
     params.require(:review).permit(:content, :rating)
   end
-
 end
