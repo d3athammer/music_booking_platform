@@ -3,6 +3,13 @@ class StudiosController < ApplicationController
 
   def index
     # if only search is present
+    @timeslot_array = []
+    # covert start time and date into datetime
+    @start_datetime = DateTime.parse "#{params[:date]}T#{params[:time]}+08:00"
+    # adding time to calculate @reservation.end_date
+    @end_datetime = @start_datetime + (params[:duration] / 24r)
+    @date_timeslots_hash = timeslots_by_day(@start_datetime, @end_datetime)
+
     if params[:query].present? && params[:date] == "" && params[:time] == "" && params[:equipment] == "" && params[:duration] == ""
       # Find by studio name
       @studios = Studio.where("name ILIKE ?", "%#{params[:query]}%")
@@ -14,8 +21,8 @@ class StudiosController < ApplicationController
       @studios = Studio.joins(rooms: :reservations).where(sql_query, start_date: params[:date]).distinct
     elsif params[:time].present? && params[:date].present? && params[:duration].present? && params[:query] == "" && params[:equipment] == ""
       sql_query = <<~SQL
-        reservations.start_date <> :start_date
-        reservations.start_time <> :start_time
+        timeslot_reservations.date <> :date
+        timeslot_reservations.timeslot_id <> :time
         reservations.duration <> :duration
       SQL
       @studios = Studio.joins(rooms: :reservations).where(sql_query, start_date: params[:date], start_time:params[:time], duration:params[:duration])
@@ -37,6 +44,8 @@ class StudiosController < ApplicationController
     end
     @room_count = count_rooms
   end
+
+
 
   def show
     @studio = Studio.find(params[:id])
@@ -81,6 +90,28 @@ class StudiosController < ApplicationController
   helper_method :range_pax
 
   private
+
+  # generate date:timeslots hashes
+  def timeslots_by_day(start_datetime, end_datetime)
+    (start_datetime.to_i...end_datetime.to_i).step(30.minutes).to_a.each_with_object({}) do |element, memo|
+      day = Time.at(element).to_date.strftime('%Y-%m-%d')
+      seconds_since_midnight = Time.at(element).seconds_since_midnight.to_i
+      memo[day] ||= []
+      memo[day] << seconds_since_midnight
+    end
+  end
+
+  def find_timeslot_id(timeslots_by_day)
+    array = []
+    timeslots_by_day.each do |date, times|
+      # get an array of timeslot_id
+      times_in_secs = Timeslot.where(start_time_in_seconds: times).pluck(:id)
+      times_in_secs.each do |time|
+        array << [date, time]
+      end
+    end
+    return array
+  end
 
   def hourly_array
     @hour_array = []
