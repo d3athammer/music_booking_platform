@@ -30,40 +30,60 @@
           </div>
           <%# date input %>
           <div class="form-floating">
-            <input data-controller="flatpickr" data-flatpickr-date-format="Y-m-d" data-flatpickr-alt-input="true"
-                   data-flatpickr-alt-format="d-m-Y" data-flatpickr-min-date="<%=Time.now%>" name="date"
+            <input data-controller="flatpickr" data-flatpickr-date-format="Y-m-d"
+                  data-flatpickr-min-date="<%=Time.now%>" name="date"
                    class="form-control" id="floatingInput" placeholder="e.g 25/09/2022">
             <label for="floatingInput">Date</label>
           </div>
           <%# time input %>
-          <div class="form-floating">
-            <input type="time" data-controller="flatpickr" data-flatpickr-enable-time="true" data-flatpickr-no-calendar="true"
-                   data-flatpickr-minute-increment="30" name="time" class="form-control" id="floatingInput" placeholder="00:00">
-            <label for="floatingInput">Time</label>
+          <div class="mx-1 select">
+              <select class="form-select" aria-label="Default select example">
+                  <option selected>-Start Time-</option>
+                  <% @timeslot_array.each do |time, id| %>
+                  <option value="<%=id%>"><%= time %></option>
+                <% end %>
+              </select>
           </div>
           <%# duration input %>
-          <div class="form-floating">
-            <input type="search" name="duration" class="form-control" id="floatingInput" placeholder="e.g 2 hours">
-            <label for="floatingInput">Duration</label>
+          <div class="mx-1 select">
+              <select class="form-select" aria-label="Default select example">
+                  <option selected>-Duration-</option>
+                  <% @hour_array.each do |duration, id| %>
+                  <option value="<%=id%>"><%= duration %></option>
+                <% end %>
+              </select>
           </div>
-          <%# equipment input %>
-          <div class="form-floating mr-1">
-            <select type="search" name="equipment" class="form-control" id="floatingInput" placeholder="e.g keyboard">
-            <label for="floatingInput">Equipment</label><option value ="">
-            </option>
-
-                <option value="Good">Good</option>
-                <option value="Very Good">Very Good</option>
-                <option value="Excellent">Excellent</option>
+          <div class="container-multiselect">
+              <div class="multiselect-btn">
+                  <span class="select-btn-text">Select Equipment</span>
+                  <span class="arrow-dwn">
+                      <i class="fa-solid fa-chevron-down"></i>
+                  </span>
+              </div>
+              <ul class="multi-list-items">
+                  <li class="item-multi">
+                      <span class="checkbox">
+                        <i class="fa-solid fa-check check-icon"></i>
+                      </span>
+                      <span class="item-text"> Equipments</span>
+                  </li>
+              </ul>
+          </div>
+          <div class="">
+              <select class="form-select" aria-label="Default select example" multiple>
+                  <option selected>-Equipment-</option>
+                  <% Equipment.equipment_types.keys.each do |equipment| %>
+                  <option value="<%=equipment%>"><%= equipment %></option>
+                <% end %>
               </select>
           </div>
           <button type ="submit"><i class="fa-solid fa-magnifying-glass" data-disable-with="Search"></i></button>
         </form>
-      </div>
     </div>
   </div>
+</div>
   <%# Discover here %>
-  <div class="container">
+<div class="container">
   <h2 class="sub-title">Discover here</h2>
   <div class="discover">
     <div>

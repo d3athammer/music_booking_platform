@@ -12,4 +12,19 @@ module ApplicationHelper
     # pass down the link to the fields form,  + args.fetch(:class, "")
     link_to(name, '#', class: 'add_fields', data: { id:, fields: fields.gsub("\n", "") })
   end
+
+  def hourly_array
+    @hour_array = []
+    time = 1
+    23.times do
+      if time <= 1
+        @hour_array << ["#{time} hour", time]
+        time += 0.5
+      else
+        @hour_array << ["#{time} hours", time]
+        time += 0.5
+      end
+    end
+    return @hour_array
+  end
 end

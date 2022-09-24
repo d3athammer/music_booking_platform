@@ -33,7 +33,15 @@ class StudiosController < ApplicationController
   end
 
   def show
-    @studio.rooms
+    @studio = Studio.find(params[:id])
+    @rooms = @studio.rooms
+    @timeslot = Timeslot.all
+    @hour_array = hourly_array
+    # @reservation.total_price = @room.price_per_hour * @reservation.duration
+    @timeslot_array = []
+    @timeslot.each do |time|
+      @timeslot_array << [time.time, time.id]
+    end
   end
 
   def new
@@ -67,6 +75,21 @@ class StudiosController < ApplicationController
   helper_method :range_pax
 
   private
+
+  def hourly_array
+    @hour_array = []
+    time = 1
+    23.times do
+      if time <= 1
+        @hour_array << ["#{time} hour", time]
+        time += 0.5
+      else
+        @hour_array << ["#{time} hours", time]
+        time += 0.5
+      end
+    end
+    return @hour_array
+  end
 
   def range_pax(studio)
     pax = []

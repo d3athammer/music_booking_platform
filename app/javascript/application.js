@@ -21,6 +21,7 @@ application.register("flatpickr", Flatpickr);
 //= require_tree .
 //= require bootstrap-sprockets
 
+
 //for equipment
 // $(document).on('turbolinks:load', function() {
   $('form').on('click', '.remove_record', function(event) {
@@ -38,3 +39,9 @@ application.register("flatpickr", Flatpickr);
     return event.preventDefault();
   });
 // });
+
+//-----multidropdown-----//
+const selectBtn = document.querySelector(".multiselect-btn"),
+      items = document.querySelectorAll(".item-multi");
+
+      console.log(selectBtn,items)
