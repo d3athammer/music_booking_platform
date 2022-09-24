@@ -37,7 +37,7 @@
           </div>
           <%# time input %>
           <div class="mx-1 select">
-              <select class="form-select" aria-label="Default select example">
+              <select class="form-select" name="time" aria-label="Default select example">
                   <option selected>-Start Time-</option>
                   <% @timeslot_array.each do |time, id| %>
                   <option value="<%=id%>"><%= time %></option>
@@ -46,14 +46,14 @@
           </div>
           <%# duration input %>
           <div class="mx-1 select">
-              <select class="form-select" aria-label="Default select example">
+              <select class="form-select" name="duration" aria-label="Default select example">
                   <option selected>-Duration-</option>
                   <% @hour_array.each do |duration, id| %>
                   <option value="<%=id%>"><%= duration %></option>
                 <% end %>
               </select>
           </div>
-          <div class="container-multiselect">
+          <%# <div class="container-multiselect">
               <div class="multiselect-btn">
                   <span class="select-btn-text">Select Equipment</span>
                   <span class="arrow-dwn">
@@ -68,9 +68,9 @@
                       <span class="item-text"> Equipments</span>
                   </li>
               </ul>
-          </div>
+          </div> %>
           <div class="">
-              <select class="form-select" aria-label="Default select example" multiple>
+              <select class="form-select" name="equipment" aria-label="Default select example" multiple>
                   <option selected>-Equipment-</option>
                   <% Equipment.equipment_types.keys.each do |equipment| %>
                   <option value="<%=equipment%>"><%= equipment %></option>

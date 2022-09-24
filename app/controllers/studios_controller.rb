@@ -12,7 +12,13 @@ class StudiosController < ApplicationController
         reservations.start_date <> :start_date
       SQL
       @studios = Studio.joins(rooms: :reservations).where(sql_query, start_date: params[:date]).distinct
-    elsif params[:time].present? && params[:query] == "" && params[:time] == "" && params[:equipment] == "" && params[:duration] == ""
+    elsif params[:time].present? && params[:date].present? && params[:duration].present? && params[:query] == "" && params[:equipment] == ""
+      sql_query = <<~SQL
+        reservations.start_date <> :start_date
+        reservations.start_time <> :start_time
+        reservations.duration <> :duration
+      SQL
+      @studios = Studio.joins(rooms: :reservations).where(sql_query, start_date: params[:date], start_time:params[:time], duration:params[:duration])
   # sql_query = []
     # sql_query << "studios.name ILIKE '#{params[:query]}'" if params[:query].present?
     # sql_query << "date = '#{params[:date]}'" if params[:date].present?
