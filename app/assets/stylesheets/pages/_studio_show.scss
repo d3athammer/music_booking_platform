@@ -1,0 +1,102 @@
+.studio-details{
+  padding: 0 12%;
+}
+
+.studio-title{
+  margin-top: 50px;
+}
+
+.studio-title h1{
+  font-weight: 600;
+}
+
+.studio-title-row{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.studio-title span{
+  margin: 0 20px;
+}
+
+.studio-title i{
+  color: #ff5361;
+  font-size: 14px;
+}
+
+.gallery{
+  display: grid;
+  grid-gap: 10px;
+  grid-template-areas: 'first first . .' 'first first . .' ;
+  margin: 20px 0;
+}
+
+.gallery div img{
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+}
+
+.gallery-img-1{
+  grid-area: first;
+}
+
+.small-details h2{
+  font-weight: 400;
+}
+.small-details h4{
+  text-align: right;
+  font-size: 22px;
+}
+
+//line here---------//
+.line{
+  border: 0;
+  height: 1px;
+  background: #999;
+  width: 100%;
+  max-width: 800px;
+  margin: 20px 0;
+}
+//-----check forms-----//
+.check-form{
+  margin: 30px 0;
+  background: #fff;
+  box-shadow: 0 0 30px rgba(0,0,0,0.3);
+  border-radius: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 10px 50px;
+}
+
+.check-form label{
+  display: block;
+}
+
+.check-form div{
+  padding: 20px;
+}
+.check-form input{
+  background: transparent;
+  border: 0;
+  outline: none;
+}
+
+.check-form button{
+  background: $pastelpink;
+  border: 0;
+  outline: none;
+  color: #fff;
+  padding: 18px;
+  width: 350px;
+  border-radius: 8px;
+  font-size: 16px;
+
+}
+
+.duration-field {
+  flex: 1 ;
+}

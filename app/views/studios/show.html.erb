@@ -1,1 +1,87 @@
 <%= render "navbar", studio: @studio %>
+<div class="studio-details">
+    <div class="studio-title">
+        <h1><%=@studio.name%></h1>
+        <div class="studio-title-row">
+            <div>
+                <%# insert reviews start here %>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <%# insert studio.reviews.count here %>
+                <span>245 reviews</span>
+            </div>
+            <div>
+                <p>Location: <%= @studio.address %>, <%= @studio.postal %> </p>
+            </div>
+        </div>
+    </div>
+    <div class="gallery">
+        <div class="gallery-img-1"><img src="/assets/rehearsal-1.jpg"></div>
+        <div><img src="/assets/rehearsal-2.jpg"></div>
+        <div><img src="/assets/rehearsal-3.jpg"></div>
+        <div><img src="/assets/rehearsal-4.jpg"></div>
+        <div><img src="/assets/rehearsal-5.jpg"></div>
+    </div>
+    <div class="small-details">
+        <h2><%= @studio.description %></h2>
+        <%# li the equipment list in table rows %>
+        <p>List out equipments here</p>
+        <%# consider creating room card to link to rooms %>
+        <h4>$100/hour</h4>
+    </div>
+    <hr class="line">
+    <%# <%= simple_form_for([@rooms]) do |f| %>
+    <form action="" class="check-form">
+      <div class="form-floating">
+            <input data-controller="flatpickr" data-flatpickr-date-format="Y-m-d"
+                  data-flatpickr-min-date="<%=Time.now%>" name="date"
+                   class="form-control" id="floatingInput" placeholder="e.g 25/09/2022">
+            <label for="floatingInput">Date</label>
+      </div>
+          <%# time input %>
+      <div class="mx-1 select">
+          <select class="form-select" aria-label="Default select example">
+              <option selected>-Start Time-</option>
+              <% @timeslot_array.each do |time, id| %>
+              <option value="<%=id%>"><%= time %></option>
+            <% end %>
+          </select>
+      </div>
+          <%# duration input %>
+      <div class="mx-1 select duration-field">
+          <select class="form-select" aria-label="Default select example">
+              <option selected>-Duration-</option>
+              <% @hour_array.each do |duration, id| %>
+              <option value="<%=id%>"><%= duration %></option>
+            <% end %>
+          </select>
+      </div>
+      <button type="submit">Check Availability</button>
+    </form>
+      <%# <% end %>
+</div>
+<div class="container">
+    <h1>Rooms available</h1>
+    <%@studio.rooms.each do |room| %>
+    <div class="studio">
+        <div class="studio-img">
+            <img src="/assets/room2.jpg" alt="">
+        </div>
+        <div class="studio-info">
+            <h3><%= room.room_name %></h3>
+            <p><%= room.description %></p>
+            <div class="studio-price">
+                <p><%= room.total_occupancy%> Pax</p>
+                <h4>from $<%=room.price %><span>/ hour</span></h4>
+                <div class="box-3">
+                <%= link_to "Book Now", new_room_reservation_path(room), class: "button-show" %>
+                </div>
+            </div>
+        </div>
+        <% end %>
+</div>
+
+<%= render "footer", studio: @studio %>

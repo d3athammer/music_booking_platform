@@ -148,3 +148,14 @@ font-weight: 400;
 .form-floating>.form-control:not(:focus)::placeholder {
   color: transparent;
 }
+
+.search-bar-nav {
+  margin: 30px 0;
+  background: #fff;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 10px 50px;
+}
