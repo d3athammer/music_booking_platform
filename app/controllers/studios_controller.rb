@@ -12,10 +12,6 @@ class StudiosController < ApplicationController
     # timeslot_id_array has nested array of [[date, time],[date,time]]
     @timeslot_id_array = find_timeslot_id(@date_timeslots_hash)
 
-      sql_query = <<~SQL
-        reservations.start_date <> :start_date
-      SQL
-
 
     # if params[:query].present? && params[:date] == "" && params[:time] == "" && params[:equipment] == "" && params[:duration] == ""
     #   # Find by studio name
