@@ -3,29 +3,36 @@ class StudiosController < ApplicationController
 
   def index
     # if only search is present
-    @timeslot_array = []
     # covert start time and date into datetime
-    @start_datetime = DateTime.parse "#{params[:date]}T#{params[:time]}+08:00"
+    @start_time = Timeslot.find(params[:time]).time
+    @start_datetime = DateTime.parse "#{params[:date]}T#{@start_time}+08:00"
     # adding time to calculate @reservation.end_date
-    @end_datetime = @start_datetime + (params[:duration] / 24r)
+    @end_datetime = @start_datetime + (params[:duration].to_i / 24r)
     @date_timeslots_hash = timeslots_by_day(@start_datetime, @end_datetime)
+    # timeslot_id_array has nested array of [[date, time],[date,time]]
+    @timeslot_id_array = find_timeslot_id(@date_timeslots_hash)
 
-    if params[:query].present? && params[:date] == "" && params[:time] == "" && params[:equipment] == "" && params[:duration] == ""
-      # Find by studio name
-      @studios = Studio.where("name ILIKE ?", "%#{params[:query]}%")
-    # if only date is present
-    elsif params[:date].present? && params[:query] == "" && params[:time] == "" && params[:equipment] == "" && params[:duration] == ""
       sql_query = <<~SQL
         reservations.start_date <> :start_date
       SQL
-      @studios = Studio.joins(rooms: :reservations).where(sql_query, start_date: params[:date]).distinct
-    elsif params[:time].present? && params[:date].present? && params[:duration].present? && params[:query] == "" && params[:equipment] == ""
-      sql_query = <<~SQL
-        timeslot_reservations.date <> :date
-        timeslot_reservations.timeslot_id <> :time
-        reservations.duration <> :duration
-      SQL
-      @studios = Studio.joins(rooms: :reservations).where(sql_query, start_date: params[:date], start_time:params[:time], duration:params[:duration])
+
+
+    # if params[:query].present? && params[:date] == "" && params[:time] == "" && params[:equipment] == "" && params[:duration] == ""
+    #   # Find by studio name
+    #   @studios = Studio.where("name ILIKE ?", "%#{params[:query]}%")
+    # # if only date is present
+    # elsif params[:date].present? && params[:query] == "" && params[:time] == "" && params[:equipment] == "" && params[:duration] == ""
+    #   sql_query = <<~SQL
+    #     reservations.start_date <> :start_date
+    #   SQL
+    #   @studios = Studio.joins(rooms: :reservations).where(sql_query, start_date: params[:date]).distinct
+    # elsif params[:time].present? && params[:date].present? && params[:duration].present? && params[:query] == "" && params[:equipment] == ""
+    #   sql_query = <<~SQL
+    #     timeslot_reservations.date <> :date
+    #     timeslot_reservations.timeslot_id <> :time
+    #     reservations.duration <> :duration
+    #   SQL
+    #   @studios = Studio.joins(rooms: :reservations).where(sql_query, start_date: params[:date], start_time:params[:time], duration:params[:duration])
   # sql_query = []
     # sql_query << "studios.name ILIKE '#{params[:query]}'" if params[:query].present?
     # sql_query << "date = '#{params[:date]}'" if params[:date].present?
@@ -39,10 +46,10 @@ class StudiosController < ApplicationController
     # new condition,
     # (params[:date].present? || …._) && Those that you want to allow empty string
 
-    else
-      @studios = Studio.all
-    end
-    @room_count = count_rooms
+    # else
+    #   @studios = Studio.all
+    # end
+    # @room_count = count_rooms
   end
 
 
