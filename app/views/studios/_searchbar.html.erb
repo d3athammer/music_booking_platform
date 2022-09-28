@@ -2,31 +2,31 @@
         <form action="<%= studios_path%>" accept-charset="UTF-8" method="get">
          <%# studio input %>
           <div class="form-floating search-input">
-            <input type="text" name="query" class="form-control" id="floatingInput" placeholder="Jamming Studio">
+            <input type="text" name="query" class="form-control" id="floatingInput" placeholder="Jamming Studio" value="<%=params[:query]%>">
             <label for="floatingInput" >Find a studio</label>
           </div>
           <%# date input %>
           <div class="form-floating">
             <input data-controller="flatpickr" data-flatpickr-date-format="Y-m-d"
                   data-flatpickr-min-date="<%=Time.now%>" name="date"
-                   class="form-control" id="floatingInput" placeholder="e.g 25/09/2022">
+                   class="form-control" id="floatingInput" placeholder="e.g 25/09/2022" value="<%=params[:date]%>">
             <label for="floatingInput">Date</label>
           </div>
           <%# time input %>
           <div class="mx-2 select px-2">
               <select class="form-select" name="time" aria-label="Default select example">
-                  <option value="" selected>-Start Time-</option>
+                  <option value="" <%= "selected" if params[:time] == "" %>>-Start Time-</option>
                   <% @timeslot_array.each do |time, id| %>
-                  <option value="<%=id%>"><%= time %></option>
+                  <option value="<%=id%>" <%= "selected" if id.to_i == params[:time] %>><%= time %></option>
                 <% end %>
               </select>
           </div>
           <%# duration input %>
           <div class="mx-2 select px-2">
               <select class="form-select" name="duration" aria-label="Default select example">
-                  <option value="" selected>-Duration-</option>
+              <option value="" <%= "selected" if params[:duration] == "" %>>-Duration-</option>
                   <% @hour_array.each do |duration, id| %>
-                  <option value="<%=id%>"><%= duration %></option>
+                  <option value="<%=id%>" <%= "selected" if id == params[:duration].to_f %>><%= id > 1 ? "#{id} hours" : "#{id} hour" %></option>
                 <% end %>
               </select>
           </div>
