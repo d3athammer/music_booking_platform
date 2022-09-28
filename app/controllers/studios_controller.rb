@@ -9,7 +9,6 @@ class StudiosController < ApplicationController
     elsif params[:date].present? && params[:time].present? && params[:duration].present?
       start_time = Timeslot.find(params[:time]).time unless params[:time].blank?
       start_datetime = DateTime.parse "#{params[:date]}T#{start_time}+08:00"
-      # adding time to calculate @reservation.end_date
       end_datetime = start_datetime + (params[:duration].to_i / 24r)
       date_timeslots_hash = timeslots_by_day(start_datetime, end_datetime)
       # timeslot_id_array has nested array of [[date, time],[date,time]]
@@ -23,10 +22,16 @@ class StudiosController < ApplicationController
             AND timeslot_reservations.timeslot_id IN (#{timeslot_id_array.map(&:last).join(', ')})
           )
         SQL
-        ).pluck(:id)
-      @studios = Studio.joins(:rooms).where("rooms.id IN (#{room_ids.join(', ')})")
+      ).pluck(:id)
+      @studios = Studio.joins(:rooms).where("rooms.id IN (#{room_ids.join(', ')})").distinct
     else
       @studios = Studio.all
+    end
+    @hour_array = hourly_array
+    @timeslot = Timeslot.all
+    @timeslot_array = []
+    @timeslot.each do |time|
+      @timeslot_array << [time.time, time.id]
     end
 
     @room_count = count_rooms
@@ -38,7 +43,6 @@ class StudiosController < ApplicationController
     if params[:date].present? && params[:time].present? && params[:duration].present?
       start_time = Timeslot.find(params[:time]).time unless params[:time].blank?
       start_datetime = DateTime.parse "#{params[:date]}T#{start_time}+08:00"
-      # adding time to calculate @reservation.end_date
       end_datetime = start_datetime + (params[:duration].to_i / 24r)
       date_timeslots_hash = timeslots_by_day(start_datetime, end_datetime)
       # timeslot_id_array has nested array of [[date, time],[date,time]]

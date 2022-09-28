@@ -1,35 +1,6 @@
 <nav class="nav-bar navbar-white">
      <a href="/"><img src="/assets/studiobookcropped.png" alt="studiobook" class="nav-logo"></a>
-    <div class="search-bar">
-        <form action="/studios" accept-charset="UTF-8" method="get">
-         <%# studio input %>
-          <div class="form-floating search-input">
-            <input type="text" name="query" class="form-control" id="floatingInput" placeholder="Jamming Studio">
-            <label for="floatingInput" >Find a studio</label>
-          </div>
-          <%# date input %>
-          <div class="form-floating">
-            <input data-controller="flatpickr" data-flatpickr-date-format="d-m-Y" data-flatpickr-min-date="<%=Time.zone.now%>" name="date" class="form-control" id="floatingInput" placeholder="e.g 25/09/2022">
-            <label for="floatingInput">Date</label>
-          </div>
-          <%# time input %>
-          <div class="form-floating">
-            <input type="time" name="time" class="form-control" id="floatingInput" placeholder="00:00">
-            <label for="floatingInput">Time</label>
-          </div>
-          <%# duration input %>
-          <div class="form-floating">
-            <input type="search" name="duration" class="form-control" id="floatingInput" placeholder="e.g 2 hours">
-            <label for="floatingInput">Duration</label>
-          </div>
-          <%# equipment input %>
-          <div class="form-floating mr-1">
-            <input type="search" name="equipment" class="form-control" id="floatingInput" placeholder="e.g keyboard">
-            <label for="floatingInput">Equipment</label>
-          </div>
-          <button type ="submit"><i class="fa-solid fa-magnifying-glass" data-disable-with="Search"></i></button>
-        </form>
-      </div>
+  <%= render "searchbar" %>
     <div class="nav-buttons d-flex">
     <% if user_signed_in? %>
     <%= link_to "List your studio here", new_studio_path, class: "nav-list-btn nav-list-btn-white" %>
