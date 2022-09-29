@@ -43,7 +43,7 @@
 
                         <h2 style="color: #404040; font-weight: 300; margin: 0 0 12px 0; font-size: 20px; line-height: 30px; font-family: 'Helvetica neue', Helvetica, arial, sans-serif; ">
 
-        Hi {{User Name}},
+        Hi Christopher,
 
 </h2>
 
@@ -53,92 +53,31 @@
                          <table width="100%" border="2" cellspacing="0" cellpadding="0" style="margin-top: 12px; margin-bottom: 12px; margin: 24px 0; color: #666666; font-weight: 400; font-size: 15px; line-height: 21px; font-family: 'Helvetica neue', Helvetica, arial, sans-serif;">
                           <tr>
                             <td style="padding:20px 20px 0px ; font-weight:700; font-size: 25px; ">
-                              Itinerary <br><p style="padding-top:0px; font-weight:700; font-size: 12px; ">Booking Confirmation Code: {{BOOKING-CODE}}</p>
+                                Christopher <br><p style="padding-top:0px; font-weight:700; font-size: 12px; ">Booking Confirmation Code: 197564</p>
                             </td>
-                          </tr> <tr> <td style="width: 100% !important; max-width: 480px !important; height: auto !important;"><a href="http://www.hoteldirect.roomstonite.com/?utm_source=email_bookings&utm_medium=cpc&utm_campaign=Azzure-Goa-Image" target="new">
-                          <img src="https://ziprooms.s3.amazonaws.com/images/gallery/hotel-2016-02-22-12-48-1456125525.jpg" width="519" height="300" alt="Azzure by Spree" border="0" />
                         </a></td></tr>
-                           <tr> <td style="padding:20px 20px 10px ; font-weight:700; font-size: 18px; ">{{Hotel-Name}} <p style="padding-top:0px; font-weight:700; font-size: 12px; ">{{Total Rooms}} {{Room Type Name}} - {{Total Guests}} Guests</p></td>
+                           <tr> <td style="padding:20px 20px 10px ; font-weight:700; font-size: 18px; "><%= @room.studio.name %> <p style="padding-top:0px; font-weight:700; font-size: 12px; "><%= @room.room_name %></p></td>
 
                            </tr>
                            <tr><td><table style="width: 100%;!important">
-
-  <tr>
-    <td style=" colspan=2; padding:20px 20px 0px 20px ; font-weight:700; font-size: 14px;">Arrive</td><td></td>
-    <td style="  padding:20px 20px 0px 30px ; font-weight:700; font-size: 14px;">Depart</td>
-  </tr>
                                <tr>
-                                 <td style=" colspan=2; padding: 0px 20px 20px 20px ; font-weight:700; font-size: 18px;">{{Arrival Date}}</td><td>></td>
-    <td style="padding: 0px 20px 20px 30px ; font-weight:700; font-size: 18px; ">{{Departure Date}}</td>
-  </tr>
 
-                             </table></td></tr><tr><td  style="padding:5px 5px 0px 20px; font-weight:700; font-size: 12px; ">{{Full Address}}</td></tr><tr><td style="width: 100% !important; max-width: 480px !important; height: auto !important;"><a href="http://www.hoteldirect.roomstonite.com/?utm_source=email_bookings&utm_medium=cpc&utm_campaign=Azzure-Goa-Image" target="new">
-                          <img src="https://maps.googleapis.com/maps/api/staticmap?zoom=17&size=600x300&maptype=roadmap&markers=color:red%7Clabel:C%7C15.538783,%2073.768424&key=AIzaSyCT8Y_pPdjXG40nYfptTC18ECyd0YPCbtc" width="519" height="300" alt="Azzure by Spree" border="0" />
+                             </table></td></tr><tr><td  style="padding:5px 5px 0px 20px; font-weight:700; font-size: 12px; "><%= @room.studio.address %></td></tr><tr><td style="width: 100% !important; max-width: 480px !important; height: auto !important;">
                         </a></td></tr>
                            <tr><td>
 
                              <table style="width: 100%;!important">
 
                              <tr><td style="padding:20px 20px 0px 20px ; font-weight:700; font-size: 18px; ">Total Payable</td></tr>
-    <td style=" colspan=2; padding:20px 20px 5px 20px ; font-weight:300; font-size: 14px;">₹ 2300 x 2 Rooms x 3 Nights </td><td></td>
-    <td style="  padding:20px 20px 5px 30px ; font-weight:300; font-size: 14px;">₹ 13800</td>
+    <td style=" colspan=2; padding:20px 20px 5px 20px ; font-weight:300; font-size: 14px;"><%= @room.studio.name %> </td><td></td>
+    <td style="  padding:20px 20px 5px 30px ; font-weight:300; font-size: 14px;">S$<%= @room.price %></td>
 
   </tr>
 
     <td style=" colspan=2; padding:5px 20px 10px 20px ; font-weight:400; font-size: 14px;">All Applicable Taxes </td><td></td>
-    <td style="  padding:5px 20px 10px 30px ; font-weight:400; font-size: 14px;">₹ 3105</td>
-     <tr>    <td style=" colspan=2; padding:5px 20px 10px 20px ; font-weight:700; font-size: 14px; color:#000">Grand Total </td><td></td>
-       <td  style=" padding:5px 20px 10px 30px ; font-weight:700; font-size: 14px; color:#000;">₹ 16905</td></tr>  <tr>    <td style=" colspan=2; padding:5px 20px 10px 20px ; font-weight:700; font-size: 14px;">Payment Mode </td><td></td>
-       <td  style=" padding:5px 20px 10px 30px ; font-weight:700; font-size: 14px; ">Pay @ Hotel</td></tr>
-
-
-  </tr>
-
-
-                             </table>
-
-
-                           </td>
-                   <tr> <td style="padding:20px 20px 10px ; font-weight:700; font-size: 18px; ">Inclusions <p style="padding-top:0px; font-weight:700; font-size: 12px; "><ul style="padding-top:0px; font-weight:300; font-size: 14px;">
-                     <li>All Standard Hotel and Room Amenities</li>
-                     <li>International Airport Pickup and Drop, 4 Piece laundry per night</li>
-                     </ul>
-                     </p></td>
-
-                           </tr>
-
-
-                           <td><table style="width: 100%;!important">
-
-                             <tr>
-                               <td style="padding:20px 20px 0px 20px ; font-weight:700; font-size: 18px; ">Guest Details</td></tr>
-    <td style=" colspan=2; padding:20px 20px 5px 20px ; font-weight:700; font-size: 14px;">Room {{1}}</td>
-
-  </tr>
-                             </tr>
-    <td style=" colspan=2; padding:20px 20px 5px 20px ; font-weight:300; font-size: 14px;">Mr. Bill Gates </td><td></td>
-    <td style="  padding:20px 20px 5px 30px ; font-weight:300; font-size: 14px;">+91 1234567890</td>
-
-  </tr>
-
-    <td style=" colspan=2; padding:5px 20px 10px 20px ; font-weight:400; font-size: 14px;">Mrs. Melinda Gates </td><td></td>
-    <td style="  padding:5px 20px 10px 30px ; font-weight:400; font-size: 14px;">+91 1234567890</td>
-    </tr>
-   <td style=" colspan=2; padding:20px 20px 5px 20px ; font-weight:700; font-size: 14px;">Room {{2}}</td>
-
-  </tr>
-                             </tr>
-    <td style=" colspan=2; padding:20px 20px 5px 20px ; font-weight:300; font-size: 14px;">Mr. Mark Zuckerberg </td><td></td>
-    <td style="  padding:20px 20px 5px 30px ; font-weight:300; font-size: 14px;">+91 1234567890</td>
-
-  </tr>
-
-    <td style=" colspan=2; padding:5px 20px 10px 20px ; font-weight:400; font-size: 14px;">Mrs. Priscilla Chan </td><td></td>
-    <td style="  padding:5px 20px 10px 30px ; font-weight:400; font-size: 14px;">+91 1234567890</td>
-
-
-
-
+    <td style="  padding:5px 20px 10px 30px ; font-weight:400; font-size: 14px;"><%= @room.price*0.07 %></td>
+     <tr>    <td style=" colspan=2; padding:5px 20px 10px 20px ; font-weight:700; font-size: 14px; color:#000">Grand Total</td><td></td>
+       <td  style=" padding:5px 20px 10px 30px ; font-weight:700; font-size: 14px; color:#000;">S$<%= @room.price + @room.price*0.07 %></td></tr>  <tr>    <td style=" colspan=2; padding:5px 20px 10px 20px ; font-weight:700; font-size: 14px;">Just present this reservation when you arrive!</td><td></td
 
                              </table></td>
 
@@ -170,9 +109,8 @@
                             </td>
                           </tr>
                         </table> -->
-                        <p style="color: #666666; font-weight: 400; font-size: 15px; line-height: 21px; font-family: 'Helvetica neue', Helvetica, arial, sans-serif; " class="">Hope you enjoyed the booking experience and will like the stay too.</p>
                         <p style="color: #666666; font-weight: 400; font-size: 17px; line-height: 24px; font-family: 'Helvetica neue', Helvetica, arial, sans-serif; margin-bottom: 6px; margin-top: 24px;" class="">Cheers,</p>
-                        <p style="color: #666666; font-weight: 400; font-size: 17px;  font-family: 'Helvetica neue', Helvetica, arial, sans-serif; margin-bottom: 6px; margin-top: 10px;">Hotel Direct Team</p>
+                        <p style="color: #666666; font-weight: 400; font-size: 17px;  font-family: 'Helvetica neue', Helvetica, arial, sans-serif; margin-bottom: 6px; margin-top: 10px;">StudioBook Team</p>
                       </td>
                     </tr>
                   </td>
@@ -281,15 +219,12 @@
             <td class="grid__col" style="font-family: 'Helvetica neue', Helvetica, arial, sans-serif; padding: 24px 0; text-align: center;">
               <div style="color: #666666; font-weight: 400; font-size: 13px; line-height: 18px; font-family: 'Helvetica neue', Helvetica, arial, sans-serif; font-weight: 300; padding-bottom: 6px;" class="">
                 <span style='' class=''>
-                This email was sent to
-
-    <a style="text-decoration: none; color: #0f90ba; font-family: 'Helvetica neue', Helvetica, arial, sans-serif; " href="mailto:" class="">xxxxxxx@xxxxx.xxx</a>
             </span>
 
               </div>
               <div style="color: #666666; font-weight: 400; font-size: 13px; line-height: 18px; font-family: 'Helvetica neue', Helvetica, arial, sans-serif; font-weight: 300; padding-bottom: 6px;" class="">
-                <a style="text-decoration: none; color: #0f90ba; font-family: 'Helvetica neue', Helvetica, arial, sans-serif; " href="https://www.roomstonite.com/" class="">Roomstonite</a> | #490 RT Nagar Main Road | Bangalore | India</div>
-              <div style="color: #666666; font-weight: 400; font-size: 13px; line-height: 18px; font-family: 'Helvetica neue', Helvetica, arial, sans-serif; font-weight: 300; " class="">Copyright &copy; 2016 Roomstonite. All rights reserved.</div>
+                <a style="text-decoration: none; color: #0f90ba; font-family: 'Helvetica neue', Helvetica, arial, sans-serif; " href="https://studiobook.live" class="">BookAStudio</a> | 120 Chinatown Center | Singapore </div>
+              <div style="color: #666666; font-weight: 400; font-size: 13px; line-height: 18px; font-family: 'Helvetica neue', Helvetica, arial, sans-serif; font-weight: 300; " class="">Copyright &copy; 2022 BookAStudio. All rights reserved.</div>
             </td>
           </tr>
         </table>
