@@ -20,6 +20,10 @@ class ReservationsController < ApplicationController
     @timeslot.each do |time|
       @timeslot_array << [time.time, time.id]
     end
+
+    @duration = session[:duration]
+    @time = session[:time]
+    @date = session[:date]
   end
 
   def create

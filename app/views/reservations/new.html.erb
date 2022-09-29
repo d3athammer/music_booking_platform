@@ -1,13 +1,62 @@
 <%= render "navbar" %>
-<div class="container p-4">
-<h1>Make your reservations here</h1>
-<div class="reservations-form">
-<%= simple_form_for [@room, @reservation] do |f| %>
-  <%= f.input :start_date, data: {controller: "flatpickr", flatpickr_date_format:"d-m-Y", flatpickr_min_date: Time.zone.now}, class:"form-floating" %>
-  <%= f.input :start_time, collection: @timeslot_array %>
-  <%= f.input :duration, collection: @hour_array %>
-
-  <%= f.submit "Secure your reservation", class: "btn btn-primary" %>
+<div class="container-for-list">
+  <div class="list-container">
+  <div class="left-col">
+    <h1><span><%= link_to "", studio_path(@room.studio), class: "fa-solid fa-chevron-left back-btn text-decoration-none border rounded p-2 text-dark border-secondary" %></span>Request booking</h1>
+    <div class="studio"></div>
+            <h2 class="mb-3">Please review your reservation for room "<%= @room.room_name %>" below</h2>
+        <div class="studio-info border p-4 pt-4 border-secondary">
+            <h3>Start date</h3>
+            <p><%= @date %></p>
+            <h3>Start time</h3>
+            <p><%= @time %></p>
+            <h3>Duration</h3>
+            <p><%= @duration %> hours</p>
+            <%# reviews gem here! %>
+        </div>
+    </div>
+  </div>
+    <div class="right-col">
+            <h2 class="mb-3 mt-5">Price details</h2>
+        <div class="studio-info border p-4 pt-4 border-secondary">
+            <h3>Start date</h3>
+            <p><%= @date %></p>
+            <h3>Start time</h3>
+            <p><%= @time %></p>
+            <h3>Duration</h3>
+            <p><%= @duration %> hours</p>
+            <%# reviews gem here! %>
+        </div>
+    </div>
+  </div>
 </div>
-</div>
-<% end %>
+  <%# everything in left column %>
+  <%# <div class="right-col">
+    <div class="sidebar">
+        <h2>Select filter</h2>
+        <h3>Studio type</h3>
+        <div class="filter">
+            <input type="checkbox"> <p>Jamming Studios</p> <span>count</span>
+        </div>
+        <div class="filter">
+            <input type="checkbox"> <p>Recording Studios</p> <span>count</span>
+        </div>
+        <div class="filter">
+            <input type="checkbox"> <p>Home Studios</p> <span>count</span>
+        </div>
+        <h3>Equipment</h3>
+        <div class="filter">
+            <input type="checkbox"> <p>Piano</p>
+        </div>
+        <div class="filter">
+            <input type="checkbox"> <p>Drums</p>
+        </div>
+        <div class="filter">
+            <input type="checkbox"> <p>Bass</p>
+        </div>
+        <div class="sidebar-link">
+            <a href="#">View More</a>
+        </div>
+    </div>
+  </div> %>
+    <%# everything in right column %>
