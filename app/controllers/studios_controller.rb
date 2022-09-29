@@ -1,5 +1,11 @@
 class StudiosController < ApplicationController
   before_action :set_studio, only: %i[show edit update destroy]
+  def initialize
+    @time = params[:time]
+    @date = params[:date]
+    @duration = params[:duration]
+
+  end
 
   def index
     # if only search is present
@@ -65,6 +71,7 @@ class StudiosController < ApplicationController
     @timeslot.each do |time|
       @timeslot_array << [time.time, time.id]
     end
+    raise
   end
 
   def new

@@ -17,7 +17,7 @@
               <select class="form-select" name="time" aria-label="Default select example">
                   <option value="" selected>-Start Time-</option>
                   <% @timeslot_array.each do |time, id| %>
-                  <option value="<%=id%>"><%= time %></option>
+                  <option value="<%=id.to_i%>"><%= time %></option>
                 <% end %>
               </select>
           </div>
