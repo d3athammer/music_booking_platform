@@ -28,44 +28,42 @@
     <div class="small-details">
         <h2><%= @studio.description %></h2>
         <%# li the equipment list in table rows %>
-        <p>List out equipments here</p>
+        <%# <p>Equipment available</p> %>
         <%# consider creating room card to link to rooms %>
-        <h4>$100/hour</h4>
+        <%# <h4>$100/hour</h4> %>
     </div>
     <hr class="line">
-    <%# <%= simple_form_for([@rooms]) do |f| %>
-    <form action="" class="check-form">
-      <div class="form-floating">
-            <input data-controller="flatpickr" data-flatpickr-date-format="Y-m-d"
-                  data-flatpickr-min-date="<%=Time.now%>" name="date"
-                   class="form-control" id="floatingInput" placeholder="e.g 25/09/2022">
-            <label for="floatingInput">Date</label>
-      </div>
-          <%# time input %>
-      <div class="mx-1 select">
-          <select class="form-select" aria-label="Default select example">
-              <option selected>-Start Time-</option>
-              <% @timeslot_array.each do |time, id| %>
-              <option value="<%=id%>"><%= time %></option>
+    <form action=<%= studio_path(@studio) %> method="get" class="check-form">
+        <div class="">
+            <input  data-controller="flatpickr" data-flatpickr-date-format="Y-m-d"
+                    data-flatpickr-min-date="<%=Time.now%>" name="date"
+                    class="form-control date-input-select" id="floatingInput" placeholder=" Date e.g 25/09/2022">
+            <%# <label for="floatingInput">Date</label> %>
+        </div>
+        <%# time input %>
+        <div class=" select">
+            <select class="form-select" name="time" aria-label="Default select example">
+                <option value="" selected>-Start Time-</option>
+                <% @timeslot_array.each do |time, id| %>
+                <option value="<%=id%>"><%= time %></option>
             <% end %>
-          </select>
-      </div>
-          <%# duration input %>
-      <div class="mx-1 select duration-field">
-          <select class="form-select" aria-label="Default select example">
-              <option selected>-Duration-</option>
-              <% @hour_array.each do |duration, id| %>
-              <option value="<%=id%>"><%= duration %></option>
+            </select>
+        </div>
+        <%# duration input %>
+        <div class="select">
+            <select class="form-select" name="duration" aria-label="Default select example">
+                <option value="" selected>-Duration-</option>
+                <% @hour_array.each do |duration, id| %>
+                <option value="<%=id%>"><%= duration %></option>
             <% end %>
-          </select>
-      </div>
+            </select>
+        </div>
       <button type="submit">Check Availability</button>
     </form>
-      <%# <% end %>
 </div>
 <div class="container">
     <h1>Rooms available</h1>
-    <%@studio.rooms.each do |room| %>
+    <% @rooms.each do |room| %>
     <div class="studio">
         <div class="studio-img">
             <img src="/assets/room2.jpg" alt="">
@@ -77,11 +75,11 @@
                 <p><%= room.total_occupancy%> Pax</p>
                 <h4>from $<%=room.price %><span>/ hour</span></h4>
                 <div class="box-3">
-                <%= link_to "Book Now", new_room_reservation_path(room), class: "button-show" %>
+                    <%= link_to "Book Now", new_room_reservation_path(room), class: "button-show" %>
                 </div>
             </div>
         </div>
-        <% end %>
-</div>
-
+    <% end %>
+    </div>
 <%= render "footer", studio: @studio %>
+</div>

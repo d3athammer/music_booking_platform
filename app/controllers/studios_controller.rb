@@ -3,38 +3,61 @@ class StudiosController < ApplicationController
 
   def index
     # if only search is present
-    if params[:query].present? && params[:date] == "" && params[:time] == "" && params[:equipment] == "" && params[:duration] == ""
-      # Find by studio name
+    # covert start time and date into datetime
+    if params[:query].present?
       @studios = Studio.where("name ILIKE ?", "%#{params[:query]}%")
-    # if only date is present
-    elsif params[:date].present? && params[:query] == "" && params[:time] == "" && params[:equipment] == "" && params[:duration] == ""
-      sql_query = <<~SQL
-        reservations.start_date <> :start_date
-      SQL
-      @studios = Studio.joins(rooms: :reservations).where(sql_query, start_date: params[:date]).distinct
-    elsif params[:time].present? && params[:query] == "" && params[:time] == "" && params[:equipment] == "" && params[:duration] == ""
-  # sql_query = []
-    # sql_query << "studios.name ILIKE '#{params[:query]}'" if params[:query].present?
-    # sql_query << "date = '#{params[:date]}'" if params[:date].present?
-    # sql_query << "start_time = #{params[:start_time]}" if params[:start_time].present?
-    # sql_query << "duration = #{params[:duration]}" if params[:duration].present?
-    # sql_query << "equipment = #{params[:equipment]}" if params[:equipment].present?
-
-    # if params[:query].present?
-    #   @studios = Activity.joins(activity_items: :item).where(sql_query.join(" AND ")).sample(18)
-    # else
-    # new condition,
-    # (params[:date].present? || …._) && Those that you want to allow empty string
-
+    elsif params[:date].present? && params[:time].present? && params[:duration].present?
+      start_time = Timeslot.find(params[:time]).time unless params[:time].blank?
+      start_datetime = DateTime.parse "#{params[:date]}T#{start_time}+08:00"
+      end_datetime = start_datetime + (params[:duration].to_i / 24r)
+      date_timeslots_hash = timeslots_by_day(start_datetime, end_datetime)
+      # timeslot_id_array has nested array of [[date, time],[date,time]]
+      timeslot_id_array = find_timeslot_id(date_timeslots_hash)
+      room_ids = Room.where(
+        <<-SQL
+          rooms.id NOT IN (
+            SELECT room_id
+            FROM timeslot_reservations
+            WHERE timeslot_reservations.date = \'#{params[:date]}\'
+            AND timeslot_reservations.timeslot_id IN (#{timeslot_id_array.map(&:last).join(', ')})
+          )
+        SQL
+      ).pluck(:id)
+      @studios = Studio.joins(:rooms).where("rooms.id IN (#{room_ids.join(', ')})").distinct
     else
       @studios = Studio.all
     end
+    @hour_array = hourly_array
+    @timeslot = Timeslot.all
+    @timeslot_array = []
+    @timeslot.each do |time|
+      @timeslot_array << [time.time, time.id]
+    end
+
     @room_count = count_rooms
   end
 
   def show
     @studio = Studio.find(params[:id])
     @rooms = @studio.rooms
+    if params[:date].present? && params[:time].present? && params[:duration].present?
+      start_time = Timeslot.find(params[:time]).time unless params[:time].blank?
+      start_datetime = DateTime.parse "#{params[:date]}T#{start_time}+08:00"
+      end_datetime = start_datetime + (params[:duration].to_i / 24r)
+      date_timeslots_hash = timeslots_by_day(start_datetime, end_datetime)
+      # timeslot_id_array has nested array of [[date, time],[date,time]]
+      timeslot_id_array = find_timeslot_id(date_timeslots_hash)
+      @rooms = @studio.rooms.where(
+        <<-SQL
+          rooms.id NOT IN (
+            SELECT room_id
+            FROM timeslot_reservations
+            WHERE timeslot_reservations.date = \'#{params[:date]}\'
+            AND timeslot_reservations.timeslot_id IN (#{timeslot_id_array.map(&:last).join(', ')})
+          )
+        SQL
+      )
+    end
     @timeslot = Timeslot.all
     @hour_array = hourly_array
     # @reservation.total_price = @room.price_per_hour * @reservation.duration
@@ -75,6 +98,28 @@ class StudiosController < ApplicationController
   helper_method :range_pax
 
   private
+
+  # generate date:timeslots hashes
+  def timeslots_by_day(start_datetime, end_datetime)
+    (start_datetime.to_i...end_datetime.to_i).step(30.minutes).to_a.each_with_object({}) do |element, memo|
+      day = Time.at(element).to_date.strftime('%Y-%m-%d')
+      seconds_since_midnight = Time.at(element).seconds_since_midnight.to_i
+      memo[day] ||= []
+      memo[day] << seconds_since_midnight
+    end
+  end
+
+  def find_timeslot_id(timeslots_by_day)
+    array = []
+    timeslots_by_day.each do |date, times|
+      # get an array of timeslot_id
+      times_in_secs = Timeslot.where(start_time_in_seconds: times).pluck(:id)
+      times_in_secs.each do |time|
+        array << [date, time]
+      end
+    end
+    return array
+  end
 
   def hourly_array
     @hour_array = []

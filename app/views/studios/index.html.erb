@@ -31,7 +31,7 @@
     </div>
   </div>
     <%# everything in right column %>
-    <div class="left-col">
+  <div class="left-col">
     <p><%= @room_count%> rooms from <%= @studios.count %> studios available </p>
     <h1>Recommended studios in Singapore</h1>
     <%@studios.each do |studio| %>
@@ -53,15 +53,13 @@
                 <p><%= range_pax(studio)%> Pax</p>
                 <h4>from $<%=low_price(studio) %><span>/ hour</span></h4>
                 <div class="box-3">
-                <%= link_to "Book Now", studio_path(studio), class: "button-show" %>
+                    <%= link_to "Book Now", studio_path(studio), class: "button-show" %>
                 </div>
             </div>
         </div>
     </div>
     <% end %>
-    </div>
   </div>
 </div>
-
 <%# add pagination here, use gem %>
 <%= render "footer", studio: @studio %>

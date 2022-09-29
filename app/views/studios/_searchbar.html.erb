@@ -1,0 +1,45 @@
+    <div class="search-bar search-bar-white">
+        <form action="<%= studios_path%>" accept-charset="UTF-8" method="get">
+         <%# studio input %>
+          <div class="form-floating search-input">
+            <input type="text" name="query" class="form-control" id="floatingInput" placeholder="Jamming Studio">
+            <label for="floatingInput" >Find a studio</label>
+          </div>
+          <%# date input %>
+          <div class="form-floating">
+            <input data-controller="flatpickr" data-flatpickr-date-format="Y-m-d"
+                  data-flatpickr-min-date="<%=Time.now%>" name="date"
+                   class="form-control" id="floatingInput" placeholder="e.g 25/09/2022">
+            <label for="floatingInput">Date</label>
+          </div>
+          <%# time input %>
+          <div class="mx-2 select px-2">
+              <select class="form-select" name="time" aria-label="Default select example">
+                  <option value="" selected>-Start Time-</option>
+                  <% @timeslot_array.each do |time, id| %>
+                  <option value="<%=id%>"><%= time %></option>
+                <% end %>
+              </select>
+          </div>
+          <%# duration input %>
+          <div class="mx-2 select px-2">
+              <select class="form-select" name="duration" aria-label="Default select example">
+                  <option value="" selected>-Duration-</option>
+                  <% @hour_array.each do |duration, id| %>
+                  <option value="<%=id%>"><%= duration %></option>
+                <% end %>
+              </select>
+          </div>
+          <%# <div class="">
+              <select class="form-select" name="equipment" aria-label="Default select example" multiple>
+                  <option value="" selected>-Equipment-</option>
+                  <% Equipment.equipment_types.keys.each do |equipment| %>
+                  <%# <option value="<%=equipment%>
+                  <%# <%= equipment %>
+                  <%# </option> %>
+                <%# <% end %>
+              <%# </select>  %>
+          <%# </div> %>
+          <button type ="submit"><i class="fa-solid fa-magnifying-glass" data-disable-with="Search"></i></button>
+        </form>
+    </div>

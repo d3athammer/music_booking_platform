@@ -21,65 +21,7 @@
     <div class="header-container">
       <h1>Book your favourite studio here</h1>
       <%# Search bar here %>
-      <div class="search-bar search-bar-white">
-        <form action="/studios" accept-charset="UTF-8" method="get">
-         <%# studio input %>
-          <div class="form-floating search-input">
-            <input type="text" name="query" class="form-control" id="floatingInput" placeholder="Jamming Studio">
-            <label for="floatingInput" >Find a studio</label>
-          </div>
-          <%# date input %>
-          <div class="form-floating">
-            <input data-controller="flatpickr" data-flatpickr-date-format="Y-m-d"
-                  data-flatpickr-min-date="<%=Time.now%>" name="date"
-                   class="form-control" id="floatingInput" placeholder="e.g 25/09/2022">
-            <label for="floatingInput">Date</label>
-          </div>
-          <%# time input %>
-          <div class="mx-1 select">
-              <select class="form-select" aria-label="Default select example">
-                  <option selected>-Start Time-</option>
-                  <% @timeslot_array.each do |time, id| %>
-                  <option value="<%=id%>"><%= time %></option>
-                <% end %>
-              </select>
-          </div>
-          <%# duration input %>
-          <div class="mx-1 select">
-              <select class="form-select" aria-label="Default select example">
-                  <option selected>-Duration-</option>
-                  <% @hour_array.each do |duration, id| %>
-                  <option value="<%=id%>"><%= duration %></option>
-                <% end %>
-              </select>
-          </div>
-          <div class="container-multiselect">
-              <div class="multiselect-btn">
-                  <span class="select-btn-text">Select Equipment</span>
-                  <span class="arrow-dwn">
-                      <i class="fa-solid fa-chevron-down"></i>
-                  </span>
-              </div>
-              <ul class="multi-list-items">
-                  <li class="item-multi">
-                      <span class="checkbox">
-                        <i class="fa-solid fa-check check-icon"></i>
-                      </span>
-                      <span class="item-text"> Equipments</span>
-                  </li>
-              </ul>
-          </div>
-          <div class="">
-              <select class="form-select" aria-label="Default select example" multiple>
-                  <option selected>-Equipment-</option>
-                  <% Equipment.equipment_types.keys.each do |equipment| %>
-                  <option value="<%=equipment%>"><%= equipment %></option>
-                <% end %>
-              </select>
-          </div>
-          <button type ="submit"><i class="fa-solid fa-magnifying-glass" data-disable-with="Search"></i></button>
-        </form>
-    </div>
+      <%= render "searchbar" %>
   </div>
 </div>
   <%# Discover here %>

@@ -69,6 +69,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: space-around;
   padding: 10px 50px;
 }
 
@@ -80,9 +81,11 @@
   padding: 20px;
 }
 .check-form input{
+
   background: transparent;
   border: 0;
   outline: none;
+  flex: 1;
 }
 
 .check-form button{
@@ -94,9 +97,14 @@
   width: 350px;
   border-radius: 8px;
   font-size: 16px;
-
 }
 
 .duration-field {
   flex: 1 ;
+}
+
+.date-input-select{
+  padding: 10px;
+  color: #999;
+  border: #999;
 }
