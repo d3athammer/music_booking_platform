@@ -33,32 +33,33 @@
         <%# <h4>$100/hour</h4> %>
     </div>
     <hr class="line">
+    <h2>Availability</h2>
     <form action=<%= studio_path(@studio) %> method="get" class="check-form">
         <div class="">
             <input  data-controller="flatpickr" data-flatpickr-date-format="Y-m-d"
                     data-flatpickr-min-date="<%=Time.now%>" name="date"
-                    class="form-control date-input-select" id="floatingInput" placeholder=" Date e.g 25/09/2022">
-            <%# <label for="floatingInput">Date</label> %>
+                    class="form-control date-input-select border text-dark" placeholder=" Date e.g 25/09/2022"
+                    value="<%=params[:date]%>">
         </div>
         <%# time input %>
         <div class=" select">
-            <select class="form-select" name="time" aria-label="Default select example">
-                <option value="" selected>-Start Time-</option>
-                <% @timeslot_array.each do |time, id| %>
-                <option value="<%=id%>"><%= time %></option>
+            <select class="form-select bg-white border" name="time" aria-label="Default select example">
+                <option value="" <%= "selected" if params[:time] == "" %>>-Start Time-</option>
+                  <% @timeslot_array.each do |time, id| %>
+                <option value="<%=id.to_i%>" <%= "selected" if id == params[:time].to_i %>><%= time %></option>
             <% end %>
             </select>
         </div>
         <%# duration input %>
         <div class="select">
-            <select class="form-select" name="duration" aria-label="Default select example">
-                <option value="" selected>-Duration-</option>
-                <% @hour_array.each do |duration, id| %>
-                <option value="<%=id%>"><%= duration %></option>
+            <select class="form-select bg-white border" name="duration" aria-label="Default select example">
+                <option value="" <%= "selected" if params[:duration] == "" %>>-Duration-</option>
+                  <% @hour_array.each do |duration, id| %>
+                <option value="<%=id%>" <%= "selected" if id == params[:duration].to_f %>><%= id > 1 ? "#{id} hours" : "#{id} hour" %></option>
             <% end %>
             </select>
         </div>
-      <button type="submit">Check Availability</button>
+      <button type="submit">Change search</button>
     </form>
 </div>
 <div class="container">
@@ -75,7 +76,7 @@
                 <p><%= room.total_occupancy%> Pax</p>
                 <h4>from $<%=room.price %><span>/ hour</span></h4>
                 <div class="box-3">
-                    <%= link_to "Book Now", new_room_reservation_path(room), class: "button-show" %>
+                    <%= link_to "Book Now", new_room_reservation_path( room_id: room, query: params[:query], date: params[:date], time: params[:time], duration: params[:duration]), class: "button-show" %>
                 </div>
             </div>
         </div>

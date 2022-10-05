@@ -33,11 +33,6 @@ class StudiosController < ApplicationController
     @timeslot.each do |time|
       @timeslot_array << [time.time, time.id]
     end
-    session[:query] = params[:query]
-    session[:date] = params[:date]
-    session[:start_time] = Timeslot.find(params[:time]).time unless params[:time].blank?
-    session[:duration] = params[:duration]
-
     @room_count = count_rooms
   end
 

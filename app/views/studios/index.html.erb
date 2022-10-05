@@ -53,7 +53,7 @@
                 <p><%= range_pax(studio)%> Pax</p>
                 <h4>from $<%=low_price(studio) %><span>/ hour</span></h4>
                 <div class="box-3">
-                    <%= link_to "Book Now", studio_path(studio), class: "button-show" %>
+                    <%= link_to "Book Now", studio_path( id: studio, query: params[:query], date: params[:date], time: params[:time], duration: params[:duration]), class: "button-show" %>
                 </div>
             </div>
         </div>

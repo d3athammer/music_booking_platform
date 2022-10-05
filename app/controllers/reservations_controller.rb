@@ -8,11 +8,17 @@ class ReservationsController < ApplicationController
   end
 
   def show
-    @reservation = Reservation.find(params[:id])
+    # @reservation = Reservation.find(params[:id])
   end
 
   def new
+    @duration = params[:duration].to_i
+    @date = params[:date]
+    session[:date] = params[:date]
+    session[:start_time] = Timeslot.find(params[:time]).time unless params[:time].blank?
+    session[:duration] = params[:duration]
     @reservation = Reservation.new
+    params[:time] = Timeslot.find(session[:time].to_f).time unless session[:time].blank?
     @timeslot = Timeslot.all
     @hour_array = hourly_array
     # @reservation.total_price = @room.price_per_hour * @reservation.duration
@@ -20,10 +26,6 @@ class ReservationsController < ApplicationController
     @timeslot.each do |time|
       @timeslot_array << [time.time, time.id]
     end
-
-    @duration = session[:duration]
-    @time = session[:time]
-    @date = session[:date]
   end
 
   def create
@@ -36,10 +38,9 @@ class ReservationsController < ApplicationController
     # reassign the start_time so it's in string
     @reservation.start_time = @start_time
     # covert start time and date into datetime
-    @start_datetime = DateTime.parse "#{@reservation.start_date}T#{@start_time}+08:00"
+    @start_datetime = DateTime.parse "#{@date}T#{@start_time}+08:00"
     # adding time to calculate @reservation.end_date
     @end_datetime = @start_datetime + (@reservation.duration / 24r)
-
     @reservation.end_date = @end_datetime
     @reservation.end_time = @end_datetime.strftime("%H:%M")
     # add the rest of the timeslots based on my duration
@@ -48,13 +49,13 @@ class ReservationsController < ApplicationController
     @date_to_timeslot_id = find_timeslot_id(@date_timeslots_hash)
     @reservation.room = @room
     @reservation.user = current_user
-
     if @reservation.save
       new_timeslot_reservations(@date_to_timeslot_id, @reservation)
-      redirect_to room_reservation_path(@room,@reservation)
+      redirect_to room_reservation_path(@room, @reservation)
     else
       render :new, status: :unprocessable_entity
     end
+
   end
 
   def destroy
@@ -116,7 +117,7 @@ class ReservationsController < ApplicationController
   end
 
   def reservation_params
-    params.require(:reservation).permit(:start_time, :duration, :start_date, :timeslot_id, :total_price)
+    params.require(:reservation).permit(:start_time, :duration, :start_date)
   end
 
   def hourly_array

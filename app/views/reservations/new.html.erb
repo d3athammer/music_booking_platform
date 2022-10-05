@@ -4,24 +4,30 @@
             <div class="studio"></div>
     <div class="list-container mt-0">
         <div class="resv-left-col">
-            <h2 class="mb-3 mt-0">Review your reservation for room "<%= @room.room_name %>" below</h2>
+        <%# Add simple form here %>
+          <%= simple_form_for [@room, @reservation] do |f| %>
+            <h2 class="mb-3 mt-0">Review your reservation below</h2>
             <div class="studio-info border p-4 pt-4 border-secondary">
+                <%# date input %>
                 <h3>Start date</h3>
-                <p><%= @date != "" ? @date : "please pick your date" %></p>
+                <%= f.input :start_date, as: :string, input_html:{value: params[:date]}, name:"date", data_controller:"flatpickr", data_flatpickr_date_format:"Y-m-d", data_flatpickr_min_date:"Time.now", disabled: true %>
                 <h3>Start time</h3>
-                <p><%= @time != "" ? @time : "please select your time" %><%= @time %></p>
+                <%# time input %>
+                <%= f.input :start_time, input_html:{value: params[:time]}, name: "time", disabled: true %>
                 <h3>Duration</h3>
-                <p><%= @duration != "" ? @duration : "please select your duration" %> hours</p>
+                <%# duration input %>
+                <% @duration_string = params[:duration].to_i > 1 ? "#{params[:duration]} hours" : "#{params[:duration]} hour" %>
+                <%= f.input :duration, as: :string, input_html:{value: @duration_string}, disabled: true %>
             </div>
         </div>
     <div class="resv-right-col">
 
-        <h2 class="mb-3 mt-0"><%= @room.room_name %></h2>
+        <h2 class="mb-3 mt-0"><%= @room.studio.name %> Studio</h2>
         <div class="studio-img card-product pt-0">
             <img src="/assets/room2.jpg" alt="" class="rounded">
             <div class="card-product-infos">
-                <h2>Product name</h2>
-                <p>Product description with <strong>relevant info</strong> only.</p>
+                <h2><%= @room.room_name %></h2>
+                <p><%= @room.description %></p>
             </div>
         </div>
         <div class="studio-info border p-4 pt-4 mt-4 border-secondary">
@@ -31,15 +37,15 @@
             <h3>Booking fee</h3>
             <div class="filter"><p>$0</p><span>$0</span></div>
             <h3>GST (7%)</h3>
-            <div class="filter"><p>$<%= (@room.price * @duration.to_f)* 0.07 %> SGD</p><span>$0</span></div>
+            <div class="filter"><p>$<%= ((@room.price * @duration.to_f)* 0.07).round(2) %> SGD</p><span>$<%= ((@room.price * @duration.to_f)* 0.07).round(2) %> SGD</span></div>
             <hr class="line">
             <h3>Grand Total</h3>
             <div class="filter">
-                <p class="mb-0">$<%= @room.price * @duration.to_f %> + $0 + $<%= (@room.price * @duration.to_f)* 0.07 %></p>
+                <p class="mb-0">$<%= @room.price * @duration.to_f %> + $0 + $<%= ((@room.price * @duration.to_f)* 0.07).round(2) %></p>
                 <span class="h2">$<%= ((@room.price * @duration.to_f) + (@room.price * @duration.to_f* 0.07)).round(2) %> SGD</span>
             </div>
-            <%= link_to "Secure your reservation",  %>
-            <button type="submit">Check Availability</button>
+            <%= f.submit "Reserve Now", class: "reserve-button" %>
+            <% end %>
         </div>
     </div>
     </div>
