@@ -30,7 +30,9 @@ class ReservationsController < ApplicationController
 
   def create
     @timeslot = Timeslot.all
+    raise
     @reservation = Reservation.new(reservation_params)
+    print @reservation
     # assign timeslot_id by taking the value from @reservation.start_time, which signifies timeslot_id
     @reservation.timeslot_id = params[:reservation][:start_time].to_i
     # find actual start_time by going through the list of timeslot_id and time
