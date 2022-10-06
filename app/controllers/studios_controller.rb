@@ -33,7 +33,6 @@ class StudiosController < ApplicationController
     @timeslot.each do |time|
       @timeslot_array << [time.time, time.id]
     end
-
     @room_count = count_rooms
   end
 

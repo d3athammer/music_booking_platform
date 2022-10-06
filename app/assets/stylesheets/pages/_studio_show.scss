@@ -108,3 +108,81 @@
   color: #999;
   border: #999;
 }
+
+//-reservation new
+
+.studio-info{
+  border-radius: 20px;
+
+  p{
+      margin-bottom: 20px;
+  }
+}
+
+.resv-left-col{
+  flex: 45%;
+  margin-right: 20px;
+}
+
+.resv-right-col{
+  flex: 35%;
+}
+
+.extra-top{
+  margin-top: 10px;
+}
+
+.card-product {
+  overflow: hidden;
+  height: 250px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: 0;
+  border-radius: 20px;
+}
+
+.card-product img {
+  height: 100%;
+  width: 60%;
+  border-radius: 20px;
+  padding: 16px;
+  object-fit: cover;
+}
+
+.card-product h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card-product p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.card-product .card-product-infos {
+  padding: 16px;
+}
+
+.specific-image{
+  border-radius: 20px;
+}
+
+.reserve-button{
+  background: #E69A8D;
+  display: block;
+    border: 0;
+    outline: none;
+    color: #fff;
+    padding: 18px;
+    width: 100%;
+    border-radius: 8px;
+    font-size: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    text-decoration: none;
+}

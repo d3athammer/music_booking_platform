@@ -1,13 +1,57 @@
 <%= render "navbar" %>
-<div class="container p-4">
-<h1>Make your reservations here</h1>
-<div class="reservations-form">
-<%= simple_form_for [@room, @reservation] do |f| %>
-  <%= f.input :start_date, data: {controller: "flatpickr", flatpickr_date_format:"d-m-Y", flatpickr_min_date: Time.zone.now}, class:"form-floating" %>
-  <%= f.input :start_time, collection: @timeslot_array %>
-  <%= f.input :duration, collection: @hour_array %>
+<div class="container-for-list extra-top">
+            <h1><span><%= link_to "", studio_path(@room.studio), class: "fa-solid fa-chevron-left back-btn text-decoration-none border rounded p-2 text-dark border-secondary" %></span>Request booking</h1>
+            <div class="studio"></div>
+    <div class="list-container mt-0">
+        <div class="resv-left-col">
+        <%# Add simple form here %>
+          <%= simple_form_for [@room, @reservation] do |f| %>
+            <h2 class="mb-3 mt-0">Review your reservation below</h2>
+            <div class="studio-info border p-4 pt-4 border-secondary">
+                <%# date input %>
+                <h3>Start date</h3>
+                <%= f.input :start_date, as: :string, input_html:{value: params[:date]}, name:"date", data_controller:"flatpickr", data_flatpickr_date_format:"Y-m-d", data_flatpickr_min_date:"Time.now", label: false, readonly: true %>
+                <%= f.hidden_field :start_date, input_html:{value: params[:date], type: "hidden"}, name:"date", data_controller:"flatpickr", data_flatpickr_date_format:"Y-m-d", label: false, data_flatpickr_min_date:"Time.now" %>
+                <h3>Start time</h3>
+                <%# time input %>
+                <%= f.input :start_time, input_html:{value: params[:time]}, name: "time",label: false, readonly: true %>
+                <h3>Duration</h3>
+                <%# duration input %>
+                <div class="input-group">
+                    <% @duration_string = params[:duration].to_i > 1 ? "hours" : "hour" %>
+                    <%= f.input :duration, input_html:{value: params[:duration].to_i},label: false, readonly: true %>
+                </div>
+            </div>
+        </div>
+    <div class="resv-right-col">
 
-  <%= f.submit "Secure your reservation", class: "btn btn-primary" %>
+        <h2 class="mb-3 mt-0"><%= @room.studio.name %> Studio</h2>
+        <div class="studio-img card-product pt-0">
+            <img src="/assets/room2.jpg" alt="" class="rounded">
+            <div class="card-product-infos">
+                <h2><%= @room.room_name %></h2>
+                <p><%= @room.description %></p>
+            </div>
+        </div>
+        <div class="studio-info border p-4 pt-4 mt-4 border-secondary">
+            <h2>Price details</h2>
+            <h3>Price</h3>
+            <div class="filter"><p>$<%= @room.price%> SGD x <%= @duration %> hours</p><span>$ <%= @room.price * @duration.to_f %> SGD</span></div>
+            <h3>Booking fee</h3>
+            <div class="filter"><p>$0</p><span>$0</span></div>
+            <h3>GST (7%)</h3>
+            <div class="filter"><p>$<%= ((@room.price * @duration.to_f)* 0.07).round(2) %> SGD</p><span>$<%= ((@room.price * @duration.to_f)* 0.07).round(2) %> SGD</span></div>
+            <hr class="line">
+            <h3>Grand Total</h3>
+            <div class="filter">
+                <p class="mb-0">$<%= @room.price * @duration.to_f %> + $0 + $<%= ((@room.price * @duration.to_f)* 0.07).round(2) %></p>
+                <span class="h2">$<%= ((@room.price * @duration.to_f) + (@room.price * @duration.to_f* 0.07)).round(2) %> SGD</span>
+            </div>
+                <%= f.submit "Reserve Now", class: "reserve-button" %>
+            <% end %>
+        </div>
+    </div>
+    </div>
 </div>
-</div>
-<% end %>
+
+<%= render "footer" %>

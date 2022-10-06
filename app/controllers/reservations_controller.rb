@@ -8,11 +8,17 @@ class ReservationsController < ApplicationController
   end
 
   def show
-    @reservation = Reservation.find(params[:id])
+    # @reservation = Reservation.find(params[:id])
   end
 
   def new
+    @duration = params[:duration].to_i
+    @date = params[:date]
+    # session[:date] = params[:date]
+    # session[:start_time] = Timeslot.find(params[:time]).time unless params[:time].blank?
+    # session[:duration] = params[:duration]
     @reservation = Reservation.new
+    params[:time] = Timeslot.find(params[:time].to_f).time unless params[:time].blank?
     @timeslot = Timeslot.all
     @hour_array = hourly_array
     # @reservation.total_price = @room.price_per_hour * @reservation.duration
@@ -26,16 +32,16 @@ class ReservationsController < ApplicationController
     @timeslot = Timeslot.all
     @reservation = Reservation.new(reservation_params)
     # assign timeslot_id by taking the value from @reservation.start_time, which signifies timeslot_id
-    @reservation.timeslot_id = params[:reservation][:start_time].to_i
+    # @reservation.timeslot_id = params[:reservation][:start_time].to_i
     # find actual start_time by going through the list of timeslot_id and time
-    @start_time = Timeslot.find(@reservation.timeslot_id).time
+    @reservation.timeslot_id = Timeslot.find_by(time: @reservation.start_time).id
+    # @start_time = Timeslot.find(params[:start_time]).time
     # reassign the start_time so it's in string
-    @reservation.start_time = @start_time
+    # @reservation.start_time = @start_time
     # covert start time and date into datetime
-    @start_datetime = DateTime.parse "#{@reservation.start_date}T#{@start_time}+08:00"
+    @start_datetime = DateTime.parse "#{@reservation.start_date}T#{@reservation.start_time}+08:00"
     # adding time to calculate @reservation.end_date
     @end_datetime = @start_datetime + (@reservation.duration / 24r)
-
     @reservation.end_date = @end_datetime
     @reservation.end_time = @end_datetime.strftime("%H:%M")
     # add the rest of the timeslots based on my duration
@@ -44,13 +50,13 @@ class ReservationsController < ApplicationController
     @date_to_timeslot_id = find_timeslot_id(@date_timeslots_hash)
     @reservation.room = @room
     @reservation.user = current_user
-
     if @reservation.save
       new_timeslot_reservations(@date_to_timeslot_id, @reservation)
-      redirect_to room_reservation_path(@room,@reservation)
+      redirect_to room_reservation_path(@room, @reservation)
     else
       render :new, status: :unprocessable_entity
     end
+
   end
 
   def destroy
@@ -112,7 +118,7 @@ class ReservationsController < ApplicationController
   end
 
   def reservation_params
-    params.require(:reservation).permit(:start_time, :duration, :start_date, :timeslot_id, :total_price)
+    params.require(:reservation).permit(:start_time, :duration, :start_date)
   end
 
   def hourly_array
