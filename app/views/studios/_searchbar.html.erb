@@ -27,8 +27,8 @@
               <select class="form-select" name="duration" aria-label="Default select example">
               <option value="" <%= "selected" if params[:duration] == "" %>>-Duration-</option>
                   <% @hour_array.each do |duration, id| %>
-                  <option value="<%=id%>" <%= "selected" if id == params[:duration].to_f %>><%= id > 1 ? "#{id} hours" : "#{id} hour" %></option>
-                <% end %>
+              <option value="<%=id%>" <%= "selected" if id == params[:duration].to_f %>><%= id > 1 ? "#{id} hours" : "#{id} hour" %></option>
+                  <% end %>
               </select>
           </div>
           <%# <div class="">

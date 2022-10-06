@@ -1,8 +1,8 @@
-<div class="container" data-controller="room">
+<div class="container col-6" data-controller="room">
 <% if @room.room_name.present? %>
 <h1><%= @room.room_name %></h1>
 <% else %>
-<h1>Create your room now</h1>
+<h1 class="mt-5 mb-3 text-center">Create your room now</h1>
 <% end %>
 
 

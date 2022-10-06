@@ -32,7 +32,7 @@
       <img src="/assets/placeholder.jpg" alt="">
         <span>
           <h3><%= @studio.first.name %></h3>
-          <p>From $<%=@studio.first.rooms.sample.price  %></p>
+          <p>From $<%=@studio.first.rooms.sample.price if @studio.first.rooms%></p>
         </span>
     </div>
   <div>

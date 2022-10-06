@@ -63,7 +63,7 @@
     </form>
 </div>
 <div class="container">
-    <h1>Rooms available</h1>
+    <h1>Rooms available <%= @studio.rooms.count%></h1>
     <% @rooms.each do |room| %>
     <div class="studio">
         <div class="studio-img">
@@ -81,6 +81,14 @@
             </div>
         </div>
     <% end %>
+    <div class="add-room-btn">
+      <div class="button-show plus-button">
+          <%= link_to new_studio_room_path(@studio) do %>
+          <i class="fa-solid fa-plus plus-button stretched-link"></i>
+          <% end %>
+      </div>
+      <h3>Add room</h3>
+    </div>
     </div>
 <%= render "footer", studio: @studio %>
 </div>

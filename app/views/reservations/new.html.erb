@@ -10,14 +10,17 @@
             <div class="studio-info border p-4 pt-4 border-secondary">
                 <%# date input %>
                 <h3>Start date</h3>
+                <%= f.input :start_date, as: :string, input_html:{value: params[:date]}, name:"date", data_controller:"flatpickr", data_flatpickr_date_format:"Y-m-d", data_flatpickr_min_date:"Time.now", label: false, readonly: true %>
+                <%= f.hidden_field :start_date, input_html:{value: params[:date], type: "hidden"}, name:"date", data_controller:"flatpickr", data_flatpickr_date_format:"Y-m-d", label: false, data_flatpickr_min_date:"Time.now" %>
                 <h3>Start time</h3>
                 <%# time input %>
+                <%= f.input :start_time, input_html:{value: params[:time]}, name: "time",label: false, readonly: true %>
                 <h3>Duration</h3>
                 <%# duration input %>
-                <% @duration_string = params[:duration].to_i > 1 ? "#{params[:duration]} hours" : "#{params[:duration]} hour" %>
-                <%= f.input :duration, input_html:{value: 2}, disabled: true %>
-                <%= f.submit "Reserve Now", class: "reserve-button" %>
-            <% end %>
+                <div class="input-group">
+                    <% @duration_string = params[:duration].to_i > 1 ? "hours" : "hour" %>
+                    <%= f.input :duration, input_html:{value: params[:duration].to_i},label: false, readonly: true %>
+                </div>
             </div>
         </div>
     <div class="resv-right-col">
@@ -44,6 +47,8 @@
                 <p class="mb-0">$<%= @room.price * @duration.to_f %> + $0 + $<%= ((@room.price * @duration.to_f)* 0.07).round(2) %></p>
                 <span class="h2">$<%= ((@room.price * @duration.to_f) + (@room.price * @duration.to_f* 0.07)).round(2) %> SGD</span>
             </div>
+                <%= f.submit "Reserve Now", class: "reserve-button" %>
+            <% end %>
         </div>
     </div>
     </div>

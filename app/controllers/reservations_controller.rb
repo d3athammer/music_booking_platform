@@ -14,11 +14,11 @@ class ReservationsController < ApplicationController
   def new
     @duration = params[:duration].to_i
     @date = params[:date]
-    session[:date] = params[:date]
-    session[:start_time] = Timeslot.find(params[:time]).time unless params[:time].blank?
-    session[:duration] = params[:duration]
+    # session[:date] = params[:date]
+    # session[:start_time] = Timeslot.find(params[:time]).time unless params[:time].blank?
+    # session[:duration] = params[:duration]
     @reservation = Reservation.new
-    params[:time] = Timeslot.find(session[:time].to_f).time unless session[:time].blank?
+    params[:time] = Timeslot.find(params[:time].to_f).time unless params[:time].blank?
     @timeslot = Timeslot.all
     @hour_array = hourly_array
     # @reservation.total_price = @room.price_per_hour * @reservation.duration
@@ -30,17 +30,16 @@ class ReservationsController < ApplicationController
 
   def create
     @timeslot = Timeslot.all
-    raise
     @reservation = Reservation.new(reservation_params)
-    print @reservation
     # assign timeslot_id by taking the value from @reservation.start_time, which signifies timeslot_id
-    @reservation.timeslot_id = params[:reservation][:start_time].to_i
+    # @reservation.timeslot_id = params[:reservation][:start_time].to_i
     # find actual start_time by going through the list of timeslot_id and time
-    @start_time = Timeslot.find(@reservation.timeslot_id).time
+    @reservation.timeslot_id = Timeslot.find_by(time: @reservation.start_time).id
+    # @start_time = Timeslot.find(params[:start_time]).time
     # reassign the start_time so it's in string
-    @reservation.start_time = @start_time
+    # @reservation.start_time = @start_time
     # covert start time and date into datetime
-    @start_datetime = DateTime.parse "#{@date}T#{@start_time}+08:00"
+    @start_datetime = DateTime.parse "#{@reservation.start_date}T#{@reservation.start_time}+08:00"
     # adding time to calculate @reservation.end_date
     @end_datetime = @start_datetime + (@reservation.duration / 24r)
     @reservation.end_date = @end_datetime
