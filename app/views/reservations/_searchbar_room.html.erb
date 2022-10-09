@@ -1,0 +1,27 @@
+<form action="" method="get" class="check-form">
+        <div class="room-search-bar">
+            <input  data-controller="flatpickr" data-flatpickr-date-format="Y-m-d"
+                    data-flatpickr-min-date="<%=Time.now%>" name="date"
+                    class="form-control date-input-select" id="floatingInput" placeholder=" Date e.g 25/09/2022">
+            <%# <label for="floatingInput">Date</label> %>
+        </div>
+        <%# time input %>
+        <div class=" select">
+            <select class="form-select" name="time" aria-label="Default select example">
+                <option value="" selected>-Start Time-</option>
+                <% @timeslot_array.each do |time, id| %>
+                <option value="<%=id%>"><%= time %></option>
+            <% end %>
+            </select>
+        </div>
+        <%# duration input %>
+        <div class="select">
+            <select class="form-select" name="duration" aria-label="Default select example">
+                <option value="" selected>-Duration-</option>
+                <% @hour_array.each do |duration, id| %>
+                <option value="<%=id%>"><%= duration %></option>
+            <% end %>
+            </select>
+        </div>
+      <button type="submit">Check Availability</button>
+    </form>
