@@ -1,7 +1,12 @@
 <%= render "navbar", studio: @studio %>
 <div class="studio-details">
     <div class="studio-title">
-        <h1><%=@studio.name%></h1>
+        <h1><%=@studio.name%>
+        <% if @studio.user == current_user %>
+        <%= link_to "Edit", edit_studio_path(@studio), class:"btn btn-secondary py-2" %>
+        <%= link_to "Delete studio", studio_path(@studio), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: 'btn btn-outline-danger py-2' %>
+        <% end %>
+        </h1>
         <div class="studio-title-row">
             <div>
                 <%# insert reviews start here %>
@@ -33,7 +38,7 @@
         <%# <h4>$100/hour</h4> %>
     </div>
     <hr class="line">
-    <h2>Availability</h2>
+    <h2>Select your availability</h2>
     <form action=<%= studio_path(@studio) %> method="get" class="check-form">
         <div class="">
             <input  data-controller="flatpickr" data-flatpickr-date-format="Y-m-d"
@@ -55,16 +60,21 @@
             <select class="form-select bg-white border" name="duration" aria-label="Default select example">
                 <option value="" <%= "selected" if params[:duration] == "" %>>-Duration-</option>
                   <% @hour_array.each do |duration, id| %>
-                <option value="<%=id%>" <%= "selected" if id == params[:duration].to_f %>><%= id > 1 ? "#{id} hours" : "#{id} hour" %></option>
+                  <% @duration_string = id > 1 ? "#{id} hours" : "#{id} hour"  %>
+                <option value="<%=id%>" <%= "selected" if id == params[:duration].to_f %>><%= @duration_string %></option>
             <% end %>
             </select>
         </div>
       <button type="submit">Change search</button>
     </form>
 </div>
+
 <div class="container">
-    <h1>Rooms available <%= @studio.rooms.count%></h1>
+    <h1><%= @studio.rooms.count%> Rooms available for you</h1>
     <% @rooms.each do |room| %>
+    <%# figure out how to stretched link the entire block %>
+    <%# <%= link_to studio_room_path(@studio, room)%>
+        <%# <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">click here</button> %>
     <div class="studio">
         <div class="studio-img">
             <img src="/assets/room2.jpg" alt="">
@@ -74,21 +84,25 @@
             <p><%= room.description %></p>
             <div class="studio-price">
                 <p><%= room.total_occupancy%> Pax</p>
-                <h4>from $<%=room.price %><span>/ hour</span></h4>
+                <h4>$<%=room.price %><span>/ hour</span></h4>
                 <div class="box-3">
                     <%= link_to "Book Now", new_room_reservation_path( room_id: room, query: params[:query], date: params[:date], time: params[:time], duration: params[:duration]), class: "button-show" %>
                 </div>
             </div>
         </div>
+      </div>
     <% end %>
-    <div class="add-room-btn">
-      <div class="button-show plus-button">
+    <%# only for studio owner === current_user %>
+    <hr class="line">
+    <div class="add-room-btn mt-4">
+      <div class="button-show plus-button p-12">
           <%= link_to new_studio_room_path(@studio) do %>
           <i class="fa-solid fa-plus plus-button stretched-link"></i>
           <% end %>
       </div>
       <h3>Add room</h3>
     </div>
+    <%# only for studio owner, end above%>
     </div>
-<%= render "footer", studio: @studio %>
 </div>
+<%= render "footer", studio: @studio %>

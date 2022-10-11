@@ -90,7 +90,7 @@ class StudiosController < ApplicationController
 
   def destroy
     @studio.destroy
-    redirect_to studios_path, status: :see_other
+    redirect_to root_path, status: :see_other
   end
 
   helper_method :low_price
