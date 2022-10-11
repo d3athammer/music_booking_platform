@@ -4,11 +4,11 @@ import "./controllers"
 import "bootstrap"
 import { Application } from "@hotwired/stimulus"
 import { definitionsFromContext } from "@hotwired/stimulus-webpack-helpers"
-window.bootstrap = bootstrap
 
 const application = Application.start();
 const context = require.context("../controllers", true, /\.js$/);
 application.load(definitionsFromContext(context));
+
 // import Flatpickr
 import Flatpickr from "stimulus-flatpickr";
 // Manually register Flatpickr as a stimulus controller
