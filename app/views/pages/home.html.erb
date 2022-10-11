@@ -58,7 +58,11 @@
   <% @studio.sample(4).each do |studio| %>
     <div>
       <img src="/assets/trending-1.jpg" alt="">
-      <h3><%= studio.rooms.sample.room_name %></h3>
+      <h3>
+      <% until studio.rooms.sample.room_name.present? do %>
+       <%= studio.rooms.sample.room_name %>
+      <% end %>
+      </h3>
     </div>
     <% end %>
 
