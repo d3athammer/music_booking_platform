@@ -74,10 +74,13 @@
     <% @rooms.each do |room| %>
     <%# figure out how to stretched link the entire block %>
     <%# <%= link_to studio_room_path(@studio, room)%>
-        <%# <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">click here</button> %>
     <div class="studio">
         <div class="studio-img">
+            <%# <%= button_to image_tag("room2"), data: { target: "#exampleModal", toggle: "modal"} %>
+            <button type="button" data-bs-toggle="modal" class="btn btn-link no-decoration" data-bs-target="#exampleModal">
             <img src="/assets/room2.jpg" alt="">
+            </button>
+            <%= render "room_modal" %>
         </div>
         <div class="studio-info">
             <h3><%= room.room_name %></h3>
