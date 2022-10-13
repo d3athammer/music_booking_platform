@@ -7,39 +7,49 @@
 
 
 <%= simple_form_for [studio,room] do |f| %>
-  <%= f.input :room_name %>
-  <div class="input">
-  <%= f.input :price, label: 'Price per hour' %>
-  </div>
-  <%= f.input :room_size %>
-  <table class='table'>
-    <thead>
-        <tr>
-          <th>Equipment Type</th>
-          <th>Name</th>
-          <th>Brand</th>
-          <th></th>
-        </tr>
-      </thead>
-    <tbody class='fields'>
-      <%= f.simple_fields_for :equipments do |builder| %>
-        <%= render 'equipment', f: builder %>
-      <% end %>
-    </tbody>
-  </table>
-  <div class="form-actions">
-  <%= link_to_add_row('+ Equipment', f, :equipments) %>
-  </div>
-  <%= f.input :room_type, collection: Room.room_types %>
-  <%= f.input :total_occupancy, collection: 1..20 %>
-  <%= f.input :description %>
-  <div class="form-actions">
+<div class="create-room">
+      <div class="room-name-input">
+          <%= f.input :room_name %>
+      </div>
+      <div class="input price-roomsize-input">
+          <%= f.input :price, label: 'Price per hour' %>
+          <%= f.input :room_size %>
+      </div>
+      <div class="equipment-input">
+          <table class='table'>
+            <thead>
+                <tr>
+                  <th>Equipment Type</th>
+                  <th>Name</th>
+                  <th>Brand</th>
+                  <th></th>
+                </tr>
+              </thead>
+            <tbody class='fields'>
+              <%= f.simple_fields_for :equipments do |builder| %>
+                <%= render 'equipment', f: builder %>
+              <% end %>
+            </tbody>
+          </table>
+      <div class="add-equipment-btn">
+          <%= link_to_add_row('+ Equipment', f, :equipments) %>
+      </div>
+      </div>
+      <div class="room-type-occupancy-input">
+          <%= f.input :room_type, collection: Room.room_types.keys %>
+          <%= f.input :total_occupancy, collection: 1..10 %>
+      </div>
+      <div class="description-input">
+          <%= f.input :description %>
+      </div>
+  <div class="form-actions room-submit-button">
   <% if @room.id.present? %>
-  <%= f.submit "Update Room", class: "btn btn-primary" %>
+  <%= f.submit "Update Room", class: "btn btn-primary button-show" %>
   <% else %>
-  <%= f.submit "Create Room", class: "btn btn-primary" %>
+  <%= f.submit "Create Room", class: "btn btn-primary button-show text-center align-item-center" %>
   <% end %>
   </div>
 <% end %>
+</div>
 </div>
 </div>

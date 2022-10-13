@@ -2,10 +2,10 @@
 <div class="container-for-list extra-top">
             <h1><span><%= link_to "", studio_path(@room.studio), class: "fa-solid fa-chevron-left back-btn text-decoration-none border rounded p-2 text-dark border-secondary" %></span>Request booking</h1>
             <div class="studio"></div>
+          <%= simple_form_for [@room, @reservation] do |f| %>
     <div class="list-container mt-0">
         <div class="resv-left-col">
         <%# Add simple form here %>
-          <%= simple_form_for [@room, @reservation] do |f| %>
             <h2 class="mb-3 mt-0">Review your reservation below</h2>
             <div class="studio-info border p-4 pt-4 border-secondary">
                 <%# date input %>
@@ -15,8 +15,8 @@
                 <h3>Start time</h3>
                 <%# time input %>
                 <%= f.input :start_time, input_html:{value: params[:time]}, name: "time",label: false, readonly: true %>
-                <h3>Duration</h3>
                 <%# duration input %>
+                <h3>Duration (No. of hours)</h3>
                 <div class="input-group">
                     <% @duration_string = params[:duration].to_i > 1 ? "hours" : "hour" %>
                     <%= f.input :duration, input_html:{value: params[:duration].to_i},label: false, readonly: true %>
