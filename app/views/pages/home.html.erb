@@ -19,7 +19,7 @@
         </div>
     </nav>
     <div class="header-container">
-      <h1>Book your favourite studio here</h1>
+      <h1>Book your music experience</h1>
       <%# Search bar here %>
       <%= render "searchbar" %>
   </div>
@@ -60,7 +60,7 @@
       <img src="/assets/trending-1.jpg" alt="">
       <h3>
       <% until studio.rooms.sample.room_name.present? do %>
-       <%= studio.rooms.sample.room_name %>
+       <%= studio.rooms.sample.room_name  %>
       <% end %>
       </h3>
     </div>
