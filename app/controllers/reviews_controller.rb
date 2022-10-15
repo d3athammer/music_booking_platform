@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
   before_action :set_studio, only: %i[new create]
   def new
+    @studio = Studio.find(params[:studio_id])
     @review = Review.new
   end
 
@@ -27,7 +28,7 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-    params.require(:review).permit(:content, :rating)
+    params.require(:review).permit(:comment, :rating)
   end
 
 end
