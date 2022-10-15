@@ -6,3 +6,6 @@ import { application } from "./application"
 
 import CarouselController from "./carousel_controller"
 application.register("carousel", CarouselController)
+
+import EquipmentController from "./equipment_controller"
+application.register("equipment", EquipmentController)

@@ -7,7 +7,7 @@
 
 
 <%= simple_form_for [studio,room] do |f| %>
-<div class="create-room">
+<div class="create-room"  data-controller="equipment">
       <div class="room-name-input">
           <%= f.input :room_name %>
       </div>
@@ -25,7 +25,7 @@
                   <th></th>
                 </tr>
               </thead>
-            <tbody class='fields'>
+            <tbody class='fields' data-equipment-target='fields' >
               <%= f.simple_fields_for :equipments do |builder| %>
                 <%= render 'equipment', f: builder %>
               <% end %>
