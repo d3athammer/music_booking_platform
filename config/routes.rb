@@ -12,8 +12,10 @@ Rails.application.routes.draw do
     resources :reservations, only: %i[new create show]
   end
 
-    resources :reservations, only: %i[edit update index destroy]
+  resources :pages, only: %i[show index update edit]
+  # Show will be booking page
 
+  resources :reservations, only: %i[edit update index destroy]
   resources :rooms, only: [:destroy]
 
   # get "", to: "#"

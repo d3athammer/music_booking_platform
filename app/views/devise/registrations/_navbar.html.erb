@@ -1,19 +1,19 @@
-<nav class="navbar navbar-expand-sm navbar-lewagon nav-bar">
+<nav class="navbar navbar-expand-sm navbar-lewagon nav-bar bg-white">
 <a href="/"><img src="/assets/studiobookcropped.png" alt="studiobook" class="nav-logo"></a>
     <ul class="nav-links mb-0">
-      <li><a href="#" class="active">Book Studio</a></li>
-      <li><%=link_to 'Top studios', studios_path%></li>
+      <li><%= link_to 'Homepage', root_path, class:"text-secondary border-bottom p-3 border-3" %></li>
+      <li><%=link_to 'Top studios', studios_path, class:"text-secondary border-bottom p-3 border-3"%></li>
       <%# <li><a href="">Support</a></li> %>
     </ul>
 
-    <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
           <li class="nav-item mr-5">
-            <%= link_to "List your studio here", new_studio_path , class: "nav-link text-white mr-8" %>
+            <%= link_to "List your studio here", new_studio_path , class: "nav-link mr-8" %>
           </li>
 
         <% if user_signed_in? %>

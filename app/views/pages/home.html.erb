@@ -1,25 +1,8 @@
  <%# Header here %>
   <div class="nav-header">
-    <nav class="nav-bar">
-    <a href="/"><img src="/assets/studiobookcropped.png" alt="studiobook" class="nav-logo"></a>
-        <ul class="nav-links">
-          <li><a href="#" class="active">Book Studio</a></li>
-          <li><%=link_to 'Top studios', studios_path%></li>
-          <%# <li><a href="">Support</a></li> %>
-        </ul>
-        <div class="nav-buttons d-flex">
-        <% if user_signed_in? %>
-        <%= link_to "List your studio here", new_studio_path, class: "nav-list-btn" %>
-        <%= link_to 'Sign Out', destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "nav-sign-out-btn" %>
-        <% else %>
-        <%= link_to "List your studio here", new_studio_path, class: "nav-list-btn" %>
-        <%= link_to "Login", new_user_session_path, class: "nav-login-btn" %>
-        <%= link_to "Sign Up", new_user_registration_path, class: "nav-register-btn" %>
-        <% end %>
-        </div>
-    </nav>
-    <div class="header-container">
-      <h1>Book your music experience</h1>
+<%= render "navbar" %>
+    <div class="header-container font-header">
+      <h1 class="font-header">Music studio booking made easy</h1>
       <%# Search bar here %>
       <%= render "searchbar" %>
   </div>
@@ -31,24 +14,30 @@
     <div>
       <img src="/assets/placeholder.jpg" alt="">
         <span>
+          <%= link_to studio_path(@studio.first), class:"text-decoration-none text-white stretched-link" do %>
           <h3><%= @studio.first.name %></h3>
           <p>From $<%=@studio.first.rooms.sample.price if @studio.first.rooms%></p>
+          <% end %>
         </span>
     </div>
   <div>
       <img src="/assets/placeholder.jpg" alt="">
         <span>
-        <% id_2 = @studio.find(rand(2..@studio.count - 1)).name %>
-          <h3><%= id_2 %></h3>
-          <p>From $<%= Studio.where(name: id_2).take.rooms.sample.price%></p>
+          <% id_2 = @studio.find(rand(2..@studio.count - 1)) %>
+          <%= link_to studio_path(id_2), class:"text-decoration-none text-white stretched-link" do %>
+          <h3><%= id_2.name %></h3>
+          <p>From $<%= Studio.where(name: id_2.name).take.rooms.sample.price%></p>
+          <% end %>
         </span>
     </div>
     <div>
       <img src="/assets/placeholder.jpg" alt="">
         <span>
-          <% id_3 = @studio.find(rand(2..@studio.count - 1)).name %>
-          <h3><%= id_3 %></h3>
-          <p>From $<%= Studio.where(name: id_3).take.rooms.sample.price%></p>
+          <% id_3 = @studio.find(rand(2..@studio.count - 1)) %>
+          <%= link_to studio_path(id_3), class:"text-decoration-none text-white stretched-link" do %>
+          <h3><%= id_3.name %></h3>
+          <p>From $<%= Studio.where(name: id_3.name).take.rooms.sample.price%></p>
+          <% end %>
         </span>
     </div>
   </div>
@@ -59,9 +48,7 @@
     <div>
       <img src="/assets/trending-1.jpg" alt="">
       <h3>
-      <% until studio.rooms.sample.room_name.present? do %>
        <%= studio.rooms.sample.room_name  %>
-      <% end %>
       </h3>
     </div>
     <% end %>

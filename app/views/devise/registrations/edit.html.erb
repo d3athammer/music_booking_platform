@@ -1,35 +1,48 @@
+<%= render "navbar" %>
+
+<div class=" edit-account container-fluid col-4 p-5 mt-4">
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
+  <div class="form-inputs input-pills">
+    <%= f.input :email, required: true, autofocus: true, input_html:{ class:"input-pills" } %>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
 
+    <div class="name-container mb-4 d-flex flex-row justify-content-between">
+        <div class="form-outline col-7">
+            <%= f.input :first_name, required: true, input_html:{ class:"input-pills" } %>
+        </div>
+        <div class="form-outline col-4">
+            <%= f.input :last_name, required: true, input_html:{ class:"input-pills" }%>
+        </div>
+    </div>
+
     <%= f.input :password,
                 hint: "leave it blank if you don't want to change it",
                 required: false,
-                input_html: { autocomplete: "new-password" } %>
+                input_html: { autocomplete: "new-password" }, input_html:{ class:"input-pills" } %>
     <%= f.input :password_confirmation,
                 required: false,
-                input_html: { autocomplete: "new-password" } %>
+                input_html: { autocomplete: "new-password" }, input_html:{ class:"input-pills" } %>
     <%= f.input :current_password,
                 hint: "we need your current password to confirm your changes",
                 required: true,
-                input_html: { autocomplete: "current-password" } %>
+                input_html: { autocomplete: "current-password" }, input_html:{ class:"input-pills" } %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
+  <div class="form-actions text-center px-20">
+    <%= f.button :submit, "Update", class:"button-show btn-secondary" %>
   </div>
 <% end %>
 
-<h3>Cancel my account</h3>
+<div class="text-center mt-5">
+<p>Unhappy? <%= link_to "Cancel my account", cancel_user_registration_path(resource_name), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?'}, method: :delete %></p>
+<%= link_to "Back", :back  %>
+</div>
 
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</div>
