@@ -10,7 +10,7 @@ module ApplicationHelper
       render(association.to_s.singularize, f: builder)
     end
     # pass down the link to the fields form,  + args.fetch(:class, "")
-    link_to(name, '#', class: 'add_fields', data: { id:, fields: fields.gsub("\n", "") })
+    link_to(name, '#', class: 'add_fields', data: { id:, fields: fields.gsub("\n", ""), action: "click->equipment#addEquipment" })
   end
 
   def hourly_array
