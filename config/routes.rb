@@ -9,9 +9,13 @@ Rails.application.routes.draw do
   end
 
   resources :rooms, except: %i[new create show destroy] do
-    resources :reservations, only: %i[new create index destroy show]
+    resources :reservations, only: %i[new create show]
   end
 
+  resources :pages, only: %i[show index update edit]
+  # Show will be booking page
+
+  resources :reservations, only: %i[edit update index destroy]
   resources :rooms, only: [:destroy]
 
   # get "", to: "#"
