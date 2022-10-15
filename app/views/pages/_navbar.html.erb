@@ -1,18 +1,47 @@
-<nav class="nav-bar">
-  <%= image_tag "studiobookcropped.png" alt:"studiobook" class:"nav-logo" %>
-  <ul class="nav-links">
-    <li><a href="#" class="active">Book Studio</a></li>
-    <li><%=link_to 'Top rooms', rooms_path%></li>
-    <%# <li><a href="">Support</a></li> %>
-  </ul>
-  <div class="nav-buttons d-flex">
-  <% if user_signed_in? %>
-  <%= link_to "List your studio here", new_studio_path, class: "nav-list-btn" %>
-  <%= link_to 'Sign Out', destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "nav-sign-out-btn" %>
-  <% else %>
-  <%= link_to "List your studio here", new_studio_path, class: "nav-list-btn" %>
-  <%= link_to "Login", new_user_session_path, class: "nav-login-btn" %>
-  <a href="#" class="nav-register-btn">Register Now</a>
-  <% end %>
-  </div>
+<nav class="navbar navbar-expand-sm navbar-lewagon nav-bar">
+<a href="/"><img src="/assets/studiobookcropped.png" alt="studiobook" class="nav-logo"></a>
+    <ul class="nav-links mb-0">
+      <li><a href="#" class="active">Book Studio</a></li>
+      <li><%=link_to 'Top studios', studios_path%></li>
+      <%# <li><a href="">Support</a></li> %>
+    </ul>
+
+    <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto">
+          <li class="nav-item mr-5">
+            <%= link_to "List your studio here", new_studio_path , class: "nav-link text-white mr-8" %>
+          </li>
+
+        <% if user_signed_in? %>
+          <li class="nav-item dropdown">
+              <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+              <div class="dropdown-menu dropdown-menu-end text-center" aria-labelledby="navbarDropdown">
+                <%= link_to "Account Settings", edit_user_registration_path, class: "dropdown-item" %>
+                <%= link_to "Bookings", "#", class: "dropdown-item" %>
+                <div class="dropdown-divider"></div>
+                <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
+              </div>
+          </li>
+        <% else %>
+        <li class="nav-item dropdown align-middle">
+              <button class="dropdown-toggler" type="button" id="navbarDropdown" data-bs-toggle="dropdown" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            <div class="dropdown-menu dropdown-menu-end text-center" aria-labelledby="navbarDropdown">
+              <%= link_to "Log in", new_user_session_path, class: "dropdown-item" %>
+              <div class="dropdown-divider"></div>
+              <%= link_to "Sign up", new_user_registration_path, class: "dropdown-item" %>
+            </div>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+
+
+    <%# dropdown %>
+
 </nav>

@@ -2,12 +2,10 @@
 // Run that command whenever you add a new controller or create them with
 // ./bin/rails generate stimulus controllerName
 
-// import { application } from "./application"
-// import { definitionsFromContext } from "@hotwired/stimulus-webpack-helpers"
+import { application } from "./application"
 
-// window.Stimulus = Application.start()
-// const context = require.context("./controllers", true, /\.js$/)
-// Stimulus.load(definitionsFromContext(context))
+import CarouselController from "./carousel_controller"
+application.register("carousel", CarouselController)
 
-// import ModalController from "./modal_controller"
-// application.register("modal", ModalController)
+import EquipmentController from "./equipment_controller"
+application.register("equipment", EquipmentController)

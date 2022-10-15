@@ -186,3 +186,13 @@
     text-align: center;
     text-decoration: none;
 }
+
+.no-decoration,
+.no-decoration:focus,
+.no-decoration:active,
+.no-decoration:hover,
+.no-decoration:visited {
+  box-shadow: none;
+  text-decoration: none;
+  outline: none;
+}

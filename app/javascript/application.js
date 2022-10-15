@@ -4,11 +4,10 @@ import "./controllers"
 import "bootstrap"
 import { Application } from "@hotwired/stimulus"
 import { definitionsFromContext } from "@hotwired/stimulus-webpack-helpers"
-window.bootstrap = bootstrap
-
 const application = Application.start();
 const context = require.context("../controllers", true, /\.js$/);
 application.load(definitionsFromContext(context));
+
 // import Flatpickr
 import Flatpickr from "stimulus-flatpickr";
 // Manually register Flatpickr as a stimulus controller
@@ -23,20 +22,22 @@ application.register("flatpickr", Flatpickr);
 
 //for equipment
 // $(document).on('turbolinks:load', function() {
-  $('form').on('click', '.remove_record', function(event) {
-    $(this).prev('input[type=hidden]').val('1');
-    $(this).closest('tr').hide();
-    return event.preventDefault();
-  });
 
-  $('form').on('click', '.add_fields', function(event) {
-    console.log("clicked")
-    var regexp, time;
-    time = new Date().getTime();
-    regexp = new RegExp($(this).data('id'), 'g');
-    $('.fields').append($(this).data('fields').replace(regexp, time));
-    return event.preventDefault();
-  });
+// $('form').on('click', '.remove_record', function (event) {
+//   // console.log($(this).prev('input[type=hidden]').val('1'))
+//   // $(this).prev('input[type=hidden]').val('1');
+//   $(this).closest('tr').hide();
+//   return event.preventDefault();
+// });
+
+  // $('form').on('click', '.add_fields', function(event) {
+  //   var regexp, time;
+  //   time = new Date().getTime();
+  //   regexp = new RegExp($(this).data('id'), 'g');
+  //   $('.fields').append($(this).data('fields').replace(regexp, time));
+  //   return event.preventDefault();
+  // });
+
 // });
 
 //-----multidropdown-----//
