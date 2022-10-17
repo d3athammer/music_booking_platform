@@ -1,32 +1,32 @@
-<div class="search-bar search-bar-white">
+<div class="search-bar search-bar-white main-search">
         <form action="<%= studios_path%>" accept-charset="UTF-8" method="get">
          <%# studio input %>
-          <div class="form-floating search-input">
+          <div class="form-floating search-input main-input-1">
             <input type="text" name="query" class="form-control" id="floatingInput" placeholder="E.g Dragon studio">
             <label for="floatingInput" >Find a studio</label>
           </div>
           <%# date input %>
-          <div class="form-floating">
+          <div class="form-floating main-input-2">
             <input data-controller="flatpickr" data-flatpickr-date-format="Y-m-d"
                   data-flatpickr-min-date="<%=Time.now%>" name="date"
                    class="form-control" id="floatingInput" placeholder="e.g 25/09/2022">
             <label for="floatingInput">Date</label>
           </div>
           <%# time input %>
-          <div class="mx-1 select">
+          <div class="list-choice mx-1 select main-input-3">
               <select class="form-select" name="time" aria-label="Default select example">
-                  <option value="" selected>-Start Time-</option>
+                  <option class="list-choice-title" value="" selected>-Start Time-</option>
                   <% @timeslot_array.each do |time, id| %>
-                  <option value="<%=id.to_i%>"><%= time %></option>
+                  <option class="list-choice-object" value="<%=id.to_i%>"><%= time %></option>
                 <% end %>
               </select>
           </div>
           <%# duration input %>
-          <div class="mx-1 select">
+          <div class="list-choice mx-1 select main-input-4">
               <select class="form-select" name="duration" aria-label="Default select example">
-                  <option value="" selected>-Duration-</option>
+                  <option class="list-choice-title" value="" selected>-Duration-</option>
                   <% @hour_array.each do |duration, id| %>
-                  <option value="<%=id%>"><%= duration %></option>
+                  <option class="list-choice-object" value="<%=id%>"><%= duration %></option>
                 <% end %>
               </select>
           </div>
