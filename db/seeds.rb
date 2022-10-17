@@ -34,16 +34,16 @@ User.delete_all
   studio.save!
   # create 10 rooms inside each studio
   3.times do
-    room = Room.new(
-      room_name: Faker::FunnyName.two_word_name,
-      date: Faker::Date.in_date_period,
-      price: [rand(20..100)].sample,
-      room_type: [rand(1..2)].sample,
-      room_size: [rand(20..100)].sample,
-      description: Faker::Quote.matz,
-      total_occupancy: rand(2..5)
-    )
-    room.studio = studio
+  room = Room.new(
+    room_name: Faker::FunnyName.two_word_name,
+    date: Faker::Date.in_date_period,
+    price: [rand(20..100)].sample,
+    room_type: ["Jamming studio", "Rehearsal studio", "Recording studio"].sample,
+    room_size: [rand(20..100)].sample,
+    description: Faker::Quote.matz,
+    total_occupancy: rand(2..5)
+  )
+  room.studio = studio
   # 5.times do
   #   equipment = Equipment.new(
   #     equipment_type: [rand(1..10)].sample,
