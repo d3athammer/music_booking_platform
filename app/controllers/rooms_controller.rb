@@ -13,6 +13,7 @@ class RoomsController < ApplicationController
 
   def create
     @room = Room.new(room_params)
+    @room_type = type_room
     @room.studio = @studio
     if @room.save
       redirect_to studio_path(@studio)
@@ -47,7 +48,7 @@ class RoomsController < ApplicationController
   private
 
   def type_room
-    @room_type = [['Jamming Studio'], ['Recording Studio'], ['Home Studio'], ['practice room']]
+    @room_type = [['Rehearsal Studio'], ['Recording Studio'], ['Home Studio']]
   end
 
   def set_room

@@ -1,0 +1,43 @@
+// all input fields //
+
+.newroom-title{
+  font-family: $raleway;
+}
+
+.room-name-input{
+  border-radius: 30px;
+}
+
+.duo-input{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 15px;
+
+}
+.input-border{
+  border-radius: 20px;
+}
+
+.left-border{
+ border-radius: 20px 0 0 20px ;
+}
+
+.right-border{
+  border-radius: 0 20px 20px 0;
+}
+
+.button-show{
+  background-color: $pastelpink;
+}
+
+.button-show:hover{
+  color: $pastelpink;
+}
+
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
