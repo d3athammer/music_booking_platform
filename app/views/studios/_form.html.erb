@@ -1,6 +1,49 @@
-<section class="vh-100 bg-image"
-  style="background-image: url('https://unsplash.com/photos/XJK8gdWpxWk');">
+<div class="container col-4 studio-background" >
+<% if @studio.id.present? %>
+<h1><%= @studio.name %></h1>
+<% else %>
+<h1 class="mt-5 mb-3 text-center newroom-title">Create your studio</h1>
+<% end %>
 <%= simple_form_for(studio) do |f| %>
+<div class="create-room container-fluid"  data-controller="equipment">
+      <div class="room-name-input">
+          <%= f.input :name, input_html:{class:"input-border room-name", id:"floatingInput"}, label:"Studio name", label_html: { for: 'floatingInput' } %>
+      </div>
+      <div class="">
+          <div class="input-group ">
+              <%= f.input :address, label: 'studio address', input_html:{class:"input-border"} %>
+          </div>
+      </div>
+      <div class="description-input input-border col-6">
+          <%= f.input :postal, input_html:{class:"input-border"} %>
+      </div>
+      <div class="description-input input-border">
+          <%= f.input :description, input_html:{class:"input-border"} %>
+      </div>
+  <div class="form-actions room-submit-button text-center">
+  <% if @studio.id.present? %>
+  <%= f.submit "Update Studio", class: "btn btn-primary button-show" %>
+  <% else %>
+  <%= f.submit "Create Studio", class: "btn button-show align-item-center" %>
+  <% end %>
+  </div>
+<% end %>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<%# <section class="vh-100 bg-image"
+  style="background-image: url('https://unsplash.com/photos/XJK8gdWpxWk');">
   <div class="container-fluid py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-xs-12">
@@ -14,19 +57,20 @@
             <form class="px-md-2">
 
               <div class="form-outline mb-4">
-              <%= f.input :name , label: "What's your studio called?"%>
+              <%= simple_form_for(studio) do |f| %>
+              <%#= f.input :name , label: "Floss studio"%>
+              <%# </div> %>
+                <%#= f.input :address %>
+                <%#= f.input :postal %>
+
+              <%# <div class="mb-4">
               </div>
-                <%= f.input :address %>
-                <%= f.input :postal %>
+                <%#= f.input :description %>
+              <%# <div class="row mb-4 pb-2 pb-md-0 mb-md-5">
+                <div class="col-md-6"> %>
 
-              <div class="mb-4">
-              </div>
-                <%= f.input :description %>
-              <div class="row mb-4 pb-2 pb-md-0 mb-md-5">
-                <div class="col-md-6">
-
-                  <%= f.submit %>
-
+                  <%#= f.submit %>
+<%#
                 </div>
               </div>
 
@@ -37,5 +81,5 @@
       </div>
     </div>
   </div>
-</section>
-<% end %>
+</section> %>
+<%# end %>

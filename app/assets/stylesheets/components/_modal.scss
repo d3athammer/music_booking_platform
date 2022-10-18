@@ -1,4 +1,28 @@
 
 .modal-text{
   font-family: $raleway;
+  text-decoration: none;
+}
+
+.modal-icon{
+  color: $pastelpink;
+  text-decoration: none;
+}
+
+.icon-text{
+  display: flex;
+}
+
+.icon-text h5{
+  margin-bottom: 0;
+  margin-right: 5px;
+}
+
+
+.icon-text i{
+  margin-top: 3px;
+  margin-right: 5px;
+  border-radius: 10px;
+  width: 20px;
+  text-align: center;
 }

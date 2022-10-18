@@ -33,7 +33,27 @@
                   </div>
               </div>
               <div class="modal-text col-5">
-              <h3><%= room.room_type %>123</h3>
+                  <h3><%= room.room_type %></h3>
+                  <div class="icon-text">
+                      <i class="fa-solid fa-dollar-sign modal-icon"></i>
+                      <h5>Price</h5>
+                      <p>$<%= room.price %></p>
+                  </div>
+                  <div class="icon-text">
+                      <i class="fa-solid fa-house modal-icon"></i>
+                      <h5>Room Size</h5>
+                      <p><%= room.room_size %>&#13217</p>
+                  </div>
+                  <div class="icon-text">
+                      <i class="fa-solid fa-user-group modal-icon"></i>
+                      <h5>Occupancy</h5>
+                      <p><%= room.total_occupancy %> Pax</p>
+                  </div>
+                  <div class="">
+                      <i class="fa-solid fa-guitar"></i>
+                      <h5>Room description</h5>
+                      <p><%= room.description %></p>
+                  </div>
               </div>
           </div>
           <%# end of carohell images top %>

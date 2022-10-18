@@ -43,7 +43,10 @@
       </div>
       <div class="room-type-occupancy-input duo-input">
           <div class="room-type input-border">
-              <%= f.input :room_type, collection: @room_type,input_html:{class:"input-border"} %>
+              <%= f.input :room_type, collection: [['Rehearsal Studio', 'Rehearsal Studio'],
+                                                   ['Recording Studio', 'Recording Studio'],
+                                                   ['Home Studio', 'Home Studio']] ,
+                          input_html:{class:"input-border"} %>
           </div>
           <div class="occupancy input-border">
               <%= f.input :total_occupancy, collection: 1..10,input_html:{class:"input-border"} %>
