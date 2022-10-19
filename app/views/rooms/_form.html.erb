@@ -1,3 +1,4 @@
+
 <div class="container col-4" >
 <%= simple_form_for [studio,room] do |f| %>
 <div class="create-room container-fluid mt-5"  data-controller="equipment">
@@ -9,13 +10,15 @@
       <div class="room-name-input input-border">
           <%= f.input :room_name, input_html:{class:"input-border room-name", id:"floatingInput"}, label:"Room name", label_html: { for: 'floatingInput' } %>
       </div>
-      <div class="input-group price-input input-border">
+            <div class="duo-input">
+          <div class="input-group price-input input-border">
               <span class="input-group-text mb-3 left-border">$</span>
               <%= f.input :price, label: 'Price per hour', input_html:{class:"input-border"} %>
-      </div>
-      <div class="input-group size-input">
-          <%= f.input :room_size, input_html:{class:"input-border"}  %>
-          <span class="input-group-text mb-3 right-border">Sq m</span>
+          </div>
+          <div class="input-group size-input">
+              <%= f.input :room_size, input_html:{class:"input-border"}  %>
+              <span class="input-group-text mb-3 right-border">Sq m</span>
+          </div>
       </div>
       <div class="equipment-input">
           <table class='table'>
