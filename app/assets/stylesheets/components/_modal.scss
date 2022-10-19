@@ -27,6 +27,15 @@
   text-align: center;
 }
 
+.equipment-container{
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  max-height: 200px;
+  overflow: auto;
+  scrollbar-color: $pastelpink #fff;
+}
+
 .equipment-container td {
   border-style: hidden;
 }

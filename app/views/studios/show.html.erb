@@ -44,7 +44,7 @@
             <input  data-controller="flatpickr" data-flatpickr-date-format="Y-m-d"
                     data-flatpickr-min-date="<%=Time.now%>" name="date"
                     class="form-control date-input-select border text-dark" placeholder=" Date e.g 25/09/2022"
-                    value="<%=params[:date]%>">
+                    value="<%=params[:date]%>" required>
         </div>
         <%# time input %>
         <div class=" select">
@@ -78,7 +78,7 @@
         <div class="studio-img">
             <%=  render "room_modal", room: room %>
             <button type="button" data-bs-toggle="modal" class="btn btn-link no-decoration" data-bs-target="#exampleModal-<%=room.id%>">
-            <img src="/assets/room2.jpg" alt="">
+            <img src="<%= ["/assets/room2.jpg", "/assets/room3.jpg", "/assets/room5.jpg"].sample %>" alt="">
             </button>
         </div>
         <div class="studio-info">
@@ -88,7 +88,10 @@
                 <p><%= room.total_occupancy%> Pax</p>
                 <h4>$<%=room.price %><span>/ hour</span></h4>
                 <div class="box-3">
-                    <%= link_to "Book Now", new_room_reservation_path( room_id: room, query: params[:query], date: params[:date], time: params[:time], duration: params[:duration]), class: "button-show" %>
+                    <%= link_to "Book Now", new_room_reservation_path( room_id: room, query: params[:query],
+                                                                       date: params[:date], time: params[:time],
+                                                                       duration: params[:duration]),
+                                                                       class: "button-show" %>
                 </div>
             </div>
         </div>

@@ -13,10 +13,10 @@
                   <div id="room-control-carousell-<%=room.id%>" class="carousel slide" data-bs-ride="carousel">
                       <div class="carousel-inner">
                           <div class="img-fluid carousel-item active">
-                              <img class="d-block w-300 h-200" src="/assets/room3.jpg" alt="First slide">
+                              <img class="d-block w-300 h-200" src="/assets/room2.jpg" alt="First slide">
                           </div>
                           <div class="img-fluid carousel-item">
-                              <img class="d-block w-300 h-200" src="/assets/room4.jpg" alt="Second slide">
+                              <img class="d-block w-300 h-200" src="/assets/room3.jpg" alt="Second slide">
                           </div>
                           <div class="img-fluid carousel-item">
                               <img class="d-block w-300 h-200" src="/assets/room5.jpg" alt="Third slide">
@@ -37,49 +37,45 @@
                   <div class="icon-text">
                       <i class="fa-solid fa-dollar-sign modal-icon"></i>
                       <h5>Price</h5>
-                      <p>$<%= room.price %></p>
+                      <p>$<%= room.price %>/hr</p>
                   </div>
-                  <div class="icon-text">
+                  <div class="icon-text mt-2">
                       <i class="fa-solid fa-house modal-icon"></i>
                       <h5>Room Size</h5>
                       <p><%= room.room_size %>&#13217</p>
                   </div>
-                  <div class="icon-text">
+                  <div class="icon-text mt-2">
                       <i class="fa-solid fa-user-group modal-icon"></i>
                       <h5>Occupancy</h5>
                       <p><%= room.total_occupancy %> Pax</p>
                   </div>
-                  <div class="">
-                      <%# <i class="fa-solid fa-guitar modal-icon"></i> %>
-                      <h5>Room description</h5>
-                      <p><%= room.description %></p>
+                  <div class="mt-2">
+                      <div class="icon-text">
+                          <i class="fa-solid fa-guitar modal-icon"></i>
+                          <h5>Room description</h5>
+                      </div>
+                      <p class="mt-2"><%= room.description %></p>
                   </div>
               </div>
           </div>
-          <div class="equipment-container col-8 mt-4">
-              <div class="icon-text text-center">
-                  <h5>Equipment</h5>
-              </div>
+          <div class="equipment-container col-7 mt-4 justify-center">
               <div class="scrollbar overflow-auto">
               <table class='table'>
                   <thead>
                       <tr>
-                        <th><h5>Type</h5></th>
+                        <th><h5>Equipment type</h5></th>
                         <th><h5>Name</h5></th>
                         <th><h5>Brand</h5></th>
                       </tr>
                     </thead>
                 <tbody>
+                <% room.equipments.each do |equipment| %>
                   <tr>
-                    <td>Keyboard</td>
-                    <td>Electro 61</td>
-                    <td>Nord</td>
+                    <td><%= equipment.equipment_type %></td>
+                    <td><%= equipment.name %></td>
+                    <td><%= equipment.brand %></td>
                   </tr>
-                  <tr>
-                    <td>Drums</td>
-                    <td>Starclassic</td>
-                    <td>Tama</td>
-                  </tr>
+                <% end %>
                 </tbody>
               </table>
               </div>

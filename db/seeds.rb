@@ -47,13 +47,14 @@ User.delete_all
   # add equipments
   10.times do
     equipment = Equipment.new(
-      equipment_type: %w[piano keyboard drums percussion guitar bass vocals amplifiers accessories audio].sample,
       name: Faker::Music.instrument,
       brand: Faker::Appliance.brand,
+      equipment_type: %i[piano keyboard drums percussion guitar bass vocals amplifiers accessories audio].sample
     )
-    room.equipment = equipment
-  equipment.save!
-    room.save!
+    equipment.room = room
+    equipment.save!
+  end
+  room.save!
   # this will save each studio with 10 rooms for each user
   studio.save!
 end
