@@ -2,6 +2,7 @@
 
 .newroom-title{
   font-family: $raleway;
+  color: white;
 }
 
 .room-name-input{
@@ -15,15 +16,15 @@
 
 }
 .input-border{
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 .left-border{
- border-radius: 20px 0 0 20px ;
+ border-radius: 10px 0 0 10px ;
 }
 
 .right-border{
-  border-radius: 0 20px 20px 0;
+  border-radius: 0 10px 10px 0;
 }
 
 .button-show{
@@ -45,6 +46,43 @@ input[type=number]::-webkit-outer-spin-button {
 
 //new studio//
 
-.studio-background{
-  background-image: url('https://unsplash.com/photos/XJK8gdWpxWk');
+html, body {
+  height: 100%;
 }
+.studio-background{
+  background-image: linear-gradient(to right, #474951, transparent),url('assets/register.jpg');
+  background-size:cover;
+  height: 100%;
+}
+
+.room-background{
+  background-image: linear-gradient(to right, #474951, transparent), url('assets/register.jpg');
+  background-size: cover;
+  height: 100%;
+}
+
+.create-studio {
+  background-color: rgba(255, 255, 255, 0.5);
+  height: 600px;
+  border-radius: 10px;
+  border: #fff;
+  padding: 30px 50px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2)
+}
+.create-room {
+  background-color: rgba(255, 255, 255, 0.5);
+  height: 800px;
+  border-radius: 10px;
+  border: #fff;
+  padding: 30px 40px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2)
+}
+
+.edit-account {
+  background-color: rgba(255, 255, 255, 0.5);
+  height: 800px;
+  border-radius: 10px;
+  border: #fff;
+  padding: 30px 40px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2)
+ }
