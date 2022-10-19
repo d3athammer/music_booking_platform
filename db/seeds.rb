@@ -44,17 +44,17 @@ User.delete_all
     total_occupancy: rand(2..5)
   )
   room.studio = studio
-  # 5.times do
-  #   equipment = Equipment.new(
-  #     equipment_type: [rand(1..10)].sample,
-  #     name: Faker::Music.instrument,
-  #     brand: Faker::Appliance.brand,
-  #     description: Faker::Quotes::Shakespeare.romeo_and_juliet_quote
-  #   )
-  #   # set studio room to studio
-  # equipment.save!
+  # add equipments
+  10.times do
+    equipment = Equipment.new(
+      equipment_type: %w[piano keyboard drums percussion guitar bass vocals amplifiers accessories audio].sample,
+      name: Faker::Music.instrument,
+      brand: Faker::Appliance.brand,
+    )
+    room.equipment = equipment
+  equipment.save!
     room.save!
-  # this will save each studio with 10rooms for each user
+  # this will save each studio with 10 rooms for each user
   studio.save!
 end
 

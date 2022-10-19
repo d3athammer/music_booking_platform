@@ -50,12 +50,40 @@
                       <p><%= room.total_occupancy %> Pax</p>
                   </div>
                   <div class="">
-                      <i class="fa-solid fa-guitar"></i>
+                      <%# <i class="fa-solid fa-guitar modal-icon"></i> %>
                       <h5>Room description</h5>
                       <p><%= room.description %></p>
                   </div>
               </div>
           </div>
+          <div class="equipment-container col-8 mt-4">
+              <div class="icon-text text-center">
+                  <h5>Equipment</h5>
+              </div>
+              <div class="scrollbar overflow-auto">
+              <table class='table'>
+                  <thead>
+                      <tr>
+                        <th><h5>Type</h5></th>
+                        <th><h5>Name</h5></th>
+                        <th><h5>Brand</h5></th>
+                      </tr>
+                    </thead>
+                <tbody>
+                  <tr>
+                    <td>Keyboard</td>
+                    <td>Electro 61</td>
+                    <td>Nord</td>
+                  </tr>
+                  <tr>
+                    <td>Drums</td>
+                    <td>Starclassic</td>
+                    <td>Tama</td>
+                  </tr>
+                </tbody>
+              </table>
+              </div>
+        </div>
           <%# end of carohell images top %>
       </div>
       </div>
