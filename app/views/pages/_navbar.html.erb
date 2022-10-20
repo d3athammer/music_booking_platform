@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm navbar-lewagon nav-bar">
+<nav class="navbar navbar-expand-sm navbar-lewagon nav-bar" data-bs-toggle="modal" data-bs-target="#loginModal">
 <a href="/"><img src="/assets/studiobookcropped.png" alt="studiobook" class="nav-logo"></a>
     <ul class="nav-links mb-0">
       <li><a href="#" class="active">Book Studio</a></li>
@@ -10,10 +10,33 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" data-bs-toggle="modal" data-bs-target="#loginModal">
       <ul class="navbar-nav me-auto">
           <li class="nav-item mr-5">
             <%= link_to "List your studio here", new_studio_path , class: "nav-link text-white mr-8" %>
+             <%# <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal">
+              Login here
+            </button>
+
+            (Not working with collapse)
+
+            <!-- Modal -->
+            <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Enter your Login details!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <%= render '' %>
+                  <%# <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Login</button>
+                  </div>
+                </div>
+              </div>
+            </div> %>
           </li>
 
         <% if user_signed_in? %>
