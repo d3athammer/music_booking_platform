@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resources :studios do
     resources :rooms, only: %i[new create show]
+    resources :reviews, only: %i[new create show]
   end
 
   resources :rooms, except: %i[new create show destroy] do
