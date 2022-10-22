@@ -8,6 +8,7 @@ html body{
 
 .font-header{
   font-family: $h1-font;
+
 }
 
 .nav-header {
@@ -93,7 +94,7 @@ background-position: center;
   background: #fff;
   width:70%;
   margin: 30px auto;
-  padding: 6px 10px 6px 30px;
+  padding: 6px 10px 6px 10px;
   border-radius: 50px;
 }
 
@@ -165,3 +166,46 @@ font-weight: 400;
   align-items: center;
   padding: 10px 50px;
 }
+
+.main-input-1, .main-input-2 {
+  outline: none !important;
+  padding: 0 4px;
+  margin: 5px;
+  border-radius: 50px;
+}
+
+.main-input-1 input:hover,
+.main-input-2 input:hover,
+.main-input-3 input:hover,
+.main-input-4 input:hover {
+  outline: none !important;
+  background: $light-gray;
+  cursor: pointer;
+  border-radius: 50px;
+}
+
+.main-input-1 input:focus:active,
+.main-input-2 input:focus:active,
+.main-input-3 input:focus:active,
+.main-input-4 input:focus:active {
+  outline: none !important;
+  background: $light-gray;
+  cursor: pointer;
+  border-radius: 50px;
+}
+
+.main-input-2 input:hover{
+  background: $light-gray;
+  cursor: pointer;
+  border-radius: 50px;
+}
+
+.main-input-1 input:active{
+  cursor: pointer;
+  border-radius: 50px;
+}
+
+// .main-input-1 input:active:focus{
+//   outline: none !important;
+//   background: #fff;
+// }

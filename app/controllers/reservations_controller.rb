@@ -1,10 +1,12 @@
 class ReservationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_room, only: %i[create new index destroy show]
+  before_action :set_room, only: %i[create new destroy show]
   # before_action :set_timeslot, only: %i[new create]
 
   def index
-    @reservations = Reservation.all
+    @reservations = current_user.reservations
+    @timeslot_array = timeslot_array
+    @hourly_array = hourly_array
   end
 
   def show
@@ -56,11 +58,12 @@ class ReservationsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-
   end
 
   def destroy
-
+    @reservation = Reservation.find(params[:id])
+    @reservation.destroy
+    redirect_to reservations_path(@reservation), status: :see_other
   end
 
   # def update
@@ -72,11 +75,6 @@ class ReservationsController < ApplicationController
   #   end
   # end
 
-  # def destroy
-  #   @reservation = Reservation.find(params[:id])
-  #   Reservation.destroy
-  #   redirect_to reservation_path(@reservation), status: :see_other
-  # end
 
   private
 
@@ -119,6 +117,15 @@ class ReservationsController < ApplicationController
 
   def reservation_params
     params.require(:reservation).permit(:start_time, :duration, :start_date)
+  end
+
+  def timeslot_array
+    timeslot_array = []
+    timeslot = Timeslot.all
+    timeslot.each do |time|
+      timeslot_array << [time.time, time.id]
+    end
+    return timeslot_array
   end
 
   def hourly_array

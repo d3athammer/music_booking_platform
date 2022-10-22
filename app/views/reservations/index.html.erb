@@ -1,21 +1,39 @@
-<div class="container">
-<div class="card mb-3 mt-3 p-2">
-  <h1>Confirm your reservation</h1>
-  <% @reservations.each do |reservation| %>
-  <h2><%= reservation.room_name %></h2>
-  <li class="list-group-item">Start Time: <%= reservation.start_date %></li>
-  <li class="list-group-item">Start Time: <%= reservation.start_time %></li>
-  <li class="list-group-item">Duration Booked: <%= reservation.duration %></li>
-  <li class="list-group-item">End Time: <%= reservation.end_date %></li>
-  <li class="list-group-item">End Time: <%= reservation.end_time %></li>
-  <% end %>
-  </div>
-  <br>
-  <p class="card-text"><%= @room.description %></p>
-  <div class="button">
-    <%= link_to "Back to studio", studio_path, class: 'btn btn-dark mr-2 py-2' %>
-    <%# <%= link_to "Edit Reservation", edit_room_path(@room), class: 'btn btn-dark m-2 py-2' %>
-    <%= link_to "Cancel Reservation", reservation, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: 'btn btn-outline-danger py-2' %>
-  </div>
+<%= render "studios/navbar" %>
+<div class="container-booking d-flex row justify-content-between">
+<div class="col-3">
+    <div class="left-booking col-10">
+        <div class="avatar-profile">
+            <img class="avatar-largest" alt="avatar-large" src="https://kitt.lewagon.com/placeholder/users/arthur-littm" />
+        </div>
+        <div class="user-details">
+          <h3><%=  "#{current_user.last_name} #{current_user.first_name}" %></h3>
+          <p>Email: <%= current_user.email %></p>
+        </div>
+    </div>
 </div>
+      <div class="right-booking col-8">
+          <h2>Your bookings</h2>
+          <% @reservations.each do |reservation| %>
+          <div class="card-booking">
+                <img src ="assets/room3.jpg" />
+              <div class="card-booking-infos">
+                <h2><%= reservation.room.room_name %></h2>
+                <li class="list-group-item">From: <%= "#{reservation.start_date} - #{reservation.start_time}" %> </li>
+                <li class="list-group-item">To <%= "#{reservation.end_date} - #{reservation.end_time}" %></li>
+                <li class="list-group-item">Duration: <%= reservation.duration %> hours </li>
+                <% if reservation.status %>
+                    <h5 class="confirmed text-success">Booking confirmed</h5>
+                <% else%>
+                <%# <h3 class="pending text-yellow"> Pending</h3> %>
+                    <h3 class="cancelled text-red">Cancelled</h3>
+                <% end %>
+              </div>
+                <div class="button">
+                  <%= link_to "Back to studio", pages_path, class: 'btn btn-light text-dark border border-dark mr-2 py-2' %>
+                  <%# <%= link_to "Edit Reservation", edit_room_path(@room), class: 'btn btn-dark m-2 py-2' %>
+                  <%= link_to "Cancel Reservation", reservation_path(reservation), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: 'btn btn-outline-danger py-2' %>
+                </div>
+          </div>
+          <% end %>
+      </div>
 </div>
