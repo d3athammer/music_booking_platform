@@ -1,13 +1,45 @@
-// .modal-content{
-//   width: 200%;
-// }
 
-// .modal-dialog{
-//   align-items: center;
-//   text-align: center;
-// }
+.modal-text{
+  font-family: $raleway;
+  text-decoration: none;
+}
 
-.center-button{
+.modal-text h3{
+  margin-bottom:20px;
+}
+
+.modal-icon{
+  color: $pastelpink;
+  text-decoration: none;
+}
+
+.icon-text{
+  display: flex;
+}
+
+.icon-text h5{
+  margin-bottom: 0;
+  margin-right: 5px;
+}
+
+
+.icon-text i{
+  margin-top: 3px;
+  margin-right: 5px;
+  border-radius: 10px;
+  width: 20px;
+  text-align: center;
+}
+
+.equipment-container{
+  justify-content: center;
   text-align: center;
   align-items: center;
+  max-height: 200px;
+  overflow: auto;
+  scrollbar-color: $pastelpink #fff;
+}
+
+.equipment-container td {
+  border-style: hidden;
 }

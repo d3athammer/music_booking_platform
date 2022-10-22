@@ -28,6 +28,7 @@ module ApplicationHelper
     return @hour_array
   end
 
+
   def merge_params(p={})
     params.merge(p).delete_if{ |k,v| v.blank? }
 end
