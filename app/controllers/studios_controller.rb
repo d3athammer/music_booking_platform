@@ -58,6 +58,7 @@ class StudiosController < ApplicationController
       )
     end
     @timeslot = Timeslot.all
+
     @hour_array = hourly_array
     # @reservation.total_price = @room.price_per_hour * @reservation.duration
     @timeslot_array = []

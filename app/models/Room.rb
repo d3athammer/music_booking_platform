@@ -26,7 +26,7 @@ class Room < ApplicationRecord
             :total_occupancy, numericality: { only_integer: true }
   accepts_nested_attributes_for :equipments, allow_destroy: true, reject_if: proc { |att| att['name'].blank? }
 
-  enum :room_type, %i[Jamming_Studios Rehearsal_Studio Home_Studio]
+  # enum :room_type, ["Jamming studio", "Rehearsal studio", "Home studio", "Recording studio"]
 
   # { Jamming_Studios: 0, Rehearsal_Studio: 1,
   #                    Recording_Studio: 2, Home_Studio: 3 }

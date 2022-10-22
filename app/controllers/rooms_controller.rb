@@ -1,7 +1,7 @@
 class RoomsController < ApplicationController
   before_action :set_studio, only: %i[show new create]
   before_action :set_room, only: %i[edit update destroy]
-  before_action :type_room, only: %i[new create edit update]
+  # before_action :type_room, only: %i[new create edit update]
 
   def show
     @room = Room.find(params[:id])
@@ -45,10 +45,6 @@ class RoomsController < ApplicationController
   end
 
   private
-
-  def type_room
-    @room_type = [['Jamming Studio'], ['Recording Studio'], ['Home Studio'], ['practice room']]
-  end
 
   def set_room
     @room = Room.find(params[:id])

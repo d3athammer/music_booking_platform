@@ -1,6 +1,6 @@
 <%= render "navbar" %>
 <div class="container-for-list extra-top">
-            <h1><span><%= link_to "", studio_path(@room.studio), class: "fa-solid fa-chevron-left back-btn text-decoration-none border rounded p-2 text-dark border-secondary" %></span>Request booking</h1>
+            <h1><span><%= link_to "", studio_path(id: @room.studio_id, query: params[:query], date: params[:date], time: params[:time], duration: params[:duration]), class: "fa-solid fa-chevron-left back-btn text-decoration-none border rounded p-2 text-dark border-secondary" %></span>Request booking</h1>
             <div class="studio"></div>
           <%= simple_form_for [@room, @reservation] do |f| %>
     <div class="list-container mt-0">

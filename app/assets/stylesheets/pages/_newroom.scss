@@ -1,0 +1,88 @@
+// all input fields //
+
+.newroom-title{
+  font-family: $raleway;
+  color: white;
+}
+
+.room-name-input{
+  border-radius: 30px;
+}
+
+.duo-input{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 15px;
+
+}
+.input-border{
+  border-radius: 10px;
+}
+
+.left-border{
+ border-radius: 10px 0 0 10px ;
+}
+
+.right-border{
+  border-radius: 0 10px 10px 0;
+}
+
+.button-show{
+  background-color: $pastelpink;
+}
+
+.button-show:hover{
+  color: $pastelpink;
+}
+
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+
+//new studio//
+
+html, body {
+  height: 100%;
+}
+.studio-background{
+  background-image: linear-gradient(to right, #474951, transparent),url('assets/register.jpg');
+  background-size:cover;
+  height: 100%;
+}
+
+.room-background{
+  background-image: linear-gradient(to right, #474951, transparent), url('assets/register.jpg');
+  background-size: cover;
+  height: 100%;
+}
+
+.create-studio {
+  background-color: rgba(255, 255, 255, 0.5);
+  height: 600px;
+  border-radius: 10px;
+  border: #fff;
+  padding: 30px 50px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2)
+}
+.create-room {
+  background-color: rgba(255, 255, 255, 0.5);
+  height: 800px;
+  border-radius: 10px;
+  border: #fff;
+  padding: 30px 40px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2)
+}
+
+.edit-account {
+  background-color: rgba(255, 255, 255, 0.5);
+  height: 800px;
+  border-radius: 10px;
+  border: #fff;
+  padding: 30px 40px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2)
+ }

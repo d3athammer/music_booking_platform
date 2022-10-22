@@ -24,14 +24,21 @@
                   autofocus: true,
                   input_html: { autocomplete: "email" }%>
                 </div>
-
-                <div class="form-outline mb-4">
+                <div class="name-container mb-4 d-flex flex-row justify-content-between">
+                    <div class="form-outline col-7">
+                        <%= f.input :first_name, required: true %>
+                    </div>
+                    <div class="form-outline col-4.5">
+                        <%= f.input :last_name, required: true, class:"ml" %>
+                    </div>
+                </div>
+                <div class="form-outline mb-4 ">
                   <%= f.input :password,
-
                   required: true,
                   hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
                   input_html: { autocomplete: "new-password" } %>
                 </div>
+
 
                 <div class="form-outline mb-4">
                   <%= f.input :password_confirmation,
@@ -49,7 +56,7 @@
                 </div>
 
                 <div class="d-flex justify-content-center">
-                  <%= f.button :submit, "Sign up" %>
+                  <%= f.button :submit, "Sign up", class:"btn button-show " %>
                 </div>
 
                 <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="#!"
