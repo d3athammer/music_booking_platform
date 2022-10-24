@@ -11,12 +11,14 @@
               <h3><%=  "#{current_user.last_name} #{current_user.first_name}" %></h3>
               <p><i class="fa-regular fa-envelope text-secondary" style="margin-right: 5px;"></i>Email: <%= current_user.email %></p>
               <p>Studio owned: <%= @studio ? @studio.name : "None" %></p>
+              <%= link_to "Go to studio", studio_path(@studio), class: 'mt-3' %>
+
               <p>No. of bookings: <%= @reservations.count %></p>
             </div>
         </div>
     </div>
     <div class="right-booking col-8">
-        <h2 class="mt-4">Your bookings</h2>
+        <h2 class="">Your bookings</h2>
         <nav class="tab-btn">
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
           <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Reservations</button>
@@ -28,7 +30,7 @@
                 <%# rooms that you have reserved %>
                 <% @reservations.each do |reservation| %>
                 <div class="card-booking">
-                      <img src ="assets/room3.jpg" />
+                    <img src ="assets/room3.jpg" />
                     <div class="card-booking-infos">
                       <h5><%= reservation.room.room_name %></h5>
                       <li class="list-group-item">Start: <%= "#{reservation.start_date} (from #{reservation.start_time})" %> </li>
@@ -38,6 +40,7 @@
                           <h5 class="confirmed text-success">Booking confirmed</h5>
                       <div class="button btn-booking">
                         <%= link_to "View reservation", room_reservation_path(reservation.room, reservation), class: 'btn btn-secondary mt-5' %>
+                        <%= link_to "Go to studio", studio_path(reservation.room.studio), class: 'btn btn-secondary mt-5' %>
                         <%= link_to "cancel reservation", reservation_path(reservation), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: 'btn btn-outline-secondary mt-5 cancel-reservation-btn' %>
                       </div>
                       <% else%>
@@ -45,6 +48,7 @@
                       <div class="button btn-booking">
                           <h5 class="cancelled">Cancelled</h5>
                       <%= link_to "View reservation", room_reservation_path(reservation.room, reservation), class: 'btn btn-secondary mt-5' %>
+                      <%= link_to "Go to studio", studio_path(reservation.room.studio), class: 'btn btn-secondary mt-5' %>
                       </div>
                       <% end %>
                     </div>
@@ -52,7 +56,35 @@
                 <% end %>
                 <%# ^^ rooms that you have reserved %>
             </div>
-            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <%# your rooms reservations %>
+                <% @studio_reservations.each do |reservation| %>
+                <div class="card-booking">
+                    <img src ="assets/room3.jpg" />
+                    <div class="card-booking-infos">
+                      <h5><%= reservation.room.room_name %></h5>
+                      <li class="list-group-item">Booked by: <%= "#{reservation.user.first_name} #{reservation.user.first_name}" %> </li>
+                      <li class="list-group-item">Start: <%= "#{reservation.start_date} (from #{reservation.start_time})" %> </li>
+                      <li class="list-group-item">End: <%= "#{reservation.end_date} (until #{reservation.end_time})" %></li>
+                      <li class="list-group-item">Duration: <%= reservation.duration %> hours </li>
+                      <% if reservation.status %>
+                          <h5 class="confirmed text-success">Booking confirmed</h5>
+                      <div class="button btn-booking">
+                        <%= link_to "View reservation", room_reservation_path(reservation.room, reservation), class: 'btn btn-secondary mt-3' %>
+                        <%= link_to "Go to studio", studio_path(reservation.room.studio), class: 'btn btn-secondary mt-3' %>
+                        <%= link_to "cancel reservation", reservation_path(reservation), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: 'btn btn-outline-secondary mt-3 cancel-reservation-btn' %>
+                      </div>
+                      <% else%>
+                      <%# <h3 class="pending text-yellow"> Pending</h3> %>
+                      <div class="button btn-booking">
+                          <h5 class="cancelled">Cancelled</h5>
+                      <%= link_to "View reservation", room_reservation_path(reservation.room, reservation), class: 'btn btn-secondary mt-3' %>
+                      </div>
+                      <% end %>
+                    </div>
+                </div>
+                <% end %>
+            </div>
         </div>
     </div>
 </div>
