@@ -1,12 +1,19 @@
 class ReservationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_room, only: %i[create new destroy show]
+  before_action :set_room, only: %i[create new show]
   # before_action :set_timeslot, only: %i[new create]
 
   def index
     @reservations = current_user.reservations
     @timeslot_array = timeslot_array
     @hourly_array = hourly_array
+    @studio = Studio.find_by(user_id: current_user.id)
+    @rooms = Room.where(studio_id: @studio)
+    # find all the reservations made for your studio rooms
+    @studio_reservations = Reservation.all.each do |room|
+
+    end
+
   end
 
   def show
@@ -62,7 +69,9 @@ class ReservationsController < ApplicationController
 
   def destroy
     @reservation = Reservation.find(params[:id])
-    @reservation.destroy
+    @timeslot_reservation = TimeslotReservation.where(reservation_id: params[:id])
+    @timeslot_reservation.destroy_all
+    @reservation.update_attribute(:status, false)
     redirect_to reservations_path(@reservation), status: :see_other
   end
 

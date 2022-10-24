@@ -10,12 +10,13 @@
   background: white;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   display: flex;
-  align-items: flex-start;
   padding: 5px;
   margin-bottom: 10px;
   margin-top: 20px;
   margin-right: 50px;
 }
+
+
 
 .card-booking img {
   height: 100%;
@@ -30,6 +31,7 @@
 }
 
 .card-booking p {
+  color: $dark-gray ;
   font-size: 12px;
   line-height: 1.4;
   opacity: .7;
@@ -38,8 +40,42 @@
 }
 
 .card-booking .card-booking-infos {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
   padding-left: 16px;
   padding-top: 10px;
+  color:$outer-space ;
+  align-items: flex-start;
+}
+
+.cancel-icon{
+  color: $outer-space;
+  margin-right: 8px;
+}
+
+
+
+.cancel-reservation-btn{
+  // text-decoration: none;
+  // color: $outer-space;
+  align-self: flex-end ;
+}
+// .cancel-reservation-btn:hover{
+//   color: $outer-space;
+// }
+// .cancel-btn{
+//   border: 1px solid $outer-space ;
+//   padding: 4px 8px;
+// }
+
+.cancelled {
+  align-self: flex-end;
+}
+
+.card-booking-infos h5{
+  font-family: $nunito;
 }
 
 //booking page side bar design //
@@ -64,4 +100,20 @@
 
 .user-details{
   text-align: center;
+
+  p{
+    margin-top: 5px;
+  }
+}
+
+.cancelled {
+  color: red;
+}
+
+h2, h3, h5, p{
+  font-family: $nunito;
+}
+
+.nav-tabs .nav-link{
+  border-radius: 10px 10px 0 0 !important;
 }
