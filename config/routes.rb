@@ -18,7 +18,7 @@ Rails.application.routes.draw do
 
   resources :reservations, only: %i[edit update index destroy]
   resources :rooms, only: [:destroy]
-
+  resources :timeslot_reservations, only: [:destroy]
   # get "", to: "#"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

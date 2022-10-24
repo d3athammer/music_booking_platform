@@ -1,12 +1,17 @@
 class ReservationsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_room, only: %i[create new destroy show]
+  before_action :set_room, only: %i[create new show]
   # before_action :set_timeslot, only: %i[new create]
 
   def index
     @reservations = current_user.reservations
     @timeslot_array = timeslot_array
     @hourly_array = hourly_array
+    @studio = Studio.find_by(user_id: current_user.id)
+    @rooms = Room.where(studio_id: @studio)
+    # find all the reservations made for your studio rooms
+    @stud_room_id = reservation_lists(@rooms.ids)
+    @studio_reservations = Reservation.where(room_id: @stud_room_id)
   end
 
   def show
@@ -16,9 +21,6 @@ class ReservationsController < ApplicationController
   def new
     @duration = params[:duration].to_i
     @date = params[:date]
-    # session[:date] = params[:date]
-    # session[:start_time] = Timeslot.find(params[:time]).time unless params[:time].blank?
-    # session[:duration] = params[:duration]
     @reservation = Reservation.new
     params[:time] = Timeslot.find(params[:time].to_f).time unless params[:time].blank?
     @timeslot = Timeslot.all
@@ -62,7 +64,9 @@ class ReservationsController < ApplicationController
 
   def destroy
     @reservation = Reservation.find(params[:id])
-    @reservation.destroy
+    @timeslot_reservation = TimeslotReservation.where(reservation_id: params[:id])
+    @timeslot_reservation.destroy_all
+    @reservation.update_attribute(:status, false)
     redirect_to reservations_path(@reservation), status: :see_other
   end
 
@@ -77,6 +81,16 @@ class ReservationsController < ApplicationController
 
 
   private
+
+  def reservation_lists(rooms)
+    stud_room_id = []
+    Reservation.all.select do |reservation|
+      rooms.each do |x|
+        stud_room_id << reservation.room_id if reservation.room_id == x
+      end
+    end
+    return stud_room_id
+  end
 
   def new_timeslot_reservations(timeslot_array, reservation)
     # loop through timeslot id(in an array), loop through this array and save each timeslot into timeslots reservations
