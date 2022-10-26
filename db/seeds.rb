@@ -7,8 +7,8 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 require 'faker'
-require 'database_cleaner'
-DatabaseCleaner.clean_with(:truncation)
+# require 'database_cleaner'
+# DatabaseCleaner.clean_with(:truncation)
 Timeslot.delete_all
 Room.delete_all
 Studio.delete_all
