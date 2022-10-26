@@ -5,11 +5,7 @@ class StudiosController < ApplicationController
     # if only search is present
     # covert start time and date into datetime
     if params[:query].present?
-<<<<<<< HEAD
       @studios = policy_scope(Studio).where("name ILIKE ?", "%#{params[:query]}%")
-=======
-      @studios = Studio.where("name ILIKE ?", "%#{params[:query]}%")
->>>>>>> aef511ff84e957c712fb8e04270600b65430e568
     elsif params[:date].present? && params[:time].present? && params[:duration].present?
       start_time = Timeslot.find(params[:time]).time unless params[:time].blank?
       start_datetime = DateTime.parse "#{params[:date]}T#{start_time}+08:00"
@@ -27,15 +23,9 @@ class StudiosController < ApplicationController
           )
         SQL
       ).pluck(:id)
-<<<<<<< HEAD
       @studios = policy_scope(Studio).joins(:rooms).where("rooms.id IN (#{room_ids.join(', ')})").distinct
     else
       @studios = policy_scope(Studio).all
-=======
-      @studios = Studio.joins(:rooms).where("rooms.id IN (#{room_ids.join(', ')})").distinct
-    else
-      @studios = Studio.all
->>>>>>> aef511ff84e957c712fb8e04270600b65430e568
     end
     @hour_array = hourly_array
     @timeslot = Timeslot.all
@@ -48,10 +38,7 @@ class StudiosController < ApplicationController
 
   def show
     @studio = Studio.find(params[:id])
-<<<<<<< HEAD
     authorize(@studio)
-=======
->>>>>>> aef511ff84e957c712fb8e04270600b65430e568
     @rooms = @studio.rooms
     if params[:date].present? && params[:time].present? && params[:duration].present?
       start_time = Timeslot.find(params[:time]).time unless params[:time].blank?
@@ -79,27 +66,17 @@ class StudiosController < ApplicationController
     @timeslot.each do |time|
       @timeslot_array << [time.time, time.id]
     end
-<<<<<<< HEAD
-
-=======
->>>>>>> aef511ff84e957c712fb8e04270600b65430e568
   end
 
   def new
     @studio = Studio.new
-<<<<<<< HEAD
     authorize(@studio)
-=======
->>>>>>> aef511ff84e957c712fb8e04270600b65430e568
   end
 
   def create
     @studio = Studio.new(studio_params)
     @studio.user = current_user
-<<<<<<< HEAD
     authorize(@studio)
-=======
->>>>>>> aef511ff84e957c712fb8e04270600b65430e568
     if @studio.save
       redirect_to studio_path(@studio)
     else
@@ -108,26 +85,20 @@ class StudiosController < ApplicationController
   end
 
   def edit
-<<<<<<< HEAD
     authorize(@studio)
   end
 
   def update
     authorize(@studio)
-=======
   end
 
   def update
->>>>>>> aef511ff84e957c712fb8e04270600b65430e568
     @studio.update(studio_params)
     redirect_to studio_path(@studio)
   end
 
   def destroy
-<<<<<<< HEAD
     authorize(@studio)
-=======
->>>>>>> aef511ff84e957c712fb8e04270600b65430e568
     @studio.destroy
     redirect_to root_path, status: :see_other
   end

@@ -1,6 +1,6 @@
 
 <div class="container col-4" >
-<%= simple_form_for [studio,room] do |f| %>
+<%= simple_form_for [studio,room], url: : do |f| %>
 <div class="create-room container-fluid mt-5"  data-controller="equipment">
       <% if @room.room_name.present? %>
       <h1><%= @room.room_name %></h1>
