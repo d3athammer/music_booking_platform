@@ -7,7 +7,6 @@ class ReservationsController < ApplicationController
     @reservations = current_user.reservations
     @timeslot_array = timeslot_array
     @hourly_array = hourly_array
-<<<<<<< HEAD
     @studio = policy_scope(Studio).find_by(user_id: current_user.id)
     @rooms = policy_scope(Room).where(studio_id: @studio)
     # find all the reservations made for your studio rooms
@@ -17,8 +16,8 @@ class ReservationsController < ApplicationController
 
   def show
     @reservation = Reservation.find(params[:id])
+    authorize(@room)
     authorize(@reservation)
-=======
     @studio = Studio.find_by(user_id: current_user.id)
     @rooms = Room.where(studio_id: @studio)
     # find all the reservations made for your studio rooms
@@ -26,19 +25,12 @@ class ReservationsController < ApplicationController
     @studio_reservations = Reservation.where(room_id: @stud_room_id)
   end
 
-  def show
-    # @reservation = Reservation.find(params[:id])
->>>>>>> aef511ff84e957c712fb8e04270600b65430e568
-  end
 
   def new
     @duration = params[:duration].to_i
     @date = params[:date]
     @reservation = Reservation.new
-<<<<<<< HEAD
     authorize(@reservation)
-=======
->>>>>>> aef511ff84e957c712fb8e04270600b65430e568
     params[:time] = Timeslot.find(params[:time].to_f).time unless params[:time].blank?
     @timeslot = Timeslot.all
     @hour_array = hourly_array
@@ -52,10 +44,7 @@ class ReservationsController < ApplicationController
   def create
     @timeslot = Timeslot.all
     @reservation = Reservation.new(reservation_params)
-<<<<<<< HEAD
     authorize(@reservation)
-=======
->>>>>>> aef511ff84e957c712fb8e04270600b65430e568
     # assign timeslot_id by taking the value from @reservation.start_time, which signifies timeslot_id
     # @reservation.timeslot_id = params[:reservation][:start_time].to_i
     # find actual start_time by going through the list of timeslot_id and time
@@ -85,10 +74,7 @@ class ReservationsController < ApplicationController
 
   def destroy
     @reservation = Reservation.find(params[:id])
-<<<<<<< HEAD
     authorize(@reservation)
-=======
->>>>>>> aef511ff84e957c712fb8e04270600b65430e568
     @timeslot_reservation = TimeslotReservation.where(reservation_id: params[:id])
     @timeslot_reservation.destroy_all
     @reservation.update_attribute(:status, false)

@@ -17,11 +17,7 @@ class Equipment < ApplicationRecord
   # validates :equipment_type, inclusion: { in: equipment_types.keys }
   validates :name, length: { maximum: 100 }
 
-<<<<<<< HEAD
   # enum :equipment_type, %w[piano keyboard drums percussion guitar bass vocals amplifiers accessories audio]
-=======
-  enum :equipment_type, %i[piano keyboard drums percussion guitar bass vocals amplifiers accessories audio]
->>>>>>> aef511ff84e957c712fb8e04270600b65430e568
 
   # { piano: 0, keyboard: 1, drums: 2,
   #                         percussion: 3, guitar: 4, bass: 5,
