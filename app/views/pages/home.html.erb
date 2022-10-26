@@ -12,7 +12,11 @@
   <h2 class="sub-title">Discover here</h2>
   <div class="discover">
     <div>
+<<<<<<< HEAD
       <img src=<%=asset_path('placeholder.jpg')%> alt="">
+=======
+      <img src="/assets/placeholder.jpg" alt="">
+>>>>>>> aef511ff84e957c712fb8e04270600b65430e568
         <span>
           <%= link_to studio_path(@studio.first), class:"text-decoration-none text-white stretched-link" do %>
           <h3><%= @studio.first.name %></h3>
@@ -21,7 +25,11 @@
         </span>
     </div>
   <div>
+<<<<<<< HEAD
       <img src=<%=asset_path('placeholder.jpg')%> alt="">
+=======
+      <img src="/assets/placeholder.jpg" alt="">
+>>>>>>> aef511ff84e957c712fb8e04270600b65430e568
         <span>
           <% id_2 = @studio.find(rand(2..@studio.count - 1)) %>
           <%= link_to studio_path(id_2), class:"text-decoration-none text-white stretched-link" do %>
@@ -31,7 +39,11 @@
         </span>
     </div>
     <div>
+<<<<<<< HEAD
       <img src=<%=asset_path('placeholder.jpg')%> alt="">
+=======
+      <img src="/assets/placeholder.jpg" alt="">
+>>>>>>> aef511ff84e957c712fb8e04270600b65430e568
         <span>
           <% id_3 = @studio.find(rand(2..@studio.count - 1)) %>
           <%= link_to studio_path(id_3), class:"text-decoration-none text-white stretched-link" do %>
@@ -44,9 +56,15 @@
   <%# trending rooms, to room index %>
   <h2 class="sub-title">Trending studio rooms</h2>
   <div class="trending">
+<<<<<<< HEAD
   <% @studio.reject {|e| e.rooms == []}.sample(4).each do |studio| %>
     <div>
       <img src=<%=asset_path('trending-1.jpg')%> alt="">
+=======
+  <% @studio.sample(4).each do |studio| %>
+    <div>
+      <img src="/assets/trending-1.jpg" alt="">
+>>>>>>> aef511ff84e957c712fb8e04270600b65430e568
       <h3>
        <%= studio.rooms.sample.room_name  %>
       </h3>
@@ -63,6 +81,7 @@
   <h2 class="sub-title">Jammers Stories</h2>
   <div class="stories">
     <div>
+<<<<<<< HEAD
         <img src=<%=asset_path('stories-1.jpg')%> alt="">
         <p>The best studio booking experience using StudioBook!</p>
     </div>
@@ -72,6 +91,17 @@
     </div>
     <div>
         <img src=<%=asset_path('stories-1.jpg')%> alt="">
+=======
+        <img src="assets/stories-1.jpg" alt="">
+        <p>The best studio booking experience using StudioBook!</p>
+    </div>
+    <div>
+        <img src="assets/stories-2.jpg" alt="">
+        <p>The best studio booking experience using StudioBook!</p>
+    </div>
+    <div>
+        <img src="assets/stories-1.jpg" alt="">
+>>>>>>> aef511ff84e957c712fb8e04270600b65430e568
         <p>The best studio booking experience using StudioBook!</p>
     </div>
   </div>

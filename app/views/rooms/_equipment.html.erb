@@ -1,5 +1,9 @@
 <tr>
+<<<<<<< HEAD
   <td><%= f.input :equipment_type, label: false, collection: %w[piano keyboard drums percussion guitar bass vocals amplifiers accessories audio], input_html:{class:"input-border"} %></td>
+=======
+  <td><%= f.input :equipment_type, label: false, collection: Equipment.equipment_types.keys, input_html:{class:"input-border"} %></td>
+>>>>>>> aef511ff84e957c712fb8e04270600b65430e568
   <td><%= f.input :name, label: false, input_html:{class:"input-border"} %></td>
   <td><%= f.input :brand, label: false, as: :string, input_html:{class:"input-border"} %></td>
   <td>

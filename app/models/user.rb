@@ -21,7 +21,10 @@ class User < ApplicationRecord
   has_many :reservations
   # allows us to call @user.reservations
   has_many :studios, dependent: :destroy
+<<<<<<< HEAD
   has_many :rooms, through: :studio
 
+=======
+>>>>>>> aef511ff84e957c712fb8e04270600b65430e568
   # allows us to call @user.studios
 end

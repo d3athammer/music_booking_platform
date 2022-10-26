@@ -53,10 +53,13 @@ gem "faker"
 # Add Jquery
 gem 'jquery-rails'
 
+<<<<<<< HEAD
 # Add Pundit
 gem "pundit"
 
 
+=======
+>>>>>>> aef511ff84e957c712fb8e04270600b65430e568
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 gem "devise"
