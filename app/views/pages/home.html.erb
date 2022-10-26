@@ -11,36 +11,27 @@
 <div class="container">
   <h2 class="sub-title">Discover here</h2>
   <div class="discover">
+    <% if @studio  %>
+    <% @studio.sample(3).each do |studio|  %>
     <div>
       <img src=<%=asset_path('placeholder.jpg')%> alt="">
         <span>
-          <%= link_to studio_path(@studio.first), class:"text-decoration-none text-white stretched-link" do %>
-          <h3><%= @studio.first.name %></h3>
-          <p>From $<%=@studio.first.rooms.sample.price if @studio.first.rooms%></p>
+          <%= link_to studio_path(studio), class:"text-decoration-none text-white stretched-link" do %>
+          <h3><%= studio.name %></h3>
+          <p>From $<%=studio.rooms.sample.price if @studio.first.rooms%></p>
           <% end %>
         </span>
     </div>
-  <div>
-      <img src=<%=asset_path('placeholder.jpg')%> alt="">
-        <span>
-          <% id_2 = @studio.find(rand(2..@studio.count - 1)) %>
-          <%= link_to studio_path(id_2), class:"text-decoration-none text-white stretched-link" do %>
-          <h3><%= id_2.name %></h3>
-          <p>From $<%= Studio.where(name: id_2.name).take.rooms.sample.price%></p>
-          <% end %>
-        </span>
-    </div>
+    <% end %>
+    <% else %>
     <div>
       <img src=<%=asset_path('placeholder.jpg')%> alt="">
-        <span>
-          <% id_3 = @studio.find(rand(2..@studio.count - 1)) %>
-          <%= link_to studio_path(id_3), class:"text-decoration-none text-white stretched-link" do %>
-          <h3><%= id_3.name %></h3>
-          <p>From $<%= Studio.where(name: id_3.name).take.rooms.sample.price%></p>
-          <% end %>
-        </span>
+        <span>No studios yet</span>
     </div>
+    <% end %>
+
   </div>
+
   <%# trending rooms, to room index %>
   <h2 class="sub-title">Trending studio rooms</h2>
   <div class="trending">
