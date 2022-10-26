@@ -49,7 +49,11 @@ User.delete_all
     equipment = Equipment.new(
       name: Faker::Music.instrument,
       brand: Faker::Appliance.brand,
+<<<<<<< HEAD
+      equipment_type: %w[piano keyboard drums percussion guitar bass vocals amplifiers accessories audio].sample
+=======
       equipment_type: %i[piano keyboard drums percussion guitar bass vocals amplifiers accessories audio].sample
+>>>>>>> aef511ff84e957c712fb8e04270600b65430e568
     )
     equipment.room = room
     equipment.save!
