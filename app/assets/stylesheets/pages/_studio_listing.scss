@@ -1,0 +1,153 @@
+//----listing----//
+p{
+  margin-bottom: 0;
+}
+.navbar-white{
+  background: #fff;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+}
+
+.navbar-white .nav-links li a{
+  color: #000;
+}
+
+.navbar-white .nav-register-btn-white,
+.nav-sign-out-btn-white,
+.nav-list-btn-white,
+.nav-login-btn-white {
+  background: $pastelpink;
+  color: #fff;
+  border: 0;
+}
+
+.navbar-white .nav-register-btn-white:hover,
+.nav-sign-out-btn-white:hover,
+.nav-list-btn-white:hover,
+.nav-login-btn-white:hover{
+  background: #fff;
+  border: $pastelpink solid 1px;
+  color: $pastelpink;
+}
+
+.search-bar-white{
+  border: $pastelpink solid 1px;
+}
+
+.list-container{
+  margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.container-for-list{
+  padding: 0 7%;
+  margin: 0;
+}
+
+.left-col{
+  flex-basis: 75%;
+}
+
+.right-col {
+  flex-basis: 20%;
+}
+
+.left-col h1{
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+//-----studios list-----//
+.studio{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 10px 0;
+  border-top: 1px solid #ccc;
+}
+
+.studio-img{
+  flex-basis: 40%;
+}
+
+.studio-info{
+  flex-basis: 58%;
+  color: #555;
+}
+
+.studio-img img{
+  width: 100%;
+  border-radius: 12px;
+}
+
+.studio-info h3{
+  font-weight: 600;
+  color: #333;
+  font-size: 22px;
+  margin: 4px 0;
+}
+
+.studio-info i{
+  color: #ff5361;
+  font-size: 18px;
+  margin: 10px 1px;
+}
+
+.studio-info p{
+  margin-bottom: 0;
+}
+
+.studio-price{
+  text-align: right;
+}
+
+.studio-price h4{
+  font-size: 20px;
+}
+
+.studio-price h4 span {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.sidebar{
+  border: 1px solid #999;
+  padding: 20px 30px;
+  margin-top: 30px;
+}
+
+.sidebar h2{
+  font-weight: 500;
+}
+
+.sidebar h3{
+  font-weight: 500;
+  margin: 20px 0 10px;
+}
+
+.filter{
+  display: flex;
+  align-items: center;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.filter p{
+  flex: 1;
+}
+
+.filter input{
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.sidebar-link{
+  text-align: right;
+  margin: 20px 0;
+}
+
+.sidebar-link a{
+  text-decoration: none;
+}

@@ -1,0 +1,198 @@
+.studio-details{
+  padding: 0 12%;
+}
+
+.studio-title{
+  margin-top: 50px;
+}
+
+.studio-title h1{
+  font-weight: 600;
+}
+
+.studio-title-row{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.studio-title span{
+  margin: 0 20px;
+}
+
+.studio-title i{
+  color: #ff5361;
+  font-size: 14px;
+}
+
+.gallery{
+  display: grid;
+  grid-gap: 10px;
+  grid-template-areas: 'first first . .' 'first first . .' ;
+  margin: 20px 0;
+}
+
+.gallery div img{
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+}
+
+.gallery-img-1{
+  grid-area: first;
+}
+
+.small-details h2{
+  font-weight: 400;
+}
+.small-details h4{
+  text-align: right;
+  font-size: 22px;
+}
+
+//line here---------//
+.line{
+  border: 0;
+  height: 1px;
+  background: #999;
+  width: 100%;
+  max-width: 800px;
+  margin: 20px 0;
+}
+//-----check forms-----//
+.check-form{
+  margin: 30px 0;
+  background: #fff;
+  box-shadow: 0 0 30px rgba(0,0,0,0.3);
+  border-radius: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px 50px;
+}
+
+.check-form label{
+  display: block;
+}
+
+.check-form div{
+  padding: 20px;
+}
+.check-form input{
+
+  background: transparent;
+  border: 0;
+  outline: none;
+  flex: 1;
+}
+
+.check-form button{
+  background: $pastelpink;
+  border: 0;
+  outline: none;
+  color: #fff;
+  padding: 18px;
+  width: 350px;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.duration-field {
+  flex: 1 ;
+}
+
+.date-input-select{
+  padding: 10px;
+  color: #999;
+  border: #999;
+}
+
+//-reservation new
+
+.studio-info{
+  border-radius: 20px;
+
+  p{
+      margin-bottom: 20px;
+  }
+}
+
+.resv-left-col{
+  flex: 45%;
+  margin-right: 20px;
+}
+
+.resv-right-col{
+  flex: 35%;
+}
+
+.extra-top{
+  margin-top: 10px;
+}
+
+.card-product {
+  overflow: hidden;
+  height: 250px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: 0;
+  border-radius: 20px;
+}
+
+.card-product img {
+  height: 100%;
+  width: 60%;
+  border-radius: 20px;
+  padding: 16px;
+  object-fit: cover;
+}
+
+.card-product h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card-product p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.card-product .card-product-infos {
+  padding: 16px;
+}
+
+.specific-image{
+  border-radius: 20px;
+}
+
+.reserve-button{
+  background: #E69A8D;
+  display: block;
+    border: 0;
+    outline: none;
+    color: #fff;
+    padding: 18px;
+    width: 100%;
+    border-radius: 8px;
+    font-size: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    text-decoration: none;
+}
+
+.no-decoration,
+.no-decoration:focus,
+.no-decoration:active,
+.no-decoration:hover,
+.no-decoration:visited {
+  box-shadow: none;
+  text-decoration: none;
+  outline: none;
+}

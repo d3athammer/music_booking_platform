@@ -1,0 +1,9 @@
+<tr>
+  <td><%= f.input :equipment_type, label: false, collection: %w[piano keyboard drums percussion guitar bass vocals amplifiers accessories audio], input_html:{class:"input-border"} %></td>
+  <td><%= f.input :name, label: false, input_html:{class:"input-border"} %></td>
+  <td><%= f.input :brand, label: false, as: :string, input_html:{class:"input-border"} %></td>
+  <td>
+    <%= f.input_field :_destroy, as: :hidden %>
+    <%= link_to 'Delete', '#', class: 'remove_record', data: { action: "click->equipment#removeEquipment" } %>
+  </td>
+</tr>

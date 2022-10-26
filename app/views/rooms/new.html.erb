@@ -1,0 +1,77 @@
+<div class="room-background">
+<%= render "pages/navbar" %>
+<%= render "form", studio: @studio, room: @room %>
+</div>
+<%= render 'studios/footer' %>
+
+
+<%# <section class="h-100 h-custom" style="background-color: #8fc4b7;">
+<%= simple_form_for [@studio, @room] do |f| %>
+<%# <div class="navbar">
+</div>
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-8 col-xl-6">
+        <div class="card rounded-3">
+          <img src="https://images.unsplash.com/photo-1618609377864-68609b857e90?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1856&q=80"
+            class="w-100" style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;"
+            alt="Sample photo">
+          <div class="card-body p-4 p-md-5">
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Create your Studio Room</h3>
+
+            <form class="px-md-2">
+              <%= f.input :room_name %>
+
+              <%# <div class="row">
+                <div class="col-md-6 mb-4">
+
+                <%= f.input :price, label: 'Price per hour' %>
+
+                <%# </div>
+                <div class="col-md-6 mb-4">
+
+                <%= f.input :room_size %>
+<%#
+                </div>
+              </div>  %>
+
+              <%# <div class="mb-4">
+                <%= f.input :description %>
+                <%# <%= f.input :total_occupancy %>
+              <%# </div>
+
+              <div class="row mb-4 pb-2 pb-md-0 mb-md-5">
+                <div class="col-md-6">
+
+                </div>
+              </div> %>
+
+              <%# <%= f.submit "Create Room", class: "btn btn-primary" %>
+
+            <%# </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<% end %>
+
+<!--div class="">
+</div>
+<div class="container">
+<h1>New Room</h1>
+
+
+
+
+
+  <%# <%= f.collection_radio_buttons :room_type, [['Jamming Studio'], ['Recording Studio'], ['Home Studio'], ['practice room']], :first, :last %>
+
+
+
+
+</div>
+
+<%= render "form", studio: @studio, room: @room %>

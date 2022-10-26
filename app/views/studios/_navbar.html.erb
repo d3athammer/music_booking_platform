@@ -1,0 +1,15 @@
+<nav class="nav-bar navbar-white">
+     <a href="/"><img src="/assets/studiobookcropped.png" alt="studiobook" class="nav-logo"></a>
+  <%= render "searchbar" %>
+    <div class="nav-buttons d-flex">
+    <% if user_signed_in? %>
+    <%= link_to "List your studio here", new_studio_path, class: "nav-list-btn nav-list-btn-white" %>
+    <%= link_to 'Sign Out', destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?'}, class: "nav-sign-out-btn nav-sign-out-btn-white" %>
+    <% else %>
+    <%= link_to "List your studio here", new_studio_path, class: "nav-list-btn nav-list-btn-white" %>
+    <%= link_to "Login", new_user_session_path, class: "nav-login-btn nav-login-btn-white" %>
+    <a href="#" class="nav-register-btn nav-register-btn-white">Register Now</a>
+    <% end %>
+    </div>
+
+</nav>

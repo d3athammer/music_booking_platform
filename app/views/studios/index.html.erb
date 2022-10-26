@@ -1,0 +1,65 @@
+<%= render "navbar", studio: @studio %>
+<div class="container-for-list">
+  <div class="list-container">
+  <%# everything in left column %>
+  <div class="right-col">
+    <div class="sidebar">
+        <h2>Select filter</h2>
+        <h3>Studio type</h3>
+        <div class="filter">
+            <input type="checkbox"> <p>Jamming Studios</p> <span>count</span>
+        </div>
+        <div class="filter">
+            <input type="checkbox"> <p>Recording Studios</p> <span>count</span>
+        </div>
+        <div class="filter">
+            <input type="checkbox"> <p>Home Studios</p> <span>count</span>
+        </div>
+        <h3>Equipment</h3>
+        <div class="filter">
+            <input type="checkbox"> <p>Piano</p>
+        </div>
+        <div class="filter">
+            <input type="checkbox"> <p>Drums</p>
+        </div>
+        <div class="filter">
+            <input type="checkbox"> <p>Bass</p>
+        </div>
+        <div class="sidebar-link">
+            <a href="#">View More</a>
+        </div>
+    </div>
+  </div>
+    <%# everything in right column %>
+  <div class="left-col">
+    <p><%= @room_count%> rooms from <%= @studios.count %> studios available </p>
+    <h1>Recommended studios in Singapore</h1>
+    <%@studios.each do |studio| %>
+    <div class="studio">
+        <div class="studio-img">
+            <img src="assets/room2.jpg" alt="">
+        </div>
+        <div class="studio-info">
+            <p><%= studio.rooms.count %> rooms available for booking</p>
+            <h3><%= studio.name %></h3>
+            <p><%= studio.description %></p>
+            <%# reviews gem here! %>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <div class="studio-price">
+                <p><%= range_pax(studio)%> Pax</p>
+                <h4>from $<%=low_price(studio) %><span>/ hour</span></h4>
+                <div class="box-3">
+                    <%= link_to "Show Availability", studio_path( id: studio, query: params[:query], date: params[:date], time: params[:time], duration: params[:duration]), class: "button-show " %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+<%# add pagination here, use gem %>
+<%= render "footer", studio: @studio %>

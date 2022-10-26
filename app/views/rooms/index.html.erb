@@ -1,0 +1,19 @@
+  <div class="row justify-content-center">
+    <div class=" card-container d-flex flex-wrap justify-content-center col-sm-8 ">
+          <h1 class="mt-3">These are the available rooms based on your search</h1>
+        <% @rooms.each do |room| %>
+          <div class="card mb-3 mx-2 p-2 col-3 ">
+            <img src="<%= asset_path('placeholder.jpg')%>" class="card-img-top"/>
+            <h1><%= room.room_name %></h1>
+            <li class="list-group-item">Room Type: <%= room.room_type %></li>
+            <li class="list-group-item">Size: <%= room.room_size %>&#13217;</li>
+            <li class="list-group-item">Price: <%= room.price %></li>
+            <li class="list-group-item">Suggested Pax: <%= room.total_occupancy %></li>
+            <br>
+            <p class="card-text"><%= room.description %></p>
+            <%= link_to "", studio_room_path(room.studio,room), class: "stretched-link" %>
+          </div>
+        <% end %>
+    </div>
+  </div>
+<%= render 'studios/footer' %>

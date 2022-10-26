@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>StudioBook: Find any music studio that suits your needs, ...</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%# adding turbo"links" to both turbo, added media to stylesheet tag %>
+  <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <%= yield %>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+  <%= render "shared/flashes" %>
+  <!-- jQuery and JS bundle w/ Popper.js -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+</body>
+
+</html>

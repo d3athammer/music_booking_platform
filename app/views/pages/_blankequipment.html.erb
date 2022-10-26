@@ -1,0 +1,8 @@
+<div class="">
+              <select class="form-select" name="equipment" aria-label="Default select example" multiple>
+                  <option value="" selected>-Equipment-</option>
+                  <% %w[piano keyboard drums percussion guitar bass vocals amplifiers accessories audio].each do |equipment| %>
+                  <option value="<%=equipment%>"><%= equipment %></option>
+                <% end %>
+              </select>
+          </div>
