@@ -3,7 +3,7 @@
     <div class="col-3">
         <div class="left-booking col-10">
             <div class="avatar-profile">
-                <img class="avatar-largest" alt="avatar-large" src="https://kitt.lewagon.com/placeholder/users/arthur-littm" />
+                <img class="avatar-largest" alt="avatar-large" src=<%=asset_path('avatar-3.jpg')%> />
             </div>
             <div class="user-details">
             <a href="<%=edit_user_registration_path(current_user)%>" class="text-decoration-none" style="margin-bottom: px; font-size:20px;">Edit personal info<i class="fa-solid fa-chevron-right text-primary ml-1"></i></a>
@@ -18,7 +18,8 @@
               <% else %>
                   <%= link_to "List a studio", new_studio_path, class: 'mt-3' %>
               <% end %>
-              <p>No. of bookings: <%= @reservations.count %></p>
+              <p>No. of bookings made: <%= @reservations.count %></p>
+              <p>No. of bookings for your studio: <%= @studio_reservations.count %></p>
             </div>
         </div>
     </div>
@@ -27,7 +28,7 @@
         <nav class="tab-btn">
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
           <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Reservations</button>
-          <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Your bookings</button>
+          <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false"><%= @studio.name %></button>
         </div>
         </nav>
         <div class="tab-content" id="nav-tabContent">

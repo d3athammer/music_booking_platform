@@ -16,6 +16,7 @@ class ReservationsController < ApplicationController
 
   def show
     @reservation = Reservation.find(params[:id])
+    authorize(@room)
     authorize(@reservation)
     @studio = Studio.find_by(user_id: current_user.id)
     @rooms = Room.where(studio_id: @studio)
@@ -24,9 +25,6 @@ class ReservationsController < ApplicationController
     @studio_reservations = Reservation.where(room_id: @stud_room_id)
   end
 
-  def show
-    # @reservation = Reservation.find(params[:id])
-  end
 
   def new
     @duration = params[:duration].to_i
